@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+public class SaveSystem
 {
     #region Save & Load
 
@@ -18,7 +18,7 @@ public class SaveSystem : MonoBehaviour
             File.WriteAllText(path, json);
 
         #if UNITY_EDITOR
-            Debug.Log($"Susscessfully saved data to {path}.");
+            Debug.Log($"Successfully saved data to {path}.");
         #endif
         }
         catch (System.Exception exception)

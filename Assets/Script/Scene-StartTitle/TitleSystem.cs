@@ -1,14 +1,14 @@
 using TMPro;
 using UnityEngine;
 
-//���ڹ����������UI����
+//用于管理主界面的UI互动
 public class TitleSystem : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Animator animator;//�����������
-    private int cursor = 0;//��ǰ���λ��
+    public Animator animator;//动画播放组件
+    private int cursor = 0;//当前光标位置
    
-    //0��Xin��������Ա������     1����ʼ�µ���Ϸ    2����Ϸ����      3��������Ϸ      4���˳�������Ϸ
+    //0：Xin（制作人员名单）     1：开始新的游戏    2：游戏设置      3：回忆游戏      4：退出返回游戏
     void Start()
     {
     }
@@ -16,7 +16,7 @@ public class TitleSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Up"))//ѡ������
+        if(Input.GetButtonDown("Up"))//选项向上
         {
             animator.SetTrigger("up");
             cursor--;
@@ -29,19 +29,19 @@ public class TitleSystem : MonoBehaviour
             cursor++;
             if(cursor > 4) { cursor = 0; }
         }
-        else if(Input.GetButtonDown("Confirm"))//ȷ��
+        else if(Input.GetButtonDown("Confirm"))//确认
         {
             switch(cursor)
             {
-                case 0://��ʾ����������
+                case 0://显示制作者名单
                     break;
-                case 1://��ʼ�µ���Ϸ
+                case 1://开始新的游戏
                     break;
-                case 2://��Ϸ����
+                case 2://游戏设置
                     break;
-                case 3://�ع˾������������
+                case 3://回顾剧情和欣赏音乐
                     break;
-                case 4://�˳���Ϸ
+                case 4://退出游戏
                     Application.Quit();
                     break;
             }
