@@ -94,7 +94,16 @@ public class DialogueSystem : MonoBehaviour
         for (int i = 1; i < dialogRows.Length; i++)
         {
             string[] cells = dialogRows[i].Split(','); // 把对话行分割成各个数据
-            string[] effects = cells[6].Split('/'); // 把效果编号进行分割
+
+            if (cells[6] != "" && int.Parse(cells[1]) == dialogIndex) //如果效果不为空，则触发动态事件
+            {
+                string[] effects = cells[6].Split('/'); // 把效果编号进行分割
+                foreach (string effect in effects)
+                {
+                    DialogEffect(int.Parse(effect));
+                }
+            }
+
             if (cells[0] == "#" && int.Parse(cells[1]) == dialogIndex) //如果是普通对话且 ID 是正在进行的对话 ID 就显示
             {
                 UpdateText(cells[2], cells[3]);
@@ -105,7 +114,6 @@ public class DialogueSystem : MonoBehaviour
             else if (cells[0] == "&" && int.Parse(cells[1]) == dialogIndex) // 如果是选择对话则显示按钮
             {
                 GenerateOption(i);
-                
                 break;
             }
             else if (cells[0] == "End" && int.Parse(cells[1]) == dialogIndex) // 如果是结束节点则结束对话
@@ -125,7 +133,7 @@ public class DialogueSystem : MonoBehaviour
     {
         isChoosing = true;
         string[] cells = dialogRows[index].Split(',');
-        string[] conditions = cells[5].Split('/'); // 把条件编号进行分割\
+        string[] conditions = cells[5].Split('/'); // 把条件编号进行分割
         if (cells[0] == "&")
         {
             GameObject button = Instantiate(optionButton, buttonGroup);
@@ -139,7 +147,7 @@ public class DialogueSystem : MonoBehaviour
             );
             if (cells[5] != "") //如果有条件则进入判断是否启用按钮
             {
-                foreach (var condition in conditions) //如果有一个条件不满足就禁用按钮
+                foreach (string condition in conditions) //如果有一个条件不满足就禁用按钮
                 {
                     if (!EventSystem.Instance.isStaticEvent(int.Parse(condition)))
                     {
@@ -161,6 +169,11 @@ public class DialogueSystem : MonoBehaviour
             Destroy(buttonGroup.GetChild(i).gameObject);
         }
         ShowDialogRow();
+    }
+
+    public void DialogEffect(int index) // 触发动态事件
+    {
+        EventSystem.Instance.ActiveEvent(index);
     }
 
     #endregion

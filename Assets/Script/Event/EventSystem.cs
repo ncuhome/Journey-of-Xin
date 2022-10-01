@@ -19,8 +19,9 @@ public class EventSystem : MonoBehaviour, IEventList
 
     #region Unity Methods
 
-    private void Awake() {
-        
+    private void Awake() // 创建单例以及静态事件列表
+    {
+
         Instance = this;
 
         staticEventList[0] = 0;
@@ -33,7 +34,7 @@ public class EventSystem : MonoBehaviour, IEventList
     #endregion
 
     #region  EventSystem
-    public void changeStaticEvent(int index , bool active)
+    public void changeStaticEvent(int index , bool active) //改变静态事件
     {
         if (active)
         {
@@ -46,19 +47,17 @@ public class EventSystem : MonoBehaviour, IEventList
         
     }
 
-    public bool isStaticEvent(int index)
+    public bool isStaticEvent(int index) //查询静态事件
     {
+        Debug.Log(staticEventList[index]);
         if (staticEventList[index] == 0)
         {
             return false;
-        } 
-        else
-        {
-            return true;
         }
+        return true;
     }
 
-    public bool ActiveEvent(int index)
+    public bool ActiveEvent(int index) //进行动态事件
     {
         switch (index)
         {
@@ -90,32 +89,32 @@ public class EventSystem : MonoBehaviour, IEventList
 
     #region  ActiveEvents
 
-    public void ActiveEvent1()
+    private void ActiveEvent1()
+    {
+        changeStaticEvent(1, true);
+    }
+
+    private void ActiveEvent2()
     {
 
     }
 
-    public void ActiveEvent2()
-    {
-
-    }
-
-    public void ActiveEvent3()
-    {
-        
-    }
-
-    public void ActiveEvent4()
+    private void ActiveEvent3()
     {
         
     }
 
-    public void ActiveEvent5()
+    private void ActiveEvent4()
     {
         
     }
 
-    public void ActiveEvent6()
+    private void ActiveEvent5()
+    {
+        
+    }
+
+    private void ActiveEvent6()
     {
         
     }
