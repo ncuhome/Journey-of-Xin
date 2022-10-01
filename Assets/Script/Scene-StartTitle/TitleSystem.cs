@@ -1,51 +1,104 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-//ç”¨äºç®¡ç†ä¸»ç•Œé¢çš„UIäº’åŠ¨
+/***Î´ÊµÏÖ²¥·Å¹ı³¡¶¯»­ºó×Ô¶¯Ïú»Ù¶¯»­ÎïÌå**/
+//ÓÃÓÚ¹ÜÀíÖ÷½çÃæµÄUI»¥¶¯
 public class TitleSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Animator animator;//åŠ¨ç”»æ’­æ”¾ç»„ä»¶
-    private int cursor = 0;//å½“å‰å…‰æ ‡ä½ç½®
-   
-    //0ï¼šXinï¼ˆåˆ¶ä½œäººå‘˜åå•ï¼‰     1ï¼šå¼€å§‹æ–°çš„æ¸¸æˆ    2ï¼šæ¸¸æˆè®¾ç½®      3ï¼šå›å¿†æ¸¸æˆ      4ï¼šé€€å‡ºè¿”å›æ¸¸æˆ
+    public Animator animator;//¶¯»­²¥·Å×é¼ş
+    public Animator animatorLoading;//²¥·Å¹ı³¡¶¯»­Æ÷
+    private AsyncOperation operation;//Òì²½¼ÓÔØ×é¼ş
+    private int cursor = 0;//µ±Ç°¹â±êÎ»ÖÃ
+    private bool nextScene = false;//ÊÇ·ñ½øÈëÏÂÒ»¸ö³¡¾°
+    private float timer = 0;//¼ÆÊ±Æ÷
+    //0£ºXin£¨ÖÆ×÷ÈËÔ±Ãûµ¥£©     1£º¿ªÊ¼ĞÂµÄÓÎÏ·    2£ºÓÎÏ·ÉèÖÃ      3£º»ØÒäÓÎÏ·      4£ºÍË³ö·µ»ØÓÎÏ·
+
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Up"))//é€‰é¡¹å‘ä¸Š
+        if(!nextScene)//ÔÚµ±Ç°³¡¾° ÏÂ¶ÔÍæ¼Ò²Ù×÷µÄ¼à¿Ø
         {
-            animator.SetTrigger("up");
-            cursor--;
-            if (cursor < 0) { cursor = 4; }
-           
-        }
-        else if(Input.GetButtonDown("Down"))//
-        {
-            animator.SetTrigger("down");
-            cursor++;
-            if(cursor > 4) { cursor = 0; }
-        }
-        else if(Input.GetButtonDown("Confirm"))//ç¡®è®¤
-        {
-            switch(cursor)
+            if (Input.GetButtonDown("Up"))//Ñ¡ÏîÏòÉÏ
             {
-                case 0://æ˜¾ç¤ºåˆ¶ä½œè€…åå•
-                    break;
-                case 1://å¼€å§‹æ–°çš„æ¸¸æˆ
-                    break;
-                case 2://æ¸¸æˆè®¾ç½®
-                    break;
-                case 3://å›é¡¾å‰§æƒ…å’Œæ¬£èµéŸ³ä¹
-                    break;
-                case 4://é€€å‡ºæ¸¸æˆ
-                    Application.Quit();
-                    break;
+                animator.SetTrigger("up");
+                cursor--;
+                if (cursor < 0) { cursor = 4; }
+
+            }
+            else if (Input.GetButtonDown("Down"))//Ñ¡ÏîÏòÏÂ
+            {
+                animator.SetTrigger("down");
+                cursor++;
+                if (cursor > 4) { cursor = 0; }
+            }
+            else if (Input.GetButtonDown("Confirm"))//È·ÈÏ
+            {
+                switch (cursor)
+                {
+                    case 0://ÏÔÊ¾ÖÆ×÷ÕßÃûµ¥
+                        toProducer();
+                        break;
+                    case 1://¿ªÊ¼ĞÂµÄÓÎÏ·
+                        nextScene = true;
+                        toNewGame();
+                        break;
+                    case 2://ÓÎÏ·ÉèÖÃ
+                        toSettings();
+                        break;
+                    case 3://»Ø¹Ë¾çÇéºÍĞÀÉÍÒôÀÖ
+                        toMemory();
+                        break;
+                    case 4://ÍË³öÓÎÏ·
+                        Application.Quit();
+                        break;
+                }
+            }
+
+        }
+        else
+        {
+            Debug.Log("³¡¾°¼ÓÔØ½ø¶È£º" + operation.progress);
+            timer += Time.deltaTime;//¼ÆÊ±Æ÷
+            if (operation.progress == 0.9f && timer >= 3.0)//¼ÓÔØÍê±Ïºó ÇÒ ¶¯»­²¥·ÅÍê³É ºóÌø×ª
+            {
+                Debug.Log("¼ÓÔØ³¡¾°Íê±Ï");
+                DontDestroyOnLoad(animatorLoading.gameObject);//¼ÓÔØĞÂ³¡¾°Ê±²»Ïú»Ù¹ı³¡¶¯»­ÎïÌå
+                animatorLoading.SetTrigger("nextScene");//²¥·Å¹ı³¡ÏûÊ§¶¯»­
+                operation.allowSceneActivation = true;//Ìø×ªÖÁĞÂ³¡¾°
             }
         }
+
+    }
+
+    private void toProducer()//Ç°ÍùÖÆ×÷ÕßÃûµ¥»­Ãæ
+    {
+
+    }
+    private void toNewGame()//¿ªÊ¼ĞÂµÄÓÎÏ·
+    {
+        Debug.Log("¿ªÊ¼¼ÓÔØ³¡¾°");
+        animatorLoading.SetTrigger("nextScene");//²¥·Å¹ı³¡¿ªÊ¼¶¯»­
+        StartCoroutine(LoadScene());//Ê¹ÓÃÒì²½¼ÓÔØ³¡¾°
+    }
+    private IEnumerator LoadScene()//Òì²½¼ÓÔØ£¨Ê¹ÓÃĞ­³Ì£©
+    {
+        operation = SceneManager.LoadSceneAsync("SceneState1");
+        operation.allowSceneActivation = false;
+        yield return operation;
+    }
+    private void toSettings()//Ç°ÍùÓÎÏ·ÉèÖÃ»­Ãæ
+    {
+
+    }
+    private void toMemory()//Ç°Íù»ØÒäÓëĞÀÉÍ»­Ãæ
+    {
+
     }
 
 

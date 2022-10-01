@@ -13,12 +13,16 @@ public interface IEventList//接口，用于管理全局事件：静态事件：
 public class EventSystem : MonoBehaviour, IEventList
 {
     #region  Properties
+    public static EventSystem Instance { get; private set; } // 单例模式 
     public IntList staticEventList = new IntList("staticEventList");
     #endregion
 
     #region Unity Methods
 
     private void Awake() {
+        
+        Instance = this;
+
         staticEventList[0] = 0;
         for (int i = 1; i < 100; i++)
         {
@@ -41,7 +45,7 @@ public class EventSystem : MonoBehaviour, IEventList
         }
         
     }
-    
+
     public bool isStaticEvent(int index)
     {
         if (staticEventList[index] == 0)
