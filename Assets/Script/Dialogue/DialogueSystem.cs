@@ -1,4 +1,3 @@
-using System.Net.Mime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -177,4 +176,16 @@ public class DialogueSystem : MonoBehaviour
     }
 
     #endregion
+
+
+    // public void TestButton()
+    // {
+    //     EventSystem.Instance.ActiveEvent(1);
+    //     EventSystem.Instance.ActiveEvent(2);
+    //     PlayerData.Instance.Save();
+    //     EventSystem.Instance.staticEventList[1] = 0;
+    //     Debug.Log(EventSystem.Instance.staticEventList[1]);
+    //     PlayerData.Instance.Load();
+    //     Debug.Log(EventSystem.Instance.staticEventList[1]);
+    // }
 }

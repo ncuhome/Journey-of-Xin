@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class EventSystem : MonoBehaviour, IEventList
 {
     #region  Properties
     public static EventSystem Instance { get; private set; } // 单例模式 
-    public IntList staticEventList = new IntList("staticEventList");
+    public List<int> staticEventList = new List<int>();
     #endregion
 
     #region Unity Methods
@@ -24,8 +25,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
         Instance = this;
 
-        staticEventList[0] = 0;
-        for (int i = 1; i < 100; i++)
+        for (int i = 0; i < 100; i++)
         {
             staticEventList.Add(0);  
         }  
@@ -49,7 +49,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     public bool isStaticEvent(int index) //查询静态事件
     {
-        Debug.Log(staticEventList[index]);
+        // Debug.Log(staticEventList[index]);
         if (staticEventList[index] == 0)
         {
             return false;
@@ -96,7 +96,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void ActiveEvent2()
     {
-
+        changeStaticEvent(2, true);
     }
 
     private void ActiveEvent3()

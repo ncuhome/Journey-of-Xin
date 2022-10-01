@@ -6,17 +6,12 @@ public class PlayerData : MonoBehaviour
 {
     // 需要转化成存档的数据（随需要存档的数据而修改
     #region Fields
-
-    [SerializeField] string playerName = "Player Name";
-    [SerializeField] int level = 0;
-    [SerializeField] int coin = 0;
+    public static PlayerData Instance { get; private set; } // 单例模式
 
     // 将所有的存档数据放入 SaveData 类中方便转化成 Json 文件
     [System.Serializable] class SaveData
     {
-        public string playerName;
-        public int playerLevel;
-        public int playerCoin;
+        public List<int> staticEventList;
     }
 
     const string PLAYER_DATA_KEY = "PlayerData";
@@ -25,11 +20,12 @@ public class PlayerData : MonoBehaviour
     #endregion
 
 
-    #region  Properties
+    #region Unity Methods
 
-    public string Name => playerName;
-    public int Level => level;
-    public int Coin => coin;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     #endregion
 
@@ -51,18 +47,14 @@ public class PlayerData : MonoBehaviour
     {
         var saveData = new SaveData();
 
-        saveData.playerName = playerName;
-        saveData.playerLevel = level;
-        saveData.playerCoin = coin;
+        saveData.staticEventList = EventSystem.Instance.staticEventList;
         return saveData;
     }
 
     // 将数据从 SaveData 类中读取出来（随需要存档的数据而修改
     void LoadingData(SaveData saveData)
     {
-        playerName = saveData.playerName;
-        level = saveData.playerLevel;
-        coin = saveData.playerCoin;
+        EventSystem.Instance.staticEventList = saveData.staticEventList;
     }
 
     #endregion
