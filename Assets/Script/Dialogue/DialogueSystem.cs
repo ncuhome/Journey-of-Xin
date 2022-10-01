@@ -8,6 +8,8 @@ using TMPro;
 public class DialogueSystem : MonoBehaviour
 {
     #region Properties
+    
+    public static DialogueSystem Instance { get; private set; } // 单例模式
 
     public TextAsset dialogDataFile = null; // 对话文件，以 csv 形式保存
     public Image avatar = null; // 头像组件
@@ -19,8 +21,8 @@ public class DialogueSystem : MonoBehaviour
 
     private int dialogIndex = 0; // 当前的文本 ID
     private bool isChoosing = false; // 正在选择选项
-    private bool inDialogue = false; // 正在进行对话
-    public string[] dialogRows = null; // 储存每一行对话文本的数组
+    public bool inDialogue = false; // 正在进行对话
+    private string[] dialogRows = null; // 储存每一行对话文本的数组
 
     public GameObject optionButton = null; // 选项按钮预制件
     public Transform buttonGroup = null; // 选项按钮父物体
@@ -34,11 +36,12 @@ public class DialogueSystem : MonoBehaviour
     {
         imageDic["Ce"] = avatars[0];
         imageDic["Know"] = avatars[1];
+        Instance = this;
     }
 
     private void Start() //直接播放对话（调试用
     {
-        StartDialogue(dialogDataFile);
+        // StartDialogue(dialogDataFile);
     }
 
     private void Update() //按确认键（z）或者点击鼠标就进入下一句话（后续改进
@@ -68,7 +71,9 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(TextAsset dialogData) //开始对话
     {
+        Debug.Log("StartDialogue");
         inDialogue = true;
+        dialogIndex = 0;
         dialogueNode.SetActive(true);
         ReadText(dialogData);
         ShowDialogRow();
