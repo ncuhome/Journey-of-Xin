@@ -45,7 +45,6 @@ public class TitleSystem : MonoBehaviour
                         toProducer();
                         break;
                     case 1://开始新的游戏
-                        nextScene = true;
                         toNewGame();
                         break;
                     case 2://游戏设置
@@ -82,6 +81,7 @@ public class TitleSystem : MonoBehaviour
     }
     private void toNewGame()//开始新的游戏
     {
+        nextScene = true;
         Debug.Log("开始加载场景");
         animatorLoading.SetTrigger("nextScene");//播放过场开始动画
         StartCoroutine(LoadScene());//使用异步加载场景
