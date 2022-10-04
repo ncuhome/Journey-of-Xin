@@ -172,7 +172,14 @@ public class DialogueSystem : MonoBehaviour
 
     public void DialogEffect(int index) // 触发动态事件
     {
-        EventSystem.Instance.ActiveEvent(index);
+        if (index > 0)
+        {
+            EventSystem.Instance.ActiveEvent(index);
+        } 
+        else 
+        {
+            EventSystem.Instance.changeStaticEvent(-index , true);
+        }
     }
 
     #endregion

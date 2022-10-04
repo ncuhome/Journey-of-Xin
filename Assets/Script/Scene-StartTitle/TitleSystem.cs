@@ -37,7 +37,7 @@ public class TitleSystem : MonoBehaviour
                 cursor++;
                 if (cursor > 4) { cursor = 0; }
             }
-            else if (Input.GetButtonDown("Confirm"))//确认
+            else if (Input.GetButtonDown("Submit"))//确认
             {
                 switch (cursor)
                 {

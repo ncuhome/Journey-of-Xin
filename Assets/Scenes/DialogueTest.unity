@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 70ef1b4cc2d2747418271c461ea7bac1, type: 3}
+  dialogIndex: 1
   autoEnterDialogue: 0
-  canEnterDialogue: 1
   mouseEnter: 0
 --- !u!1 &158116917
 GameObject:
@@ -311,8 +311,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Dialogue \u5BF9\u8BDD \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125af2c14ce9f8b4ba4cab409fe56434, type: 2}
-  m_sharedMaterial: {fileID: 1684796748137187748, guid: 125af2c14ce9f8b4ba4cab409fe56434, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
+  m_sharedMaterial: {fileID: -6514345728599944663, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -710,6 +710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0835cab2c930d7545ac5e36e0a28c3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveDataFileName: SaveData1.sav
+  canEnterDialog: 
 --- !u!1 &694664582
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,8 +744,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 70ef1b4cc2d2747418271c461ea7bac1, type: 3}
+  dialogIndex: 2
   autoEnterDialogue: 0
-  canEnterDialogue: 1
   mouseEnter: 0
 --- !u!61 &694664584
 BoxCollider2D:
@@ -953,9 +955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
+  m_HorizontalAxis: Horizontal Axis
+  m_VerticalAxis: Vertical Axis
+  m_SubmitButton: Confirm
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
@@ -1219,8 +1221,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Name \u540D\u5B57"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125af2c14ce9f8b4ba4cab409fe56434, type: 2}
-  m_sharedMaterial: {fileID: 1684796748137187748, guid: 125af2c14ce9f8b4ba4cab409fe56434, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
+  m_sharedMaterial: {fileID: -6514345728599944663, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

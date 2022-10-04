@@ -6,10 +6,11 @@ public class DialogueTrigger : MonoBehaviour
 {
     #region Properties
 
-    public TextAsset dialogDataFile = null; // 对话文件，以 csv 形式保存
+    public TextAsset dialogDataFile = null; // 对话文件，以 csv 形式保存]
+
+    public int dialogIndex = 1;
 
     public bool autoEnterDialogue = false; // 是否在进入场景/房间 时就自动进行对话
-    public bool canEnterDialogue = true; // 是否可以进入动画
     public bool mouseEnter = false; // 鼠标是否在触发器中
 
 
@@ -19,14 +20,14 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnEnable() // 依靠 autoEnterDialogue 变量与触发器的激活来开启自动进入对话
     {
-        if (autoEnterDialogue && canEnterDialogue){
+        if (autoEnterDialogue && PlayerData.Instance.canEnterDialog[dialogIndex]){
             StartDialogue();
         }
     }
 
     private void Update() // 如果鼠标在触发器内且点击了，就进入对话
     {
-        if (Input.GetMouseButtonDown(0) && mouseEnter && canEnterDialogue)
+        if (Input.GetMouseButtonDown(0) && mouseEnter && PlayerData.Instance.canEnterDialog[dialogIndex])
         {
             StartDialogue();
         }        
@@ -53,7 +54,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             return;
         }
-        canEnterDialogue = false;
+        PlayerData.Instance.canEnterDialog[dialogIndex] = false;
         DialogueSystem.Instance.StartDialogue(dialogDataFile);
     }
 

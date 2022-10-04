@@ -49,6 +49,10 @@ public class EventSystem : MonoBehaviour, IEventList
 
     public bool isStaticEvent(int index) //查询静态事件
     {
+        if (index == 0)
+        {
+            return true;
+        }
         // Debug.Log(staticEventList[index]);
         if (staticEventList[index] == 0)
         {
@@ -91,12 +95,12 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void ActiveEvent1()
     {
-        changeStaticEvent(1, true);
+
     }
 
     private void ActiveEvent2()
     {
-        changeStaticEvent(2, true);
+
     }
 
     private void ActiveEvent3()
