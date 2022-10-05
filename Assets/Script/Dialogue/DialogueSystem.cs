@@ -33,9 +33,14 @@ public class DialogueSystem : MonoBehaviour
 
     private void Awake() // 把名字与头像对应（头像还没图
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
         imageDic["Ce"] = avatars[0];
-        imageDic["Know"] = avatars[1];
-        Instance = this;
+        imageDic["Know"] = avatars[1];   
     }
 
     private void Start() //直接播放对话（调试用

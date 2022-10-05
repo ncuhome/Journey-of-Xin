@@ -29,7 +29,11 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
         for (int i = 0; i < 100; i++)
         {
             canEnterDialog.Add(true);
@@ -60,7 +64,7 @@ public class PlayerData : MonoBehaviour
 
         saveData.staticEventList = EventSystem.Instance.staticEventList;
         saveData.canEnterDialog = canEnterDialog;
-        saveData.itemList = StoreManager.Instance.IdAll();//已修改
+        //saveData.itemList = StoreManager.Instance.IdAll();//已修改
         return saveData;
     }
 
@@ -69,7 +73,7 @@ public class PlayerData : MonoBehaviour
     {
         EventSystem.Instance.staticEventList = saveData.staticEventList;
         canEnterDialog = saveData.canEnterDialog;
-        StoreManager.Instance.SetStore(saveData.itemList);//已修改
+        //StoreManager.Instance.SetStore(saveData.itemList);//已修改
     }
 
     public bool FindPath(int saveIndex)

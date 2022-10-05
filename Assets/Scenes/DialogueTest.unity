@@ -311,8 +311,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Dialogue \u5BF9\u8BDD \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
-  m_sharedMaterial: {fileID: -6514345728599944663, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
+  m_sharedMaterial: {fileID: -6514345728599944663, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1221,8 +1221,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Name \u540D\u5B57"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
-  m_sharedMaterial: {fileID: -6514345728599944663, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
+  m_sharedMaterial: {fileID: -6514345728599944663, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

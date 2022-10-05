@@ -4,17 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/***Î´ÊµÏÖ²¥·Å¹ı³¡¶¯»­ºó×Ô¶¯Ïú»Ù¶¯»­ÎïÌå**/
-//ÓÃÓÚ¹ÜÀíÖ÷½çÃæµÄUI»¥¶¯
+/***æœªå®ç°æ’­æ”¾è¿‡åœºåŠ¨ç”»åè‡ªåŠ¨é”€æ¯åŠ¨ç”»ç‰©ä½“**/
+//ç”¨äºç®¡ç†ä¸»ç•Œé¢çš„UIäº’åŠ¨
 public class TitleSystem : MonoBehaviour
 {
-    public Animator animator;//¶¯»­²¥·Å×é¼ş
-    public Animator animatorLoading;//²¥·Å¹ı³¡¶¯»­Æ÷
-    private AsyncOperation operation;//Òì²½¼ÓÔØ×é¼ş
-    private int cursor = 0;//µ±Ç°¹â±êÎ»ÖÃ
-    private bool nextScene = false;//ÊÇ·ñ½øÈëÏÂÒ»¸ö³¡¾°
-    private float timer = 0;//¼ÆÊ±Æ÷
-    //0£ºXin£¨ÖÆ×÷ÈËÔ±Ãûµ¥£©     1£º¿ªÊ¼ĞÂµÄÓÎÏ·    2£ºÓÎÏ·ÉèÖÃ      3£º»ØÒäÓÎÏ·      4£ºÍË³ö·µ»ØÓÎÏ·
+    public Animator animator;//åŠ¨ç”»æ’­æ”¾ç»„ä»¶
+    public Animator animatorLoading;//æ’­æ”¾è¿‡åœºåŠ¨ç”»å™¨
+    private AsyncOperation operation;//å¼‚æ­¥åŠ è½½ç»„ä»¶
+    private int cursor = 0;//å½“å‰å…‰æ ‡ä½ç½®
+    private bool nextScene = false;//æ˜¯å¦è¿›å…¥ä¸‹ä¸€ä¸ªåœºæ™¯
+    private float timer = 0;//è®¡æ—¶å™¨
+    //0ï¼šXinï¼ˆåˆ¶ä½œäººå‘˜åå•ï¼‰     1ï¼šå¼€å§‹æ–°çš„æ¸¸æˆ    2ï¼šæ¸¸æˆè®¾ç½®      3ï¼šå›å¿†æ¸¸æˆ      4ï¼šé€€å‡ºè¿”å›æ¸¸æˆ
 
     void Start()
     {
@@ -22,38 +22,38 @@ public class TitleSystem : MonoBehaviour
 
     void Update()
     {
-        if(!nextScene)//ÔÚµ±Ç°³¡¾° ÏÂ¶ÔÍæ¼Ò²Ù×÷µÄ¼à¿Ø
+        if(!nextScene)//åœ¨å½“å‰åœºæ™¯ ä¸‹å¯¹ç©å®¶æ“ä½œçš„ç›‘æ§
         {
-            if (Input.GetButtonDown("Up"))//Ñ¡ÏîÏòÉÏ
+            if (Input.GetButtonDown("Up"))//é€‰é¡¹å‘ä¸Š
             {
                 animator.SetTrigger("up");
                 cursor--;
                 if (cursor < 0) { cursor = 4; }
 
             }
-            else if (Input.GetButtonDown("Down"))//Ñ¡ÏîÏòÏÂ
+            else if (Input.GetButtonDown("Down"))//é€‰é¡¹å‘ä¸‹
             {
                 animator.SetTrigger("down");
                 cursor++;
                 if (cursor > 4) { cursor = 0; }
             }
-            else if (Input.GetButtonDown("Submit"))//È·ÈÏ
+            else if (Input.GetButtonDown("Submit"))//ç¡®è®¤
             {
                 switch (cursor)
                 {
-                    case 0://ÏÔÊ¾ÖÆ×÷ÕßÃûµ¥
+                    case 0://æ˜¾ç¤ºåˆ¶ä½œè€…åå•
                         toProducer();
                         break;
-                    case 1://¿ªÊ¼ĞÂµÄÓÎÏ·
+                    case 1://å¼€å§‹æ–°çš„æ¸¸æˆ
                         toNewGame();
                         break;
-                    case 2://ÓÎÏ·ÉèÖÃ
+                    case 2://æ¸¸æˆè®¾ç½®
                         toSettings();
                         break;
-                    case 3://»Ø¹Ë¾çÇéºÍĞÀÉÍÒôÀÖ
+                    case 3://å›é¡¾å‰§æƒ…å’Œæ¬£èµéŸ³ä¹
                         toMemory();
                         break;
-                    case 4://ÍË³öÓÎÏ·
+                    case 4://é€€å‡ºæ¸¸æˆ
                         Application.Quit();
                         break;
                 }
@@ -62,41 +62,41 @@ public class TitleSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("³¡¾°¼ÓÔØ½ø¶È£º" + operation.progress);
-            timer += Time.deltaTime;//¼ÆÊ±Æ÷
-            if (operation.progress == 0.9f && timer >= 3.0)//¼ÓÔØÍê±Ïºó ÇÒ ¶¯»­²¥·ÅÍê³É ºóÌø×ª
+            Debug.Log("åœºæ™¯åŠ è½½è¿›åº¦ï¼š" + operation.progress);
+            timer += Time.deltaTime;//è®¡æ—¶å™¨
+            if (operation.progress == 0.9f && timer >= 3.0)//åŠ è½½å®Œæ¯•å ä¸” åŠ¨ç”»æ’­æ”¾å®Œæˆ åè·³è½¬
             {
-                Debug.Log("¼ÓÔØ³¡¾°Íê±Ï");
-                DontDestroyOnLoad(animatorLoading.gameObject);//¼ÓÔØĞÂ³¡¾°Ê±²»Ïú»Ù¹ı³¡¶¯»­ÎïÌå
-                animatorLoading.SetTrigger("nextScene");//²¥·Å¹ı³¡ÏûÊ§¶¯»­
-                operation.allowSceneActivation = true;//Ìø×ªÖÁĞÂ³¡¾°
+                Debug.Log("åŠ è½½åœºæ™¯å®Œæ¯•");
+                DontDestroyOnLoad(animatorLoading.gameObject);//åŠ è½½æ–°åœºæ™¯æ—¶ä¸é”€æ¯è¿‡åœºåŠ¨ç”»ç‰©ä½“
+                animatorLoading.SetTrigger("nextScene");//æ’­æ”¾è¿‡åœºæ¶ˆå¤±åŠ¨ç”»
+                operation.allowSceneActivation = true;//è·³è½¬è‡³æ–°åœºæ™¯
             }
         }
 
     }
 
-    private void toProducer()//Ç°ÍùÖÆ×÷ÕßÃûµ¥»­Ãæ
+    private void toProducer()//å‰å¾€åˆ¶ä½œè€…åå•ç”»é¢
     {
 
     }
-    private void toNewGame()//¿ªÊ¼ĞÂµÄÓÎÏ·
+    private void toNewGame()//å¼€å§‹æ–°çš„æ¸¸æˆ
     {
         nextScene = true;
-        Debug.Log("¿ªÊ¼¼ÓÔØ³¡¾°");
-        animatorLoading.SetTrigger("nextScene");//²¥·Å¹ı³¡¿ªÊ¼¶¯»­
-        StartCoroutine(LoadScene());//Ê¹ÓÃÒì²½¼ÓÔØ³¡¾°
+        Debug.Log("å¼€å§‹åŠ è½½åœºæ™¯");
+        animatorLoading.SetTrigger("nextScene");//æ’­æ”¾è¿‡åœºå¼€å§‹åŠ¨ç”»
+        StartCoroutine(LoadScene());//ä½¿ç”¨å¼‚æ­¥åŠ è½½åœºæ™¯
     }
-    private IEnumerator LoadScene()//Òì²½¼ÓÔØ£¨Ê¹ÓÃĞ­³Ì£©
+    private IEnumerator LoadScene()//å¼‚æ­¥åŠ è½½ï¼ˆä½¿ç”¨åç¨‹ï¼‰
     {
         operation = SceneManager.LoadSceneAsync("SceneState1");
         operation.allowSceneActivation = false;
         yield return operation;
     }
-    private void toSettings()//Ç°ÍùÓÎÏ·ÉèÖÃ»­Ãæ
+    private void toSettings()//å‰å¾€æ¸¸æˆè®¾ç½®ç”»é¢
     {
 
     }
-    private void toMemory()//Ç°Íù»ØÒäÓëĞÀÉÍ»­Ãæ
+    private void toMemory()//å‰å¾€å›å¿†ä¸æ¬£èµç”»é¢
     {
 
     }

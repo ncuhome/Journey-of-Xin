@@ -124,6 +124,15 @@ public class StoreManager : MonoBehaviour
     {
         return new Vector3((435 + (cursor % 4) * 350), (840 - (cursor / 4) * 325), 0);
     }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
     
     // Start is called before the first frame update
     void Start()
