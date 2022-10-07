@@ -22,9 +22,12 @@ public class DialogueSystem : MonoBehaviour
     private bool isChoosing = false; // 正在选择选项
     public bool inDialogue = false; // 正在进行对话
     private string[] dialogRows = null; // 储存每一行对话文本的数组
-
+    private string[] cells = null;
     public GameObject optionButton = null; // 选项按钮预制件
     public Transform buttonGroup = null; // 选项按钮父物体
+
+    private bool textIsFinished = false; // 文本是否显示完毕
+    public float textSpeed = 0.05f; // 每个字的显示速度
 
     #endregion
 
@@ -55,9 +58,18 @@ public class DialogueSystem : MonoBehaviour
             return;
         }
 
-        if ((Input.GetButtonDown("Confirm") || Input.GetMouseButtonDown(0)) && !isChoosing)
+        if ((Input.GetButtonDown("Submit") || Input.GetMouseButtonDown(0)) && !isChoosing)
         {
-            ContinueDialog();
+            if (textIsFinished)
+            {
+                ContinueDialog();
+            }
+            else
+            {
+                StopCoroutine("DisplayDialogue");
+                StartCoroutine("FinishText");
+                dialogText.text = cells[3];
+            }
         }
     }
 
@@ -68,18 +80,23 @@ public class DialogueSystem : MonoBehaviour
 
     public void UpdateText(string name, string text) // 显示文本与头像
     {
+        Debug.Log("UpdateText");
+        dialogText.text = "";
         nameText.text = name;
-        dialogText.text = text;
+        StartCoroutine("DisplayDialogue");
         avatar.sprite = imageDic[name];
     }
 
-    public void StartDialogue(TextAsset dialogData) //开始对话
+    public IEnumerator StartDialogue(TextAsset dialogData) //开始对话
     {
-        inDialogue = true;
         dialogIndex = 0;
+        dialogText.text = "";
+        textIsFinished = false;
         dialogueNode.SetActive(true);
         ReadText(dialogData);
         ShowDialogRow();
+        yield return new WaitForSeconds(0.1f);
+        inDialogue = true;
     }
 
     public void ExitDialogue()
@@ -95,11 +112,17 @@ public class DialogueSystem : MonoBehaviour
 
     public void ShowDialogRow() // 显示对话行
     {
+        Debug.Log(dialogIndex);
         for (int i = 1; i < dialogRows.Length; i++)
         {
-            string[] cells = dialogRows[i].Split(','); // 把对话行分割成各个数据
+            cells = dialogRows[i].Split(','); // 把对话行分割成各个数据
 
-            if (cells[6] != "" && int.Parse(cells[1]) == dialogIndex) //如果效果不为空，则触发动态事件
+            if (int.Parse(cells[1]) != dialogIndex)
+            {
+                continue;
+            }
+
+            if (cells[6] != "") //如果效果不为空，则触发动态事件
             {
                 string[] effects = cells[6].Split('/'); // 把效果编号进行分割
                 foreach (string effect in effects)
@@ -108,19 +131,19 @@ public class DialogueSystem : MonoBehaviour
                 }
             }
 
-            if (cells[0] == "#" && int.Parse(cells[1]) == dialogIndex) //如果是普通对话且 ID 是正在进行的对话 ID 就显示
+            if (cells[0] == "#") //如果是普通对话且 ID 是正在进行的对话 ID 就显示
             {
                 UpdateText(cells[2], cells[3]);
 
                 dialogIndex = int.Parse(cells[4]); // 跳转下一条对话
                 break;
             }
-            else if (cells[0] == "&" && int.Parse(cells[1]) == dialogIndex) // 如果是选择对话则显示按钮
+            else if (cells[0] == "&") // 如果是选择对话则显示按钮
             {
                 GenerateOption(i);
                 break;
             }
-            else if (cells[0] == "End" && int.Parse(cells[1]) == dialogIndex) // 如果是结束节点则结束对话
+            else if (cells[0] == "End") // 如果是结束节点则结束对话
             {
                 ExitDialogue();
                 break;
@@ -167,12 +190,20 @@ public class DialogueSystem : MonoBehaviour
     public void OnOptionClick(int id) // 添加按钮事件
     {
         dialogIndex = id;
-        isChoosing = false;
+        Debug.Log(dialogIndex);
+        
         for (int i = 0; i < buttonGroup.childCount; i++)
         {
             Destroy(buttonGroup.GetChild(i).gameObject);
         }
         ShowDialogRow();
+        StartCoroutine("Chosen");
+    }
+
+    public IEnumerator Chosen()
+    {
+        yield return new WaitForSeconds(0.1f);
+        isChoosing = false;
     }
 
     public void DialogEffect(int index) // 触发动态事件
@@ -185,6 +216,25 @@ public class DialogueSystem : MonoBehaviour
         {
             EventSystem.Instance.changeStaticEvent(-index , true);
         }
+    }
+
+    public IEnumerator DisplayDialogue()//一个字一个字显示文本
+    {
+        Debug.Log("开始打字");
+        textIsFinished = false;
+        for (int i = 0; i < cells[3].Length; i++)
+        {
+            dialogText.text += cells[3][i];
+
+            yield return new WaitForSeconds(textSpeed);
+        }
+        textIsFinished = true;
+    }
+
+    public IEnumerator FinishText()
+    {
+        yield return new WaitForSeconds(0.1f);
+        textIsFinished = true;
     }
 
     #endregion

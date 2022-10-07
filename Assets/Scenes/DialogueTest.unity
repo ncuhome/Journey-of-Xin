@@ -955,9 +955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal Axis
-  m_VerticalAxis: Vertical Axis
-  m_SubmitButton: Confirm
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
@@ -1336,6 +1336,7 @@ MonoBehaviour:
   inDialogue: 0
   optionButton: {fileID: 637919537121075372, guid: cc7427c8152b2e64d95009ac41d8fa38, type: 3}
   buttonGroup: {fileID: 305439552}
+  textSpeed: 0.05
 --- !u!4 &1933206926
 Transform:
   m_ObjectHideFlags: 0
