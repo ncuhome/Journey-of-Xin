@@ -311,8 +311,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Dialogue \u5BF9\u8BDD \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
-  m_sharedMaterial: {fileID: -6514345728599944663, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
+  m_sharedMaterial: {fileID: -6514345728599944663, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -955,9 +955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal Axis
-  m_VerticalAxis: Vertical Axis
-  m_SubmitButton: Confirm
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
@@ -1221,8 +1221,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Name \u540D\u5B57"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
-  m_sharedMaterial: {fileID: -6514345728599944663, guid: 158949f231e050243b5bfdb57e0afda1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
+  m_sharedMaterial: {fileID: -6514345728599944663, guid: 7d1f92e25111cbd4c9068ff19fbd1402, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1325,17 +1325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898f1553476386f43934be7d5a3c8a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 0}
-  avatar: {fileID: 276699819}
-  nameText: {fileID: 1566620190}
-  dialogText: {fileID: 158116919}
-  dialogueNode: {fileID: 288960483}
   avatars:
   - {fileID: 0}
   - {fileID: 0}
   inDialogue: 0
   optionButton: {fileID: 637919537121075372, guid: cc7427c8152b2e64d95009ac41d8fa38, type: 3}
-  buttonGroup: {fileID: 305439552}
+  textSpeed: 0.05
 --- !u!4 &1933206926
 Transform:
   m_ObjectHideFlags: 0
