@@ -7,11 +7,15 @@ public class RoomManager : MonoBehaviour
     #region Properties
 
     public static RoomManager Instance { get; private set; }
-    public int planetIndex = 0;
-    public int roomIndex = 0;
-    public GameObject[][] rooms = null;
+    private int planetIndex = 0;
+    private int roomIndex = 0;
+    private GameObject[][] rooms = null;
     public GameObject leftButton = null;
     public GameObject rightButton = null;
+    public GameObject roomExchangePre = null;
+    private GameObject roomExchangeCanvas = null;
+    private bool isExchanging = false;
+    private bool isAnimationPlay = false;
 
     #endregion
 
@@ -36,6 +40,11 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
+        if (isExchanging)
+        {
+            return;
+        }
+
         if ((roomIndex == 0)||(!rooms[planetIndex][roomIndex - 1]))
         {
             leftButton.SetActive(false);
@@ -69,12 +78,34 @@ public class RoomManager : MonoBehaviour
 
     public void NextRoom()
     {
+        if (isAnimationPlay)
+        {
+            return;
+        }
+
+        isExchanging = true;
+        isAnimationPlay = true;
         roomIndex++;
+        roomExchangeCanvas = Instantiate(roomExchangePre);
+        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left",true);
+        StartCoroutine("FinishExchange");
+        StartCoroutine("DestroyAnimation");
     }
 
     public void LastRoom()
     {
+        if (isAnimationPlay)
+        {
+            return;
+        }
+
+        isExchanging = true;
+        isAnimationPlay = true;
         roomIndex--;
+        roomExchangeCanvas = Instantiate(roomExchangePre);
+        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left",false);
+        StartCoroutine("FinishExchange");
+        StartCoroutine("DestroyAnimation");
     }
 
     public void NextPlanet()
@@ -85,6 +116,19 @@ public class RoomManager : MonoBehaviour
     public void LastPlanet()
     {
         planetIndex--;
+    }
+
+    public IEnumerator FinishExchange()
+    {
+        yield return new WaitForSeconds(1.5f);
+        isExchanging = false;
+    }
+
+    public IEnumerator DestroyAnimation()
+    {
+        yield return new WaitForSeconds(3f);
+        isAnimationPlay = false;
+        Destroy(roomExchangeCanvas);
     }
 
     #endregion
