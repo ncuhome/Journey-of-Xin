@@ -65,6 +65,9 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         switch (index)
         {
+            case 0:
+                Debug.Log("TestEvent");
+                break;
             case 1:
                 ActiveEvent1();
                 break;
