@@ -43,16 +43,20 @@ public class DialogueSystem : MonoBehaviour
 
         imageDic["Ce"] = avatars[0];
         imageDic["Know"] = avatars[1];   
-    }
 
-    private void Start() //直接播放对话（调试用
-    {
-        // StartDialogue(dialogDataFile);
-        dialogueNode = GameObject.Find("Canvas/Dialogue");
+        
+        dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
         avatar = dialogueNode.transform.Find("Avatar").GetComponent<Image>();
         nameText = dialogueNode.transform.Find("NameText").GetComponent<TMP_Text>();
         dialogText = dialogueNode.transform.Find("DialogueText").GetComponent<TMP_Text>();
         buttonGroup = dialogueNode.transform.Find("OptionsGroup");
+
+        dialogueNode.SetActive(false);
+    }
+
+    private void Start()
+    {
+        // StartDialogue(dialogDataFile);
     }
 
     private void Update() //按确认键（z）或者点击鼠标就进入下一句话（后续改进
@@ -88,7 +92,16 @@ public class DialogueSystem : MonoBehaviour
         dialogText.text = "";
         nameText.text = name;
         StartCoroutine("DisplayDialogue");
-        avatar.sprite = imageDic[name];
+        if (name == "")
+        {
+            avatar.gameObject.SetActive(false);
+        }
+        else
+        {
+            avatar.gameObject.SetActive(true);
+            avatar.sprite = imageDic[name];
+        }
+        
     }
 
     public IEnumerator StartDialogue(TextAsset dialogData) //开始对话

@@ -133,6 +133,13 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         GameObject coffee = GameObject.Find("Canvas/Coffee");
         coffee.GetComponent<Animator>().SetTrigger("Click");
+        StartCoroutine("ClickDialogStart", coffee.GetComponent<DialogueTrigger>());
+    }
+
+    private IEnumerator ClickDialogStart(DialogueTrigger dialogueTrigger)
+    {
+        yield return new WaitForSeconds(0.5f);
+        dialogueTrigger.StartDialogue();
     }
 
     #endregion
