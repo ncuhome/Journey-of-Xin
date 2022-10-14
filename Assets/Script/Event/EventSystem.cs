@@ -86,6 +86,9 @@ public class EventSystem : MonoBehaviour, IEventList
             case 6:
                 ActiveEvent6();
                 break;
+            case 9:
+                ActiveEvent9();
+                break;
             
             default :
                 return false;
@@ -124,6 +127,12 @@ public class EventSystem : MonoBehaviour, IEventList
     private void ActiveEvent6()
     {
         
+    }
+
+    private void ActiveEvent9()
+    {
+        GameObject coffee = GameObject.Find("Canvas/Coffee");
+        coffee.GetComponent<Animator>().SetTrigger("Click");
     }
 
     #endregion

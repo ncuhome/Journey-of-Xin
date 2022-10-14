@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: 557429975}
   - component: {fileID: 557429974}
   - component: {fileID: 557429973}
+  - component: {fileID: 557429978}
+  - component: {fileID: 557429977}
   m_Layer: 5
   m_Name: Coffee
   m_TagString: Untagged
@@ -324,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f5c50ab16d0d248b4c6b169f2058c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventIndex: 0
+  eventIndex: 9
   conditionIndex: 0
   autoEvent: 0
 --- !u!114 &557429974
@@ -421,6 +423,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557429971}
   m_CullTransparentMesh: 1
+--- !u!95 &557429977
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557429971}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ffc5005bb275f142962a02d32bb699e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &557429978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557429971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogDataFile: {fileID: 0}
+  dialogIndex: 1
+  autoEnterDialogue: 0
+  mouseEnter: 0
 --- !u!1 &600888948
 GameObject:
   m_ObjectHideFlags: 0
