@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MenuOptions : MonoBehaviour
 {
     #region Properties
-
+    public static MenuOptions Instance {get; private set;}
     private GameObject saveCanvas;
     private GameObject settingCanvas;
     private GameObject menuCanvas;
@@ -18,13 +18,20 @@ public class MenuOptions : MonoBehaviour
     #endregion
 
     #region Unity Methods
-
-    private void Start() {
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         menuCanvas = GameObject.Find("Menu").gameObject;
         saveCanvas = menuCanvas.transform.Find("Save").Find("SaveCanvas").gameObject;
         settingCanvas = menuCanvas.transform.Find("SettingsCanvas").gameObject;
         menuOptions = menuCanvas.transform.Find("MenuOptions").gameObject;
-        
+    }
+
+    private void Start() 
+    {
         saveCanvas.SetActive(false);
         settingCanvas.SetActive(false);
         menuCanvas.SetActive(false);

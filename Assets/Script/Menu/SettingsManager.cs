@@ -7,6 +7,7 @@ using TMPro;
 public class SettingsManager : MonoBehaviour
 {
     #region Properties
+    public static SettingsManager Instance {get; private set;}
     //音量滑动条
     private Slider volumeSlider;
     private TMP_Text volumeNumber;
@@ -15,7 +16,12 @@ public class SettingsManager : MonoBehaviour
 
     #region Unity Methods
 
-    private void Awake() {
+    private void Awake() 
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         volumeSlider = GameObject.Find("Menu/SettingsCanvas/Settings/Volume/VolumeSlider").GetComponent<Slider>();
         volumeNumber = GameObject.Find("Menu/SettingsCanvas/Settings/Volume/VolumeNumber").GetComponent<TMP_Text>(); 
     }
@@ -40,7 +46,8 @@ public class SettingsManager : MonoBehaviour
         volumeNumber.text = ( (int) (volumeSlider.value * 100)).ToString();
     }
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         volumeSlider.onValueChanged.AddListener(OnVolumeValueChanged);
         string isOnVolume = PlayerPrefs.GetString("IsOnVolume");
         volumeSlider.value = PlayerPrefs.GetFloat("Volume");

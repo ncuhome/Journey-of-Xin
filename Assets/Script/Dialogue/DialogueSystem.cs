@@ -11,6 +11,8 @@ public class DialogueSystem : MonoBehaviour
     public static DialogueSystem Instance { get; private set; } // 单例模式
 
     private DialogueTrigger dialogueTrigger = null;
+    private Image background = null; // 对话框背景
+    public Sprite[] backgroundSprite = null; // 两张背景画面
     private Image avatar = null; // 头像组件
     private TMP_Text nameText = null; // 名字文本
     private TMP_Text dialogText = null; // 对话文本
@@ -39,24 +41,21 @@ public class DialogueSystem : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
 
         imageDic["Ce"] = avatars[0];
         imageDic["Know"] = avatars[1];   
-
-        
         dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
         avatar = dialogueNode.transform.Find("Avatar").GetComponent<Image>();
         nameText = dialogueNode.transform.Find("NameText").GetComponent<TMP_Text>();
         dialogText = dialogueNode.transform.Find("DialogueText").GetComponent<TMP_Text>();
         buttonGroup = dialogueNode.transform.Find("OptionsGroup");
-
-        dialogueNode.SetActive(false);
+        background = dialogueNode.transform.Find("Background").GetComponent<Image>();
     }
 
     private void Start()
     {
+        dialogueNode.SetActive(false);
         // StartDialogue(dialogDataFile);
     }
 
@@ -92,7 +91,14 @@ public class DialogueSystem : MonoBehaviour
         // Debug.Log("UpdateText");
         dialogText.text = "";
         nameText.text = name;
-        StartCoroutine("DisplayDialogue");
+        if (name == "")
+        {
+            background.sprite = backgroundSprite[0];
+        }
+        else
+        {
+            background.sprite = backgroundSprite[1];
+        }
         if (name == "")
         {
             avatar.gameObject.SetActive(false);
@@ -102,6 +108,7 @@ public class DialogueSystem : MonoBehaviour
             avatar.gameObject.SetActive(true);
             avatar.sprite = imageDic[name];
         }
+        StartCoroutine("DisplayDialogue");
         
     }
 
