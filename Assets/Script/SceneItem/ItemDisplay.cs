@@ -12,6 +12,7 @@ public class ItemDisplay : MonoBehaviour
     private int status = 0;
     private Vector3 target = Vector3.zero;
     private GameObject panel = null;
+    public bool moveToCenter = true;
     /// <summary>
     /// 调用此函数时，播放动画并在结束后销毁物体
     /// </summary>
@@ -24,12 +25,20 @@ public class ItemDisplay : MonoBehaviour
 
     public void Click()
     {
-        if (panel.activeInHierarchy) { return; }
+        if (!SceneItemManager.Instance.interactive) { return; }
+        SceneItemManager.Instance.interactive = false;
         target = new Vector3(-850, -440, 0);
-        gameObject.transform.localPosition = Vector3.zero;
+        if (moveToCenter)
+        {
+            gameObject.transform.localPosition = Vector3.zero;
+            GetComponent<Animator>().SetBool("Scale", true);
+        }
         GetComponent<Animator>().SetBool("Click", true);
-        GetComponent<DialogueTrigger>().StartDialogue();
-        panel.SetActive(true);
+        if (GetComponent<DialogueTrigger>() != null)
+        {
+            GetComponent<DialogueTrigger>().StartDialogue();
+            panel.SetActive(true);
+        }
         transform.SetSiblingIndex(transform.parent.childCount);
     }
 
@@ -60,6 +69,7 @@ public class ItemDisplay : MonoBehaviour
                 if (a <= 0.2f) { status = 2; }
                 break;
             case 2:
+                SceneItemManager.Instance.interactive = true;
                 Destroy(gameObject);
                 break;
         }

@@ -1,5 +1,4 @@
-using System.Resources;
-using System.Security.AccessControl;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,24 +27,24 @@ public class EventSystem : MonoBehaviour, IEventList
 
         for (int i = 0; i < 100; i++)
         {
-            staticEventList.Add(0);  
-        }  
+            staticEventList.Add(0);
+        }
     }
 
     #endregion
 
     #region  EventSystem
-    public void changeStaticEvent(int index , bool active) //改变静态事件
+    public void changeStaticEvent(int index, bool active) //改变静态事件
     {
         if (active)
         {
             staticEventList[index] = 1;
-        } 
-        else 
+        }
+        else
         {
             staticEventList[index] = 0;
         }
-        
+
     }
 
     public bool isStaticEvent(int index) //查询静态事件
@@ -70,7 +69,7 @@ public class EventSystem : MonoBehaviour, IEventList
                 MiniGame3();
                 break;
             case 2:
-                ActiveEvent2();
+                IntoWorkTable();
                 break;
             case 3:
                 ActiveEvent3();
@@ -84,8 +83,8 @@ public class EventSystem : MonoBehaviour, IEventList
             case 6:
                 ActiveEvent6();
                 break;
-            
-            default :
+
+            default:
                 return false;
         }
         return true;
@@ -97,34 +96,52 @@ public class EventSystem : MonoBehaviour, IEventList
     private void MiniGame3()
     {
         Debug.Log("进入小游戏");
+        // 进入小游戏3
+
     }
 
-    private void ActiveEvent2()
+    private void IntoWorkTable()
     {
+        StartCoroutine("DisplayIntoWorkTable");
+        StartCoroutine("DelayIntoWorkTable");
+    }
+
+    private IEnumerator DisplayIntoWorkTable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneItemManager.Instance.IntoWorkTablePanel.SetActive(true);
+        SceneItemManager.Instance.IntoWorkTablePanel.transform.SetSiblingIndex(SceneItemManager.Instance.IntoWorkTablePanel.transform.parent.childCount);
+    }
+
+    private IEnumerator DelayIntoWorkTable()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneItemManager.Instance.IntoWorkTablePanel.SetActive(false);
+        //进入工作台界面
 
     }
 
     private void ActiveEvent3()
     {
-        
+
     }
 
     private void ActiveEvent4()
     {
-        
+
     }
 
     private void ActiveEvent5()
     {
-        
+
     }
 
     private void ActiveEvent6()
     {
-        
+
     }
 
 
     #endregion
-    
+
 }
