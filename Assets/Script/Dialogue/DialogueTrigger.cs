@@ -55,7 +55,7 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
         PlayerData.Instance.canEnterDialog[dialogIndex] = false;
-        DialogueSystem.Instance.StartCoroutine("StartDialogue",dialogDataFile);
+        DialogueSystem.Instance.StartCoroutine("StartDialogue",this);
     }
 
     #endregion

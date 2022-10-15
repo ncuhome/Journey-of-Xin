@@ -65,9 +65,6 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         switch (index)
         {
-            case 0:
-                Debug.Log("TestEvent");
-                break;
             case 1:
                 ActiveEvent1();
                 break;
@@ -87,7 +84,10 @@ public class EventSystem : MonoBehaviour, IEventList
                 ActiveEvent6();
                 break;
             case 9:
-                ActiveEvent9();
+                CoffeeClick();
+                break;
+            case 64:
+                WeaponClick();
                 break;
             
             default :
@@ -129,11 +129,18 @@ public class EventSystem : MonoBehaviour, IEventList
         
     }
 
-    private void ActiveEvent9()
+    private void CoffeeClick()
     {
         GameObject coffee = GameObject.Find("Canvas/Coffee");
         coffee.GetComponent<Animator>().SetTrigger("Click");
         StartCoroutine("ClickDialogStart", coffee.GetComponent<DialogueTrigger>());
+    }
+
+    private void WeaponClick()
+    {
+        GameObject weapon = GameObject.Find("Canvas/Weapon");
+        weapon.GetComponent<Animator>().SetBool("Click",true);
+        StartCoroutine("ClickDialogStart", weapon.GetComponent<DialogueTrigger>());
     }
 
     private IEnumerator ClickDialogStart(DialogueTrigger dialogueTrigger)

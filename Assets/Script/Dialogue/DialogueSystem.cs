@@ -10,6 +10,7 @@ public class DialogueSystem : MonoBehaviour
     
     public static DialogueSystem Instance { get; private set; } // 单例模式
 
+    private DialogueTrigger dialogueTrigger = null;
     private Image avatar = null; // 头像组件
     private TMP_Text nameText = null; // 名字文本
     private TMP_Text dialogText = null; // 对话文本
@@ -104,13 +105,14 @@ public class DialogueSystem : MonoBehaviour
         
     }
 
-    public IEnumerator StartDialogue(TextAsset dialogData) //开始对话
+    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger) //开始对话
     {
+        this.dialogueTrigger = dialogueTrigger;
         dialogIndex = 0;
         dialogText.text = "";
         textIsFinished = false;
         dialogueNode.SetActive(true);
-        ReadText(dialogData);
+        ReadText(dialogueTrigger.dialogDataFile);
         ShowDialogRow();
         yield return new WaitForSeconds(0.1f);
         inDialogue = true;
@@ -231,10 +233,14 @@ public class DialogueSystem : MonoBehaviour
         if (index > 0)
         {
             EventSystem.Instance.ActiveEvent(index);
-        } 
-        else 
+        }
+        if (index < 0)
         {
-            EventSystem.Instance.changeStaticEvent(-index , true);
+            EventSystem.Instance.changeStaticEvent(index, true);
+        }
+        if (index == 0)
+        {
+            dialogueTrigger.GetComponent<ItemDisplay>().DisplayStart();
         }
     }
 

@@ -35,13 +35,17 @@ public class EventTrigger : MonoBehaviour
 
     public void StartEvent()
     {
-        if (eventIndex >= 0)
+        if (eventIndex > 0)
         {
             EventSystem.Instance.ActiveEvent(eventIndex);
         }
-        else
+        if (eventIndex < 0)
         {
             EventSystem.Instance.changeStaticEvent(eventIndex, true);
+        }
+        if (eventIndex == 0)
+        {
+            GetComponent<ItemDisplay>().DisplayStart();
         }
         
     }
