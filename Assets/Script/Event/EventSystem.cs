@@ -83,12 +83,6 @@ public class EventSystem : MonoBehaviour, IEventList
             case 6:
                 ActiveEvent6();
                 break;
-            case 9:
-                CoffeeClick();
-                break;
-            case 64:
-                WeaponClick();
-                break;
             
             default :
                 return false;
@@ -129,25 +123,6 @@ public class EventSystem : MonoBehaviour, IEventList
         
     }
 
-    private void CoffeeClick()
-    {
-        GameObject coffee = GameObject.Find("Canvas/Coffee");
-        coffee.GetComponent<Animator>().SetTrigger("Click");
-        StartCoroutine("ClickDialogStart", coffee.GetComponent<DialogueTrigger>());
-    }
-
-    private void WeaponClick()
-    {
-        GameObject weapon = GameObject.Find("Canvas/Weapon");
-        weapon.GetComponent<Animator>().SetBool("Click",true);
-        StartCoroutine("ClickDialogStart", weapon.GetComponent<DialogueTrigger>());
-    }
-
-    private IEnumerator ClickDialogStart(DialogueTrigger dialogueTrigger)
-    {
-        yield return new WaitForSeconds(0.5f);
-        dialogueTrigger.StartDialogue();
-    }
 
     #endregion
     
