@@ -1,3 +1,4 @@
+using System.Resources;
 using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ public class EventSystem : MonoBehaviour, IEventList
         switch (index)
         {
             case 1:
-                ActiveEvent1();
+                MiniGame3();
                 break;
             case 2:
                 ActiveEvent2();
@@ -93,9 +94,9 @@ public class EventSystem : MonoBehaviour, IEventList
 
     #region  ActiveEvents
 
-    private void ActiveEvent1()
+    private void MiniGame3()
     {
-
+        Debug.Log("进入小游戏");
     }
 
     private void ActiveEvent2()

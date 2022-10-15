@@ -21,12 +21,13 @@ public class MenuOptions : MonoBehaviour
 
     private void Start() {
         menuCanvas = GameObject.Find("Menu").gameObject;
-        saveCanvas = menuCanvas.transform.Find("SaveCanvas").gameObject;
+        saveCanvas = menuCanvas.transform.Find("Save").Find("SaveCanvas").gameObject;
         settingCanvas = menuCanvas.transform.Find("SettingsCanvas").gameObject;
         menuOptions = menuCanvas.transform.Find("MenuOptions").gameObject;
         
         saveCanvas.SetActive(false);
         settingCanvas.SetActive(false);
+        menuCanvas.SetActive(false);
     }
 
     private void Update()
