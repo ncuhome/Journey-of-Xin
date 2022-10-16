@@ -126,15 +126,15 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void ShowLetterBox()
     {
-        StartCoroutine("DelayShowLetterBox");
-    }
-
-    private IEnumerator DelayShowLetterBox()
-    {
-        yield return new WaitForSeconds(0.5f);
         SceneItemManager.Instance.letterBox.SetActive(true);
         SceneItemManager.Instance.letterBox.transform.SetSiblingIndex(SceneItemManager.Instance.letterBox.transform.parent.childCount);
     }
+
+    // private IEnumerator DelayShowLetterBox()
+    // {
+    //     yield return new WaitForSeconds(0.5f);
+        
+    // }
 
     private void GetLastLetterAndMail()
     {

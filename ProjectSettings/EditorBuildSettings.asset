@@ -18,7 +18,16 @@ EditorBuildSettings:
     path: Assets/Scenes/ItemStore.unity
     guid: dd6fda948364c674e950dc1a7b70a924
   - enabled: 1
-    path: Assets/Scenes/MenuTest.unity
-    guid: 9d55dc42265d3cd4a8faafdb84c0923d
+    path: Assets/Scenes/GameSence.unity
+    guid: 56414fc756faa454ea884a1d1cedd9e4
+  - enabled: 1
+    path: Assets/Scenes/DontDestorySence.unity
+    guid: 504fba7f96bb61442bbb5a273898c3a5
+  - enabled: 1
+    path: Assets/Scenes/DialogScene.unity
+    guid: d6032bde92b69e34bacbfb916a4b1f58
+  - enabled: 1
+    path: Assets/Scenes/MenuSence.unity
+    guid: eb2dedc2f21cd2e4b93dfd38828f0570
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ef3e6802dcfcb4040b8fbe5d65a50b10, type: 2}
