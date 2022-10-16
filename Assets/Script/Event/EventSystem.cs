@@ -72,7 +72,7 @@ public class EventSystem : MonoBehaviour, IEventList
                 IntoWorkTable();
                 break;
             case 3:
-                ActiveEvent3();
+                ShowLetterBox();
                 break;
             case 4:
                 ActiveEvent4();
@@ -83,7 +83,9 @@ public class EventSystem : MonoBehaviour, IEventList
             case 6:
                 ActiveEvent6();
                 break;
-
+            case 32:
+                GetLastXinAndYou();
+                break;
             default:
                 return false;
         }
@@ -109,15 +111,34 @@ public class EventSystem : MonoBehaviour, IEventList
     private IEnumerator DisplayIntoWorkTable()
     {
         yield return new WaitForSeconds(0.5f);
-        SceneItemManager.Instance.IntoWorkTablePanel.SetActive(true);
-        SceneItemManager.Instance.IntoWorkTablePanel.transform.SetSiblingIndex(SceneItemManager.Instance.IntoWorkTablePanel.transform.parent.childCount);
+        SceneItemManager.Instance.intoWorkTablePanel.SetActive(true);
+        SceneItemManager.Instance.intoWorkTablePanel.transform.SetSiblingIndex(SceneItemManager.Instance.intoWorkTablePanel.transform.parent.childCount);
     }
 
     private IEnumerator DelayIntoWorkTable()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneItemManager.Instance.IntoWorkTablePanel.SetActive(false);
+        SceneItemManager.Instance.intoWorkTablePanel.SetActive(false);
+        SceneItemManager.Instance.interactive = true;
         //进入工作台界面
+
+    }
+
+    private void ShowLetterBox()
+    {
+        StartCoroutine("DelayShowLetterBox");
+    }
+
+    private IEnumerator DelayShowLetterBox()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneItemManager.Instance.letterBox.SetActive(true);
+        SceneItemManager.Instance.letterBox.transform.SetSiblingIndex(SceneItemManager.Instance.letterBox.transform.parent.childCount);
+    }
+
+    private void GetLastXinAndYou()
+    {
+        // 获得最后的信和最后的邮的事件
 
     }
 

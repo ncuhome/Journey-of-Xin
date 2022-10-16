@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SceneItemManager : MonoBehaviour
 {
-    public static SceneItemManager Instance = null;
+    public static SceneItemManager Instance {get; private set;}
     public bool interactive = true;
-    public GameObject IntoWorkTablePanel = null;
+    public GameObject intoWorkTablePanel = null;
+    public GameObject letterBox = null;
 
     void Awake()
     {
@@ -15,12 +16,14 @@ public class SceneItemManager : MonoBehaviour
             Instance = this;
         }
 
-        IntoWorkTablePanel = GameObject.Find("Canvas/IntoWorkTable");
+        intoWorkTablePanel = GameObject.Find("IntoWorkTable");
+        letterBox = GameObject.Find("LetterBoxPanel");
     }
     // Start is called before the first frame update
     void Start()
     {
-        IntoWorkTablePanel.SetActive(false);
+        intoWorkTablePanel.SetActive(false);
+        letterBox.SetActive(false);
     }
 
     // Update is called once per frame

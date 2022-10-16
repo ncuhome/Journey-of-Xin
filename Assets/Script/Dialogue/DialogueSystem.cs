@@ -112,7 +112,7 @@ public class DialogueSystem : MonoBehaviour
         
     }
 
-    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger) //开始对话
+    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger ) //开始对话
     {
         this.dialogueTrigger = dialogueTrigger;
         dialogIndex = 0;

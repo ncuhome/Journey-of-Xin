@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
-/// ÓÃÓÚ²¥·Å³¡¾°ÖÐ¿ÉÊÕ¼¯ÎïÆ·µÄÏûÊ§¶¯»­
+/// ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class ItemDisplay : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class ItemDisplay : MonoBehaviour
     private GameObject panel = null;
     public bool moveToCenter = true;
     /// <summary>
-    /// µ÷ÓÃ´Ëº¯ÊýÊ±£¬²¥·Å¶¯»­²¢ÔÚ½áÊøºóÏú»ÙÎïÌå
+    /// ï¿½ï¿½ï¿½Ã´Ëºï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void DisplayStart()
     {
@@ -25,6 +25,7 @@ public class ItemDisplay : MonoBehaviour
 
     public void Click()
     {
+        if (DialogueSystem.Instance.inDialogue) { return; }
         if (!SceneItemManager.Instance.interactive) { return; }
         SceneItemManager.Instance.interactive = false;
         target = new Vector3(-850, -440, 0);
@@ -57,7 +58,7 @@ public class ItemDisplay : MonoBehaviour
     {
         switch (status)
         {
-            case 1://½«ÎïÌåÆ½ÒÆÖÁÖÐÐÄ
+            case 1://ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 gameObject.transform.localPosition += (target - gameObject.transform.localPosition) * Time.deltaTime * 3;
                 if ((target - gameObject.transform.localPosition).magnitude <= 10)
                 {

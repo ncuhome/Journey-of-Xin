@@ -8,7 +8,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public TextAsset dialogDataFile = null; // 对话文件，以 csv 形式保存]
 
-    public int dialogIndex = 1;
+    public int dialogIndex = 0;
 
     public bool autoEnterDialogue = false; // 是否在进入场景/房间 时就自动进行对话
     public bool mouseEnter = false; // 鼠标是否在触发器中
