@@ -10,21 +10,21 @@ public class DialogueSystem : MonoBehaviour
     
     public static DialogueSystem Instance { get; private set; } // 单例模式
 
-    public TextAsset dialogDataFile = null; // 对话文件，以 csv 形式保存
-    public Image avatar = null; // 头像组件
-    public TMP_Text nameText = null; // 名字文本
-    public TMP_Text dialogText = null; // 对话文本
-    public GameObject dialogueNode = null; // 对话系统的整体节点
+    private DialogueTrigger dialogueTrigger = null;
+    private Image avatar = null; // 头像组件
+    private TMP_Text nameText = null; // 名字文本
+    private TMP_Text dialogText = null; // 对话文本
+    private GameObject dialogueNode = null; // 对话系统的整体节点
     public List<Sprite> avatars = new List<Sprite>(); // 头像列表
     Dictionary<string, Sprite> imageDic = new Dictionary<string, Sprite>();  // 名字与头像的对应关系
 
     private int dialogIndex = 0; // 当前的文本 ID
     private bool isChoosing = false; // 正在选择选项
-    public bool inDialogue = false; // 正在进行对话
+    public static bool inDialogue = false; // 正在进行对话
     private string[] dialogRows = null; // 储存每一行对话文本的数组
     private string[] cells = null;
     public GameObject optionButton = null; // 选项按钮预制件
-    public Transform buttonGroup = null; // 选项按钮父物体
+    private Transform buttonGroup = null; // 选项按钮父物体
 
     private bool textIsFinished = false; // 文本是否显示完毕
     public float textSpeed = 0.05f; // 每个字的显示速度
@@ -44,9 +44,18 @@ public class DialogueSystem : MonoBehaviour
 
         imageDic["Ce"] = avatars[0];
         imageDic["Know"] = avatars[1];   
+
+        
+        dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
+        avatar = dialogueNode.transform.Find("Avatar").GetComponent<Image>();
+        nameText = dialogueNode.transform.Find("NameText").GetComponent<TMP_Text>();
+        dialogText = dialogueNode.transform.Find("DialogueText").GetComponent<TMP_Text>();
+        buttonGroup = dialogueNode.transform.Find("OptionsGroup");
+
+        dialogueNode.SetActive(false);
     }
 
-    private void Start() //直接播放对话（调试用
+    private void Start()
     {
         // StartDialogue(dialogDataFile);
     }
@@ -80,20 +89,30 @@ public class DialogueSystem : MonoBehaviour
 
     public void UpdateText(string name, string text) // 显示文本与头像
     {
-        Debug.Log("UpdateText");
+        // Debug.Log("UpdateText");
         dialogText.text = "";
         nameText.text = name;
         StartCoroutine("DisplayDialogue");
-        avatar.sprite = imageDic[name];
+        if (name == "")
+        {
+            avatar.gameObject.SetActive(false);
+        }
+        else
+        {
+            avatar.gameObject.SetActive(true);
+            avatar.sprite = imageDic[name];
+        }
+        
     }
 
-    public IEnumerator StartDialogue(TextAsset dialogData) //开始对话
+    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger) //开始对话
     {
+        this.dialogueTrigger = dialogueTrigger;
         dialogIndex = 0;
         dialogText.text = "";
         textIsFinished = false;
         dialogueNode.SetActive(true);
-        ReadText(dialogData);
+        ReadText(dialogueTrigger.dialogDataFile);
         ShowDialogRow();
         yield return new WaitForSeconds(0.1f);
         inDialogue = true;
@@ -112,7 +131,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void ShowDialogRow() // 显示对话行
     {
-        Debug.Log(dialogIndex);
+        // Debug.Log(dialogIndex);
         for (int i = 1; i < dialogRows.Length; i++)
         {
             cells = dialogRows[i].Split(','); // 把对话行分割成各个数据
@@ -165,6 +184,8 @@ public class DialogueSystem : MonoBehaviour
         {
             GameObject button = Instantiate(optionButton, buttonGroup);
             button.GetComponentInChildren<TMP_Text>().text = cells[3];
+
+            // 给按钮添加事件
             button.GetComponent<Button>().onClick.AddListener
             (
                 delegate
@@ -172,6 +193,7 @@ public class DialogueSystem : MonoBehaviour
                     OnOptionClick(int.Parse(cells[4]));
                 }
             );
+
             if (cells[5] != "") //如果有条件则进入判断是否启用按钮
             {
                 foreach (string condition in conditions) //如果有一个条件不满足就禁用按钮
@@ -190,7 +212,7 @@ public class DialogueSystem : MonoBehaviour
     public void OnOptionClick(int id) // 添加按钮事件
     {
         dialogIndex = id;
-        Debug.Log(dialogIndex);
+        // Debug.Log(dialogIndex);
         
         for (int i = 0; i < buttonGroup.childCount; i++)
         {
@@ -211,16 +233,20 @@ public class DialogueSystem : MonoBehaviour
         if (index > 0)
         {
             EventSystem.Instance.ActiveEvent(index);
-        } 
-        else 
+        }
+        if (index < 0)
         {
-            EventSystem.Instance.changeStaticEvent(-index , true);
+            EventSystem.Instance.changeStaticEvent(index, true);
+        }
+        if (index == 0)
+        {
+            dialogueTrigger.GetComponent<ItemDisplay>().DisplayStart();
         }
     }
 
     public IEnumerator DisplayDialogue()//一个字一个字显示文本
     {
-        Debug.Log("开始打字");
+        // Debug.Log("开始打字");
         textIsFinished = false;
         for (int i = 0; i < cells[3].Length; i++)
         {

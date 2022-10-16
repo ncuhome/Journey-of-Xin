@@ -19,8 +19,8 @@ public class PlayerData : MonoBehaviour
         public int[] itemList = new int[24];
     }
 
-    public string saveDataFileName = "SaveData1.sav";
-    public List<bool> canEnterDialog;
+    public static string saveDataFileName = "SaveData1.sav";
+    public static List<bool> canEnterDialog;
 
     #endregion
 
@@ -44,6 +44,12 @@ public class PlayerData : MonoBehaviour
 
 
     #region Save and Load
+
+    public void AutoSave()
+    {
+        saveDataFileName = "SaveData0.sav";
+        SaveByJson();
+    }
 
     public void Save(int saveIndex)
     {

@@ -20,14 +20,14 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnEnable() // 依靠 autoEnterDialogue 变量与触发器的激活来开启自动进入对话
     {
-        if (autoEnterDialogue && PlayerData.Instance.canEnterDialog[dialogIndex]){
+        if (autoEnterDialogue && PlayerData.canEnterDialog[dialogIndex]){
             StartDialogue();
         }
     }
 
     private void Update() // 如果鼠标在触发器内且点击了，就进入对话
     {
-        if (Input.GetMouseButtonDown(0) && mouseEnter && PlayerData.Instance.canEnterDialog[dialogIndex])
+        if (Input.GetMouseButtonDown(0) && mouseEnter && PlayerData.canEnterDialog[dialogIndex])
         {
             StartDialogue();
         }        
@@ -49,13 +49,13 @@ public class DialogueTrigger : MonoBehaviour
     #region Trigger
 
     public void StartDialogue() //判断是否正在对话，如果没有正在对话则开始新的对话
-    {
-        if (DialogueSystem.Instance.inDialogue)
+    {/*
+        if (DialogueSystem.inDialogue)
         {
             return;
         }
-        PlayerData.Instance.canEnterDialog[dialogIndex] = false;
-        DialogueSystem.Instance.StartCoroutine("StartDialogue",dialogDataFile);
+        PlayerData.canEnterDialog[dialogIndex] = false;
+        DialogueSystem.Instance.StartCoroutine("StartDialogue",this);*/
     }
 
     #endregion

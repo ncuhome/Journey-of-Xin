@@ -12,6 +12,7 @@ public class WorkbenchSystem : MonoBehaviour
     private GameObject[] itemButtons = new GameObject[6];//背包按钮组
     private GameObject[] formulaButtons = new GameObject[9];//配方按钮组
     public TMP_Text textDesccription;//物品描述文本
+    public GameObject WorkbenchCanvas;
     #endregion 管理类属性
     #region 标记性变量
     private int pageItem = 0;//背包页
@@ -205,14 +206,18 @@ public class WorkbenchSystem : MonoBehaviour
         UpdateDescription();
         UpdateSprite();
     }
-    void Start()
+    private void OnEnable()
     {
-  
+        WorkbenchCanvas.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Cancel"))
+        {
+            WorkbenchCanvas.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
     }
 }
