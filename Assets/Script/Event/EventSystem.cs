@@ -84,7 +84,7 @@ public class EventSystem : MonoBehaviour, IEventList
                 ActiveEvent6();
                 break;
             case 32:
-                GetLastXinAndYou();
+                GetLastLetterAndMail();
                 break;
             default:
                 return false;
@@ -136,10 +136,32 @@ public class EventSystem : MonoBehaviour, IEventList
         SceneItemManager.Instance.letterBox.transform.SetSiblingIndex(SceneItemManager.Instance.letterBox.transform.parent.childCount);
     }
 
-    private void GetLastXinAndYou()
+    private void GetLastLetterAndMail()
     {
+        SceneItemManager.Instance.lastLetter.SetActive(true);
+        SceneItemManager.Instance.lastLetter.GetComponent<ItemDisplay>().Click();
+        StartCoroutine("GetLastLetter");
+        StartCoroutine("ShowLastMail");
+        StartCoroutine("GetLastMail");
         // 获得最后的信和最后的邮的事件
+        
+    }
+    private IEnumerator GetLastLetter()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneItemManager.Instance.lastLetter.GetComponent<ItemDisplay>().DisplayStart();
+    }
 
+    private IEnumerator ShowLastMail()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneItemManager.Instance.lastMail.SetActive(true);
+        SceneItemManager.Instance.lastMail.GetComponent<ItemDisplay>().Click();
+    }
+    private IEnumerator GetLastMail()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneItemManager.Instance.lastMail.GetComponent<ItemDisplay>().DisplayStart();
     }
 
     private void ActiveEvent3()

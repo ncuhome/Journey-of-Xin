@@ -8,6 +8,8 @@ public class SceneItemManager : MonoBehaviour
     public bool interactive = true;
     public GameObject intoWorkTablePanel = null;
     public GameObject letterBox = null;
+    public GameObject lastLetter = null;
+    public GameObject lastMail = null;
 
     void Awake()
     {
@@ -18,12 +20,16 @@ public class SceneItemManager : MonoBehaviour
 
         intoWorkTablePanel = GameObject.Find("IntoWorkTable");
         letterBox = GameObject.Find("LetterBoxPanel");
+        lastLetter = GameObject.Find("LastLetter");
+        lastMail = GameObject.Find("LastMail");
     }
     // Start is called before the first frame update
     void Start()
     {
         intoWorkTablePanel.SetActive(false);
         letterBox.SetActive(false);
+        lastLetter.SetActive(false);
+        lastMail.SetActive(false);
     }
 
     // Update is called once per frame

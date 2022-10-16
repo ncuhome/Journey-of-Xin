@@ -25,7 +25,7 @@ public class ItemDisplay : MonoBehaviour
 
     public void Click()
     {
-        if (DialogueSystem.Instance.inDialogue) { return; }
+        //if (DialogueSystem.Instance.inDialogue) { return; }
         if (!SceneItemManager.Instance.interactive) { return; }
         SceneItemManager.Instance.interactive = false;
         target = new Vector3(-850, -440, 0);

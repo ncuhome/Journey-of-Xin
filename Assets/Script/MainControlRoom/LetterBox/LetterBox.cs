@@ -164,6 +164,7 @@ public class LetterBox : MonoBehaviour
     }
     public void Confirm()
     {
+        SceneItemManager.Instance.interactive = true;
         if (passwordString == correctPassword)
         {
             Debug.Log("正确");
