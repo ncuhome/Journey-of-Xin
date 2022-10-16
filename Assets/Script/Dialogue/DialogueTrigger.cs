@@ -50,7 +50,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void StartDialogue() //判断是否正在对话，如果没有正在对话则开始新的对话
     {
-        if (DialogueSystem.Instance.inDialogue)
+        if (DialogueSystem.inDialogue)
         {
             return;
         }

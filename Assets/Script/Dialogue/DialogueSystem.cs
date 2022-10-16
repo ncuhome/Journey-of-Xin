@@ -22,7 +22,7 @@ public class DialogueSystem : MonoBehaviour
 
     private int dialogIndex = 0; // 当前的文本 ID
     private bool isChoosing = false; // 正在选择选项
-    public bool inDialogue = false; // 正在进行对话
+    public static bool inDialogue = false; // 正在进行对话
     private string[] dialogRows = null; // 储存每一行对话文本的数组
     private string[] cells = null;
     public GameObject optionButton = null; // 选项按钮预制件

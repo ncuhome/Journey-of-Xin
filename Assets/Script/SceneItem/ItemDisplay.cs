@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
-/// ���ڲ��ų����п��ռ���Ʒ����ʧ����
+/// ???????????��????????????????
 /// </summary>
 public class ItemDisplay : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class ItemDisplay : MonoBehaviour
     private GameObject panel = null;
     public bool moveToCenter = true;
     /// <summary>
-    /// ���ô˺���ʱ�����Ŷ������ڽ�������������
+    /// ???????????????????????????????????
     /// </summary>
     public void DisplayStart()
     {
@@ -58,7 +58,7 @@ public class ItemDisplay : MonoBehaviour
     {
         switch (status)
         {
-            case 1://������ƽ��������
+            case 1://???????????????
                 gameObject.transform.localPosition += (target - gameObject.transform.localPosition) * Time.deltaTime * 3;
                 if ((target - gameObject.transform.localPosition).magnitude <= 10)
                 {

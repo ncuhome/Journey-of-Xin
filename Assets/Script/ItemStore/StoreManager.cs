@@ -12,6 +12,7 @@ public class StoreManager : MonoBehaviour
     private GameObject[] buttons = new GameObject[10];//按钮组
     public TMP_Text textDesccription;//物品描述文本
     public GameObject check;//高亮框
+    public GameObject managerSystem;
 
     #endregion  管理类属性
 
@@ -108,13 +109,9 @@ public class StoreManager : MonoBehaviour
         cursor = 7;
         UpdateDescription();
     }
-
-    public void ToActive()//激活界面
-    {
-        gameObject.SetActive(true);
-    }
     public void UnActive()//退出工作台界面
     {
+        managerSystem.SetActive(false);
         gameObject?.SetActive(false);
     }
 

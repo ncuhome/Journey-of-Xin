@@ -8,8 +8,26 @@ public class ItemSystem
     {
         switch(id)
         {
-            case 1:return "：普通的咖啡，由一种生在在‘地球’的特殊植物的种子加工制成，貌似对不是人类的Ce博士同样有提神作用？";
-            case 2:return "：血红色的朗姆酒，相比普通的朗姆酒经过更长时间的发酵，在Kens星球的某个时期是贵族们专享的饮料";
+            case 1:return "没有相关描述";
+            case 2:return "没有相关描述";
+            case 3: return "没有相关描述";
+            case 4: return "没有相关描述";
+            case 5: return "没有相关描述";
+            case 6: return "没有相关描述";
+            case 7: return "没有相关描述";
+            case 8: return "没有相关描述";
+            case 9: return "没有相关描述";
+            case 10: return "没有相关描述";
+            case 11: return "没有相关描述";
+            case 12: return "没有相关描述";
+            case 13: return "没有相关描述";
+            case 14: return "没有相关描述";
+            case 15: return "没有相关描述";
+            case 16: return "没有相关描述";
+            case 17: return "没有相关描述";
+            case 18: return "没有相关描述";
+            case 19: return "没有相关描述";
+            case 20: return "没有相关描述";
         }
         return "没有相关描述";
     }
@@ -17,17 +35,36 @@ public class ItemSystem
     {
         switch(id)
         {
-            case 1:return "咖啡";
-            case 2:return "血色朗姆酒";
+            case 0: return "";
+            case 1: return "复活装置（博士）";
+            case 2: return "咖啡";
+            case 3: return "信";
+            case 4: return "邮";
+            case 5: return "最后的信";
+            case 6: return "最后的邮";
+            case 7: return "冲泡好的咖啡";
+            case 8: return "回忆咖啡";
+            case 9: return "失忆咖啡";
+            case 10: return "最后的回忆咖啡";
+            case 11: return "最后的失忆咖啡";
+            case 12: return "飞船背景中隐含的数字";
+            case 13: return "武器";
+            case 14: return "信箱里的信";
+            case 15: return "飞船里的邮";
+            case 16: return "基地隐含的数字";
+            case 17: return "复活装置（Kown）";
+            case 18: return "工具";
+            case 19: return "未知物品";
+            case 20: return "未知物品";
         }
-        return "";
+        return "未知物品";
     }
     public static Sprite ItemSprite(int id)//获取物品的贴图
     {
         switch(id)
         {
             case 0: return Resources.Load<Sprite>("Image/Item/空物品");
-            case 1: return Resources.Load<Sprite>("Image/Item/咖啡");
+            case 1: return Resources.Load<Sprite>("Image/Item/复活装置（博士）");
             case 2: return Resources.Load<Sprite>("Image/Item/朗姆酒");
         }
         return Resources.Load<Sprite>("Image/Item/错误贴图");

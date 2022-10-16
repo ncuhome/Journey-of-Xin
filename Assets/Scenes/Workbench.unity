@@ -3152,6 +3152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDesccription: {fileID: 471401668}
+  WorkbenchCanvas: {fileID: 30316501}
 --- !u!4 &1841720499
 Transform:
   m_ObjectHideFlags: 0
