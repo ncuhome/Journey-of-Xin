@@ -29,12 +29,10 @@ public class RoomManager : MonoBehaviour
         }
 
         rooms = new GameObject[1][];
-        rooms[0] = new GameObject[4];
+        rooms[0] = new GameObject[2];
 
-        rooms[0][0] = GameObject.Find("Rooms/Room1");
-        rooms[0][1] = GameObject.Find("Rooms/Room2");
-        rooms[0][2] = GameObject.Find("Rooms/Room3");
-        rooms[0][3] = GameObject.Find("Rooms/Room4");
+        rooms[0][0] = GameObject.Find("Room1");
+        rooms[0][1] = GameObject.Find("Room2");
         
     }
 
@@ -120,13 +118,13 @@ public class RoomManager : MonoBehaviour
 
     public IEnumerator FinishExchange()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         isExchanging = false;
     }
 
     public IEnumerator DestroyAnimation()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         isAnimationPlay = false;
         Destroy(roomExchangeCanvas);
     }

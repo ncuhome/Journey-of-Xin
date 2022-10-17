@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class WorkbenchSystem : MonoBehaviour
 {
+    public static WorkbenchSystem Instance {get; private set;}
     #region 管理类属性
     private int[][] itemStore = new int[6][];//背包物品id列
     private int[][] formulaList = new int[3][];//合成配方表
@@ -171,6 +172,11 @@ public class WorkbenchSystem : MonoBehaviour
 
     private void Awake()/*******/
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         #region 初始化数组
         for (int i = 0; i < itemStore.Length; i++)
         {
@@ -181,7 +187,7 @@ public class WorkbenchSystem : MonoBehaviour
             formulaList[i] = new int[6];
         }
         /********/
-        StoreSystem.Add(1);
+        //StoreSystem.Add(1);
         /********/
         UpdateFormItemStore();
         #endregion 初始化数组
@@ -201,14 +207,15 @@ public class WorkbenchSystem : MonoBehaviour
         formulaButtons[8] = GameObject.Find("MakeButton");
         #endregion 匹配按钮
         /***********/
-        formulaList[0][0] = 2;
+        //formulaList[0][0] = 2;
         /***********/
         UpdateDescription();
         UpdateSprite();
+        WorkbenchCanvas.SetActive(false);
     }
     private void OnEnable()
     {
-        WorkbenchCanvas.SetActive(true);
+        //WorkbenchCanvas.SetActive(true);
     }
 
     // Update is called once per frame
@@ -217,7 +224,12 @@ public class WorkbenchSystem : MonoBehaviour
         if(Input.GetButtonDown("Cancel"))
         {
             WorkbenchCanvas.SetActive(false);
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
+    }
+
+    public void ShowWorkbench()
+    {
+        WorkbenchCanvas.SetActive(true);
     }
 }

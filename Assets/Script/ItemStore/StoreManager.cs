@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-//±³°ü¹ÜÀíÀà
+//èƒŒåŒ…ç®¡ç†ç±»
 public class StoreManager : MonoBehaviour
 {
-    #region ¹ÜÀíÀàÊôĞÔ
-    private int[][] store = new int[][] {new int[8] , new int[8] , new int[8] };//ÎïÆ·id×é
-    private GameObject[] buttons = new GameObject[10];//°´Å¥×é
-    public TMP_Text textDesccription;//ÎïÆ·ÃèÊöÎÄ±¾
-    public GameObject check;//¸ßÁÁ¿ò
+    #region ç®¡ç†ç±»å±æ€§
+    private int[][] store = new int[][] {new int[8] , new int[8] , new int[8] };//ç‰©å“idç»„
+    private GameObject[] buttons = new GameObject[10];//æŒ‰é’®ç»„
+    public TMP_Text textDesccription;//ç‰©å“æè¿°æ–‡æœ¬
+    public GameObject check;//é«˜äº®æ¡†
     public GameObject managerSystem;
 
-    #endregion  ¹ÜÀíÀàÊôĞÔ
+    #endregion  ç®¡ç†ç±»å±æ€§
 
-    #region ±ê¼ÇĞÔ±äÁ¿
-    private int cursor = 0;//µ±Ç°¹â±êÎ»ÖÃ (0~7)
-    private int page = 0;//µ±Ç°Ò³Âë(0~2)
-    private bool moving = false;//ÊÇ·ñ´¦ÓÚÔË¶¯×´Ì¬
-    #endregion ±ê¼ÇĞÔ±äÁ¿
+    #region æ ‡è®°æ€§å˜é‡
+    private int cursor = 0;//å½“å‰å…‰æ ‡ä½ç½® (0~7)
+    private int page = 0;//å½“å‰é¡µç (0~2)
+    private bool moving = false;//æ˜¯å¦å¤„äºè¿åŠ¨çŠ¶æ€
+    #endregion æ ‡è®°æ€§å˜é‡
 
-    #region ÅäÖÃº¯Êı
+    #region é…ç½®å‡½æ•°
     /// <summary>
-    /// ¸üĞÂÎïÆ·À¸µÄÌùÍ¼
+    /// æ›´æ–°ç‰©å“æ çš„è´´å›¾
     /// </summary>
     public void UpdateSprite()
     {
@@ -35,7 +35,7 @@ public class StoreManager : MonoBehaviour
         }
     }
     /// <summary>
-    /// ¸üĞÂÏÔÊ¾µÄÎïÆ·ÃèÊö
+    /// æ›´æ–°æ˜¾ç¤ºçš„ç‰©å“æè¿°
     /// </summary>
     public void UpdateDescription()
     {
@@ -44,7 +44,7 @@ public class StoreManager : MonoBehaviour
             + ItemSystem.ItemDescription(store[page][cursor]);
     }
     /// <summary>
-    /// ¸üĞÂ±³°üÎïÆ·ÁĞ±í
+    /// æ›´æ–°èƒŒåŒ…ç‰©å“åˆ—è¡¨
     /// </summary>
     public void UpdateStoreSystem()
     {
@@ -54,70 +54,71 @@ public class StoreManager : MonoBehaviour
             store[i / 8][i % 8] = storeItem[i];
         }
     }
-    #endregion ÅäÖÃº¯Êı
+    #endregion é…ç½®å‡½æ•°
 
-    #region °´Å¥¼¤»îº¯Êı
-    public void LastPage()//ÉÏÒ»Ò³
+    #region æŒ‰é’®æ¿€æ´»å‡½æ•°
+    public void LastPage()//ä¸Šä¸€é¡µ
     {
         if (page > 0) { page--; }
         UpdateSprite();
         UpdateDescription();
     }
-    public void NextPage()//ÏÂÒ»Ò³
+    public void NextPage()//ä¸‹ä¸€é¡µ
     {
         if (page < 2) { page++; }
         UpdateSprite();
         UpdateDescription();
     }
-    public void ActiveButton0()//¼¤»î°´Å¥0
+    public void ActiveButton0()//æ¿€æ´»æŒ‰é’®0
     {
         cursor = 0;
         UpdateDescription();
     }
-    public void ActiveButton1()//¼¤»î°´Å¥1
+    public void ActiveButton1()//æ¿€æ´»æŒ‰é’®1
     {
         cursor = 1;
         UpdateDescription();
     }
-    public void ActiveButton2()//¼¤»î°´Å¥2
+    public void ActiveButton2()//æ¿€æ´»æŒ‰é’®2
     {
         cursor = 2;
         UpdateDescription();
     }
-    public void ActiveButton3()//¼¤»î°´Å¥3
+    public void ActiveButton3()//æ¿€æ´»æŒ‰é’®3
     {
         cursor = 3;
         UpdateDescription();
     }
-    public void ActiveButton4()//¼¤»î°´Å¥4
+    public void ActiveButton4()//æ¿€æ´»æŒ‰é’®4
     {
         cursor = 4;
         UpdateDescription();
     }
-    public void ActiveButton5()//¼¤»î°´Å¥5
+    public void ActiveButton5()//æ¿€æ´»æŒ‰é’®5
     {
         cursor = 5;
         UpdateDescription();
     }
-    public void ActiveButton6()//¼¤»î°´Å¥6
+    public void ActiveButton6()//æ¿€æ´»æŒ‰é’®6
     {
         cursor = 6;
         UpdateDescription();
     }
-    public void ActiveButton7()//¼¤»î°´Å¥7
+    public void ActiveButton7()//æ¿€æ´»æŒ‰é’®7
     {
         cursor = 7;
         UpdateDescription();
     }
-    public void UnActive()//ÍË³ö¹¤×÷Ì¨½çÃæ
+    public void UnActive()//é€€å‡ºå·¥ä½œå°ç•Œé¢
     {
-        managerSystem.SetActive(false);
-        gameObject?.SetActive(false);
+        // managerSystem.SetActive(false);
+        // gameObject?.SetActive(false);
+        ManagerSystem.Instance.HideItemStore();
     }
 
-    #endregion °´Å¥¼¤»îº¯Êı
+    #endregion æŒ‰é’®æ¿€æ´»å‡½æ•°
 
-    private Vector3 AimPosition()//¸ßÁÁ¿òÄ¿±êÎ»ÖÃ
+    private Vector3 AimPosition()//é«˜äº®æ¡†ç›®æ ‡ä½ç½®
     {
         return new Vector3((435 + (cursor % 4) * 350), (840 - (cursor / 4) * 325), 0);
     }
@@ -125,7 +126,7 @@ public class StoreManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        #region ½«³¡¾°ÄÚµÄ°´Å¥ÔØÈë¹ÜÀíÀà
+        #region å°†åœºæ™¯å†…çš„æŒ‰é’®è½½å…¥ç®¡ç†ç±»
 
         for (int i = 0; i < 8; i++)
         {
@@ -134,17 +135,17 @@ public class StoreManager : MonoBehaviour
         buttons[8] = GameObject.Find("LastPage");
         buttons[9] = GameObject.Find("NextPage");
 
-        #endregion ½«³¡¾°ÄÚµÄ°´Å¥ÔØÈë¹ÜÀíÀà
+        #endregion å°†åœºæ™¯å†…çš„æŒ‰é’®è½½å…¥ç®¡ç†ç±»
         /*****/
-        StoreSystem.Add(1);
-        StoreSystem.Add(2);
+        //StoreSystem.Add(1);
+        //StoreSystem.Add(2);
         /*****/
-        UpdateStoreSystem();//¸üĞÂ±³°üÎïÆ·ÁĞ±í;
+        UpdateStoreSystem();//æ›´æ–°èƒŒåŒ…ç‰©å“åˆ—è¡¨;
     }
 
     private void OnEnable()
     {
-        UpdateStoreSystem();//¸üĞÂ±³°üÎïÆ·ÁĞ±í;
+        UpdateStoreSystem();//æ›´æ–°èƒŒåŒ…ç‰©å“åˆ—è¡¨;
     }
 
     void Start()

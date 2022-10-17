@@ -24,7 +24,7 @@ public class DialogueSystem : MonoBehaviour
     private bool isChoosing = false; // 正在选择选项
     public static bool inDialogue = false; // 正在进行对话
     private string[] dialogRows = null; // 储存每一行对话文本的数组
-    private string[] cells = null;
+    private string[] cells = null; // 每一行的各个部分
     public GameObject optionButton = null; // 选项按钮预制件
     private Transform buttonGroup = null; // 选项按钮父物体
 
@@ -43,8 +43,11 @@ public class DialogueSystem : MonoBehaviour
             Instance = this;
         }
 
+        // 用字典将名字与头像对应
         imageDic["Ce"] = avatars[0];
         imageDic["Know"] = avatars[1];   
+
+        //获取组件
         dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
         avatar = dialogueNode.transform.Find("Avatar").GetComponent<Image>();
         nameText = dialogueNode.transform.Find("NameText").GetComponent<TMP_Text>();

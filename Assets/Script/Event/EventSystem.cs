@@ -75,13 +75,16 @@ public class EventSystem : MonoBehaviour, IEventList
                 ShowLetterBox();
                 break;
             case 4:
-                ActiveEvent4();
+                GetWeapon();
                 break;
             case 5:
-                ActiveEvent5();
+                MiniGame3();
                 break;
             case 6:
-                ActiveEvent6();
+                GetRebornDevice();
+                break;
+            case 7:
+                GetLetterInTrashBin();
                 break;
             case 32:
                 GetLastLetterAndMail();
@@ -121,7 +124,7 @@ public class EventSystem : MonoBehaviour, IEventList
         SceneItemManager.Instance.intoWorkTablePanel.SetActive(false);
         SceneItemManager.Instance.interactive = true;
         //进入工作台界面
-
+        WorkbenchSystem.Instance.ShowWorkbench();
     }
 
     private void ShowLetterBox()
@@ -164,24 +167,29 @@ public class EventSystem : MonoBehaviour, IEventList
         SceneItemManager.Instance.lastMail.GetComponent<ItemDisplay>().DisplayStart();
     }
 
-    private void ActiveEvent3()
+    private void GetWeapon()
     {
-
+        StoreSystem.Add(13);
     }
 
-    private void ActiveEvent4()
+    private void GetCoffee()
     {
-
+        StoreSystem.Add(2);
     }
 
-    private void ActiveEvent5()
+    private void MiniGame2()
     {
-
+        // 小游戏2 华容道
     }
 
-    private void ActiveEvent6()
+    private void GetRebornDevice()
     {
+        // 获得复活装置
+    }
 
+    private void GetLetterInTrashBin()
+    {
+        // 获得垃圾篓中的信
     }
 
 

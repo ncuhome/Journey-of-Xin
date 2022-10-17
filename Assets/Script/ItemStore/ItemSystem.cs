@@ -9,16 +9,16 @@ public class ItemSystem
         switch(id)
         {
             case 1:return "没有相关描述";
-            case 2:return "没有相关描述";
-            case 3: return "没有相关描述";
-            case 4: return "没有相关描述";
-            case 5: return "没有相关描述";
-            case 6: return "没有相关描述";
-            case 7: return "没有相关描述";
-            case 8: return "没有相关描述";
-            case 9: return "没有相关描述";
-            case 10: return "没有相关描述";
-            case 11: return "没有相关描述";
+            case 2:return "朴素的咖啡，别无特别之处";
+            case 3: return "据说某个星球上的文明曾用此类古老的工具传递性息";
+            case 4: return "邮";
+            case 5: return "最后的信";
+            case 6: return "最后的邮";
+            case 7: return "冲泡好的咖啡";
+            case 8: return "回忆咖啡";
+            case 9: return "失忆咖啡";
+            case 10: return "最后的回忆咖啡";
+            case 11: return "最后的失忆咖啡";
             case 12: return "没有相关描述";
             case 13: return "没有相关描述";
             case 14: return "没有相关描述";
@@ -83,8 +83,16 @@ public class ItemSystem
     {
         switch(id)
         {
-            case 2:
-                return new int[] { 1 };
+            case 7:
+                return new int[] { 2 };
+            case 8:
+                return new int[] { 2,3 };
+            case 9:
+                return new int[] { 2,4 };
+            case 10:
+                return new int[] { 2,5 };
+            case 11:
+                return new int[] { 2,6 }; 
         }
         return new int[] { 0 };
     }
