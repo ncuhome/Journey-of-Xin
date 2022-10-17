@@ -19,8 +19,8 @@ public class PlayerData : MonoBehaviour
         public int[] itemList = new int[24];
     }
 
-    public static string saveDataFileName = "SaveData1.sav";
-    public static List<bool> canEnterDialog;
+    public string saveDataFileName = "SaveData1.sav";
+    public List<bool> canEnterDialog;
 
     #endregion
 
@@ -32,7 +32,6 @@ public class PlayerData : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         for (int i = 0; i < 100; i++)
         {

@@ -43,10 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6125966856849118817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0659a3a7884d99545954a0d98ab3484d, type: 3}
+  m_Script: {fileID: 11500000, guid: db3dd7109f9d5854587387b595c2a609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staticEventList: 
+  saveDataFileName: SaveData1.sav
+  canEnterDialog: 
 --- !u!114 &6125966856849118828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,11 +57,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6125966856849118817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0835cab2c930d7545ac5e36e0a28c3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: d6502d5eb586e094b8c39f6ceb8938da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveDataFileName: SaveData1.sav
-  canEnterDialog: 
+  staticEventList: 
 --- !u!114 &5970538430781188709
 MonoBehaviour:
   m_ObjectHideFlags: 0

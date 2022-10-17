@@ -17,6 +17,7 @@ public class SecretNumber : MonoBehaviour
         {
             wrongDialog.StartDialogue();
         }
+        SceneItemManager.Instance.interactive = true;
     }
 
     void Awake()

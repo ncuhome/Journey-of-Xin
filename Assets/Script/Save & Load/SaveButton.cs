@@ -114,7 +114,7 @@ public class SaveButton : MonoBehaviour
                 PlayerData.Instance.Load(saveDataIndex);
                 break;
             case 3:
-                PlayerData.saveDataFileName = "SaveData"+ saveDataIndex.ToString() + ".sav";
+                PlayerData.Instance.saveDataFileName = "SaveData"+ saveDataIndex.ToString() + ".sav";
                 PlayerData.Instance.DeletePlayerDataSaveFile();
                 break;
         }

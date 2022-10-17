@@ -22,8 +22,8 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
         }
-        volumeSlider = GameObject.Find("Menu/SettingsCanvas/Settings/Volume/VolumeSlider").GetComponent<Slider>();
-        volumeNumber = GameObject.Find("Menu/SettingsCanvas/Settings/Volume/VolumeNumber").GetComponent<TMP_Text>(); 
+        volumeSlider = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+        volumeNumber = GameObject.Find("VolumeNumber").GetComponent<TMP_Text>(); 
     }
     
     void Start()

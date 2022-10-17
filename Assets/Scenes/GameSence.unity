@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 189674664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 1eb98ea9f97b6ca4094eca0458c03cba, type: 3}
@@ -1204,11 +1204,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 208630005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 832d67502be1fbd48b035172e3de59af, type: 3}
-  dialogIndex: 1
+  dialogIndex: 0
   autoEnterDialogue: 0
   mouseEnter: 0
 --- !u!114 &208630013
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 409926174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 5d75a331a043c9f438897c0f819e8b9b, type: 3}
@@ -2816,7 +2816,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 466109965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 4ab8beecacf3b064cadb5756782b2724, type: 3}
@@ -2963,11 +2963,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 535214660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 4180bb4d93c06c74aa269c8465873e69, type: 3}
-  dialogIndex: 1
+  dialogIndex: 0
   autoEnterDialogue: 0
   mouseEnter: 0
 --- !u!95 &535214664
@@ -3096,9 +3096,9 @@ GameObject:
   - component: {fileID: 557429976}
   - component: {fileID: 557429975}
   - component: {fileID: 557429974}
-  - component: {fileID: 557429978}
   - component: {fileID: 557429977}
   - component: {fileID: 557429979}
+  - component: {fileID: 557429980}
   m_Layer: 5
   m_Name: Coffee
   m_TagString: Untagged
@@ -3240,22 +3240,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &557429978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557429971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 3dda05ba94f3b2f4a8f8837a82e72a2b, type: 3}
-  dialogIndex: 1
-  autoEnterDialogue: 0
-  mouseEnter: 0
 --- !u!114 &557429979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3269,6 +3253,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveToCenter: 1
+--- !u!114 &557429980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557429971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogDataFile: {fileID: 4900000, guid: 3dda05ba94f3b2f4a8f8837a82e72a2b, type: 3}
+  dialogIndex: 0
+  autoEnterDialogue: 0
+  mouseEnter: 0
 --- !u!1 &638733176
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,7 +4038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d744f9b61dbed4a8f28f42016a7625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordString: 
+  passwordString: -----
   password: 
   passwordText: {fileID: 411012671}
   passwordIndex: 0
@@ -4438,8 +4438,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994976087}
-        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
+      - m_Target: {fileID: 994976086}
+        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -4450,8 +4450,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 994976086}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
+      - m_Target: {fileID: 994976087}
+        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -5028,7 +5028,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261925842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f5c50ab16d0d248b4c6b169f2058c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 059bb7097fb024147ae5acb12f5d8794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eventIndex: 2
@@ -5445,11 +5445,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1429976435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: aeed25c7ea7862d4eaf3385d95b132ca, type: 3}
-  dialogIndex: 1
+  dialogIndex: 0
   autoEnterDialogue: 0
   mouseEnter: 0
 --- !u!95 &1429976439
@@ -6079,7 +6079,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1761215543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f5c50ab16d0d248b4c6b169f2058c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 059bb7097fb024147ae5acb12f5d8794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eventIndex: 3
@@ -6270,7 +6270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1812945487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecedb0777f860204887b445fd99848b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: b8ec901fb6a89f24a8e29855130e3694, type: 3}
