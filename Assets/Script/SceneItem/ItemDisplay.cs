@@ -56,6 +56,9 @@ public class ItemDisplay : MonoBehaviour
     void Awake()
     {
         itemImage = GetComponent<Image>();
+        
+        // 设置图片中只有不透明的地方能触发响应
+        itemImage.alphaHitTestMinimumThreshold = 0.1f;
         if (GetComponent<Button>() != null)
         {
             itemButton = GetComponent<Button>();

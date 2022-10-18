@@ -13,8 +13,7 @@ public class EventTrigger : MonoBehaviour
 
     private void Awake()
     {
-        // 设置图片中只有不透明的地方能触发响应
-        GetComponent<Image>().alphaHitTestMinimumThreshold = 1f;
+        
     }
 
     private void OnEnable() // 依靠 autoEvent 变量与触发器的激活来开启自动触发事件

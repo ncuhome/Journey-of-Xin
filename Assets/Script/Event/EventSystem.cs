@@ -87,6 +87,9 @@ public class EventSystem : MonoBehaviour, IEventList
             case 7:
                 GetLetterInTrashBin();
                 break;
+            case 8:
+                GetCoffee();
+                break;
             case 32:
                 GetLastLetterAndMail();
                 break;
@@ -193,6 +196,7 @@ public class EventSystem : MonoBehaviour, IEventList
         // 获得垃圾篓中的信
     }
 
+    
 
     #endregion
 

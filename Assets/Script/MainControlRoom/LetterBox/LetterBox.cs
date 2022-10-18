@@ -179,6 +179,7 @@ public class LetterBox : MonoBehaviour
             UpdatePassword();
             wrongTrigger.StartDialogue();
             gameObject.SetActive(false);
+            letterBox.GetComponent<Animator>().SetBool("Click", false);
         }
     }
 
