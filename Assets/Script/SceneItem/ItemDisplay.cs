@@ -29,7 +29,7 @@ public class ItemDisplay : MonoBehaviour
     public void DisplayStart()
     {
         status = 1;
-        GetComponent<Animator>().SetBool("Click", false);
+        GetComponent<Animator>().SetBool("Display", true);
         panel.SetActive(false);
     }
 
