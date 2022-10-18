@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuSence.unity
     guid: eb2dedc2f21cd2e4b93dfd38828f0570
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 89988ded2e25fe3439ee9ab31f924363
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ef3e6802dcfcb4040b8fbe5d65a50b10, type: 2}

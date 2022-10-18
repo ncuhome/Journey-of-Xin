@@ -22,6 +22,10 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         volumeSlider = GameObject.Find("VolumeSlider").GetComponent<Slider>();
         volumeNumber = GameObject.Find("VolumeNumber").GetComponent<TMP_Text>(); 
     }

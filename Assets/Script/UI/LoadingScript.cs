@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,6 @@ public class LoadingScript : MonoBehaviour
     public static int Scene { get; set; }
     void Start()
     {
-
         toNewScene();
     }
 
@@ -53,7 +53,7 @@ public class LoadingScript : MonoBehaviour
 
     private IEnumerator LoadScene()//异步加载（使用协程）
     {
-        operation = SceneManager.LoadSceneAsync(scene);
+        operation = SceneManager.LoadSceneAsync(Scene);
         operation.allowSceneActivation = false;
         yield return operation;
     }

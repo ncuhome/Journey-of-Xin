@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
-/// ???????????§á????????????????
+/// ???????????ï¿½ï¿½????????????????
 /// </summary>
+
+public enum ItemState
+{
+    Invisible, NotInteractive, Interactive
+}
+
 public class ItemDisplay : MonoBehaviour
 {
     private float a = 1.0f;
     private float timer = 0;
     private int status = 0;
+    public int itemIndex = 0;
     private Vector3 target = Vector3.zero;
     private GameObject panel = null;
     public bool moveToCenter = true;
+
+    private Image itemImage = null;
+    private Button itemButton = null;
     /// <summary>
     /// ???????????????????????????????????
     /// </summary>
@@ -26,7 +36,7 @@ public class ItemDisplay : MonoBehaviour
     public void Click()
     {
         //if (DialogueSystem.Instance.inDialogue) { return; }
-        if (!SceneItemManager.Instance.interactive) { return; }
+        if (SceneItemManager.Instance.itemStates[itemIndex] != ItemState.Interactive || !SceneItemManager.Instance.interactive) { return; }
         SceneItemManager.Instance.interactive = false;
         target = new Vector3(-850, -440, 0);
         if (moveToCenter)
@@ -45,17 +55,25 @@ public class ItemDisplay : MonoBehaviour
 
     void Awake()
     {
+        itemImage = GetComponent<Image>();
+        if (GetComponent<Button>() != null)
+        {
+            itemButton = GetComponent<Button>();
+        }
         panel = GameObject.Find("Canvas/Panel");
     }
 
     void Start()
     {
         panel.SetActive(false);
+        SceneItemManager.Instance.itemStates[itemIndex] = ItemState.Interactive;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateItemState();
+
         switch (status)
         {
             case 1://???????????????
@@ -71,8 +89,32 @@ public class ItemDisplay : MonoBehaviour
                 break;
             case 2:
                 SceneItemManager.Instance.interactive = true;
-                Destroy(gameObject);
+                SceneItemManager.Instance.itemStates[itemIndex] = ItemState.Invisible;
                 break;
+        }
+    }
+
+    private void UpdateItemState()
+    {
+        if (SceneItemManager.Instance.itemStates[itemIndex] == ItemState.Invisible)
+        {
+            itemImage.enabled = false;
+        }
+        else
+        {
+            itemImage.enabled = true;
+        }
+
+        if (itemButton)
+        {
+            if (SceneItemManager.Instance.itemStates[itemIndex] == ItemState.Interactive)
+            {
+                itemButton.interactable = true;
+            }
+            else
+            {
+                itemButton.interactable = false;
+            }
         }
     }
 }

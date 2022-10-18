@@ -20,6 +20,10 @@ public class ManagerSystem : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         Canvas.SetActive(false);
     }
 

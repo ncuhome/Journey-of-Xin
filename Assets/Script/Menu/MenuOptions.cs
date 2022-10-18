@@ -24,6 +24,10 @@ public class MenuOptions : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         menuCanvas = GameObject.Find("Menu").gameObject;
         saveCanvas = menuCanvas.transform.Find("Save").Find("SaveCanvas").gameObject;
         settingCanvas = menuCanvas.transform.Find("SettingsCanvas").gameObject;

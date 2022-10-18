@@ -75,7 +75,7 @@ public class TitleSystem : MonoBehaviour
     {
         nextScene = true;
         Debug.Log("开始加载场景");
-        LoadingScript.Scene = 1;//设置转入场景的索引值
+        LoadingScript.Scene = 7;//设置转入场景的索引值
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
     }
     /// <summary>

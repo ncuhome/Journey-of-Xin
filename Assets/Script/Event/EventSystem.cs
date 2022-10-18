@@ -15,19 +15,20 @@ public class EventSystem : MonoBehaviour, IEventList
 {
     #region  Properties
     public static EventSystem Instance { get; private set; } // 单例模式 
-    public List<int> staticEventList = new List<int>();
+    public int[] staticEventList = new int[100];
     #endregion
 
     #region Unity Methods
 
     private void Awake() // 创建单例以及静态事件列表
     {
-
-        Instance = this;
-
-        for (int i = 0; i < 100; i++)
+        if (Instance == null)
         {
-            staticEventList.Add(0);
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
     }
 

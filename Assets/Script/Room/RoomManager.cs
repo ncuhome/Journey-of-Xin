@@ -20,12 +20,15 @@ public class RoomManager : MonoBehaviour
     #endregion
 
     #region Unity Methods
-    void Start()
+    void Awake()
     {
-        if (!Instance)
+        if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
 
         rooms = new GameObject[1][];
@@ -33,6 +36,9 @@ public class RoomManager : MonoBehaviour
 
         rooms[0][0] = GameObject.Find("Room1");
         rooms[0][1] = GameObject.Find("Room2");
+
+        leftButton = GameObject.Find("LeftButton");
+        rightButton = GameObject.Find("RightButton");
         
     }
 

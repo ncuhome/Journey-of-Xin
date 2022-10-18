@@ -10,12 +10,17 @@ public class SceneItemManager : MonoBehaviour
     public GameObject letterBox = null;
     public GameObject lastLetter = null;
     public GameObject lastMail = null;
+    public ItemState[] itemStates = new ItemState[100];
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
 
         intoWorkTablePanel = GameObject.Find("IntoWorkTable");

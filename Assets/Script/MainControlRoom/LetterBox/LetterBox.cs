@@ -169,7 +169,7 @@ public class LetterBox : MonoBehaviour
         {
             Debug.Log("正确");
             correctTrigger.StartDialogue();
-            letterBox.GetComponent<Button>().interactable = false;
+            SceneItemManager.Instance.itemStates[4] = ItemState.NotInteractive;
             gameObject.SetActive(false);
         }
         else
