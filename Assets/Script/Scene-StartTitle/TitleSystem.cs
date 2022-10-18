@@ -9,19 +9,34 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class TitleSystem : MonoBehaviour
 {
+    private bool canChoose = true;
     public Animator animator;//动画播放组件
     public GameObject animatorLoading;//过场动画预制件
     private int cursor = 0;//当前光标位置
     private bool nextScene = false;//是否进入下一个场景
     //0：Xin（制作人员名单）     1：开始新的游戏    2：游戏设置      3：回忆游戏      4：退出返回游戏
-
+    private GameObject settingsCanvas = null;
+    private GameObject saveCanvas = null;
+    public GameObject background = null;
+    private Canvas startTitleCanvas = null;
+    void Awake()
+    {   
+        settingsCanvas = GameObject.Find("SettingsCanvas");
+        saveCanvas = GameObject.Find("Save");
+        background = GameObject.Find("/Background");
+        startTitleCanvas = GameObject.Find("StartTitleCanvas").GetComponent<Canvas>();
+    }
     void Start()
     {
+        settingsCanvas.SetActive(false);
+        saveCanvas.SetActive(false);
+        background.SetActive(false);
+        startTitleCanvas.enabled = true;
     }
 
     void Update()
     {
-        if (!nextScene)//在当前场景 下对玩家操作的监控
+        if (!nextScene && canChoose)//在当前场景 下对玩家操作的监控
         {
             if (Input.GetButtonDown("Up"))//选项向上
             {
@@ -40,8 +55,8 @@ public class TitleSystem : MonoBehaviour
             {
                 switch (cursor)
                 {
-                    case 0://显示制作者名单
-                        toProducer();
+                    case 0://读取存档
+                        toLoadGame();
                         break;
                     case 1://开始新的游戏
                         toNewGame();
@@ -57,16 +72,28 @@ public class TitleSystem : MonoBehaviour
                         break;
                 }
             }
+        }
 
+        if (settingsCanvas.activeInHierarchy && Input.GetButtonDown("Cancel"))
+        {
+            ReturnFromSettings();
+        }
+
+        if (saveCanvas.activeInHierarchy && Input.GetButtonDown("Cancel"))
+        {
+            ReturnFromSave();
         }
     }
 
     /// <summary>
-    /// 前往制作者名单画面
+    /// 前往读取存档界面
     /// </summary>
-    private void toProducer()
+    private void toLoadGame()
     {
-
+        canChoose = false;
+        background.SetActive(true);
+        saveCanvas.SetActive(true);
+        startTitleCanvas.enabled = false;
     }
     /// <summary>
     /// 开始新的游戏
@@ -83,7 +110,10 @@ public class TitleSystem : MonoBehaviour
     /// </summary>
     private void toSettings()
     {
-
+        canChoose = false;
+        settingsCanvas.SetActive(true);
+        background.SetActive(true);
+        startTitleCanvas.enabled = false;
     }
     /// <summary>
     /// 前往回忆与欣赏画面
@@ -93,5 +123,20 @@ public class TitleSystem : MonoBehaviour
 
     }
 
+    private void ReturnFromSettings()
+    {
+        canChoose = true;
+        settingsCanvas.SetActive(false);
+        background.SetActive(false);
+        startTitleCanvas.enabled = true;
+    }
+
+    private void ReturnFromSave()
+    {
+        canChoose = true;
+        saveCanvas.SetActive(false);
+        background.SetActive(false);
+        startTitleCanvas.enabled = true;
+    }
 
 }

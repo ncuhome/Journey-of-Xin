@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3dd7109f9d5854587387b595c2a609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorLoading: {fileID: 4784525650855208525, guid: 65073d87f2d61414b820460b1d10a476, type: 3}
   saveDataFileName: SaveData1.sav
   canEnterDialog: 
 --- !u!114 &6125966856849118828
