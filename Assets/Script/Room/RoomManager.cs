@@ -7,8 +7,8 @@ public class RoomManager : MonoBehaviour
     #region Properties
 
     public static RoomManager Instance { get; private set; }
-    private int planetIndex = 0;
-    private int roomIndex = 0;
+    public int planetIndex = 0;
+    public int roomIndex = 0;
     private GameObject[][] rooms = null;
     public GameObject leftButton = null;
     public GameObject rightButton = null;
@@ -34,8 +34,8 @@ public class RoomManager : MonoBehaviour
         rooms = new GameObject[1][];
         rooms[0] = new GameObject[2];
 
-        rooms[0][0] = GameObject.Find("Room1");
-        rooms[0][1] = GameObject.Find("Room2");
+        rooms[0][0] = GameObject.Find("Planet1/Room1");
+        rooms[0][1] = GameObject.Find("Planet1/Room2");
 
         leftButton = GameObject.Find("LeftButton");
         rightButton = GameObject.Find("RightButton");

@@ -10,10 +10,7 @@ public class MenuOptions : MonoBehaviour
     private GameObject settingCanvas;
     private GameObject menuCanvas;
     private GameObject menuOptions;
-    public Animator animatorLoading;
-    private AsyncOperation operation;
-    private bool nextScene = false;
-    private float timer = 0;
+    public GameObject animatorLoading;//过场动画预制件
 
     #endregion
 
@@ -61,19 +58,6 @@ public class MenuOptions : MonoBehaviour
                 }
             }
         }
-
-        if(nextScene)
-        {
-            Debug.Log("场景加载进度：" + operation.progress);
-            timer += Time.deltaTime;//计时器
-            if (operation.progress == 0.9f && timer >= 3.0)//加载完毕后 且 动画播放完成 后跳转
-            {
-                Debug.Log("加载场景完毕");
-                DontDestroyOnLoad(animatorLoading.gameObject);//加载新场景时不销毁过场动画物体
-                animatorLoading.SetTrigger("nextScene");//播放过场消失动画
-                operation.allowSceneActivation = true;//跳转至新场景
-            }
-        }
     }
 
 
@@ -117,16 +101,9 @@ public class MenuOptions : MonoBehaviour
 
     public void ReturnToMainMenu()//开始新的游戏
     {
-        nextScene = true;
         Debug.Log("开始加载场景");
-        animatorLoading.SetTrigger("nextScene");//播放过场开始动画
-        StartCoroutine(LoadScene());//使用异步加载场景
-    }
-    private IEnumerator LoadScene()//异步加载（使用协程）
-    {
-        operation = SceneManager.LoadSceneAsync("StartTitle");
-        operation.allowSceneActivation = false;
-        yield return operation;
+        LoadingScript.Scene = 8;//设置转入场景的索引值
+        Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
     }
 
     #endregion

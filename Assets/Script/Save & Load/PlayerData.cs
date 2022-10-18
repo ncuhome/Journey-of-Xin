@@ -15,10 +15,12 @@ public class PlayerData : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public int[] staticEventList;
-        public bool[] canEnterDialog;
+        public int[] staticEventList = new int[100];
+        public bool[] canEnterDialog = new bool[100];
         public int[] itemList = new int[24];
         public ItemState[] itemStates = new ItemState[100];
+        public int roomIndex;
+        public int planetIndex;
     }
     public GameObject animatorLoading;//过场动画预制件
 
@@ -40,6 +42,8 @@ public class PlayerData : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        canEnterDialog = new bool[100];
     }
 
     #endregion
@@ -75,8 +79,9 @@ public class PlayerData : MonoBehaviour
         saveData.canEnterDialog = (bool[])canEnterDialog.Clone();
         saveData.itemList = StoreSystem.IdAll();//背包物品存入变更
         saveData.itemStates = (ItemState[])SceneItemManager.Instance.itemStates.Clone();
+        saveData.roomIndex = RoomManager.Instance.roomIndex;
+        saveData.planetIndex = RoomManager.Instance.planetIndex;
         //saveData.itemList = StoreManager.Instance.IdAll();//已修改
-        saveData.itemStates = SceneItemManager.Instance.itemStates;
         return saveData;
     }
 
@@ -87,9 +92,9 @@ public class PlayerData : MonoBehaviour
         EventSystem.Instance.staticEventList = (int[])saveData.staticEventList.Clone();
         canEnterDialog = (bool[])saveData.canEnterDialog.Clone();
         StoreSystem.SetStore(saveData.itemList);//背包物品读取变更
-
-        //SceneItemManager.Instance.itemStates = new ItemState[100];
         SceneItemManager.Instance.itemStates = (ItemState[])saveData.itemStates.Clone();
+        RoomManager.Instance.roomIndex = saveData.roomIndex;
+        RoomManager.Instance.planetIndex = saveData.planetIndex;
         //StoreManager.Instance.SetStore(saveData.itemList);//已修改
     }
 
