@@ -50,7 +50,7 @@
      <Compile Include="Assets\Script\Event\EventTrigger.cs" />
      <Compile Include="Assets\Script\Room\RoomManager.cs" />
      <Compile Include="Assets\Script\Dialogue\DialogueTrigger.cs" />
-     <Compile Include="Assets\Script\SceneItem\SecretNumber\SecretNumber.cs" />
+     <Compile Include="Assets\Script\MainControlRoom\SecretNumber\SecretNumber.cs" />
      <Compile Include="Assets\Script\Save &amp; Load\SaveSystem.cs" />
      <Compile Include="Assets\Script\SceneItem\SceneItemManager.cs" />
      <Compile Include="Assets\Script\MainControlRoom\Workbench\WorkbenchSystem.cs" />
@@ -59,6 +59,7 @@
      <Compile Include="Assets\Script\SceneManager\SceneRoomManager.cs" />
      <Compile Include="Assets\Script\ItemStore\StoreSystem.cs" />
      <Compile Include="Assets\Script\ItemStore\StoreManager.cs" />
+     <Compile Include="Assets\Script\MainControlRoom\BagButton.cs" />
      <Compile Include="Assets\Script\Menu\MenuOptions.cs" />
      <Compile Include="Assets\Script\UI\LoadingScript.cs" />
      <Compile Include="Assets\Script\Riddle\PlateOnThePost.cs" />
