@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ÓÃÓÚ¹ÜÀíÖ÷½çÃæµÄUI»¥¶¯
+/// ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class TitleSystem : MonoBehaviour
 {
     private bool canChoose = true;
-    public Animator animator;//¶¯»­²¥·Å×é¼þ
-    public GameObject animatorLoading;//¹ý³¡¶¯»­Ô¤ÖÆ¼þ
-    private int cursor = 0;//µ±Ç°¹â±êÎ»ÖÃ
-    private bool nextScene = false;//ÊÇ·ñ½øÈëÏÂÒ»¸ö³¡¾°
-    //0£ºXin£¨ÖÆ×÷ÈËÔ±Ãûµ¥£©     1£º¿ªÊ¼ÐÂµÄÓÎÏ·    2£ºÓÎÏ·ÉèÖÃ      3£º»ØÒäÓÎÏ·      4£ºÍË³ö·µ»ØÓÎÏ·
+    public Animator animator;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject animatorLoading;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½Æ¼ï¿½
+    private int cursor = 0;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+    private bool nextScene = false;//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //0ï¿½ï¿½Xinï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½     1ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½Âµï¿½ï¿½ï¿½Ï·    2ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½      3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·      4ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·
     private GameObject settingsCanvas = null;
     private GameObject saveCanvas = null;
     public GameObject background = null;
@@ -28,6 +28,7 @@ public class TitleSystem : MonoBehaviour
     }
     void Start()
     {
+        StoreSystem.Clear();
         settingsCanvas.SetActive(false);
         saveCanvas.SetActive(false);
         background.SetActive(false);
@@ -36,38 +37,38 @@ public class TitleSystem : MonoBehaviour
 
     void Update()
     {
-        if (!nextScene && canChoose)//ÔÚµ±Ç°³¡¾° ÏÂ¶ÔÍæ¼Ò²Ù×÷µÄ¼à¿Ø
+        if (!nextScene && canChoose)//ï¿½Úµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ ï¿½Â¶ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½
         {
-            if (Input.GetButtonDown("Up"))//Ñ¡ÏîÏòÉÏ
+            if (Input.GetButtonDown("Up"))//Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 animator.SetTrigger("up");
                 cursor--;
                 if (cursor < 0) { cursor = 4; }
 
             }
-            else if (Input.GetButtonDown("Down"))//Ñ¡ÏîÏòÏÂ
+            else if (Input.GetButtonDown("Down"))//Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 animator.SetTrigger("down");
                 cursor++;
                 if (cursor > 4) { cursor = 0; }
             }
-            else if (Input.GetButtonDown("Submit"))//È·ÈÏ
+            else if (Input.GetButtonDown("Submit"))//È·ï¿½ï¿½
             {
                 switch (cursor)
                 {
-                    case 0://¶ÁÈ¡´æµµ
+                    case 0://ï¿½ï¿½È¡ï¿½æµµ
                         toLoadGame();
                         break;
-                    case 1://¿ªÊ¼ÐÂµÄÓÎÏ·
+                    case 1://ï¿½ï¿½Ê¼ï¿½Âµï¿½ï¿½ï¿½Ï·
                         toNewGame();
                         break;
-                    case 2://ÓÎÏ·ÉèÖÃ
+                    case 2://ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
                         toSettings();
                         break;
-                    case 3://»Ø¹Ë¾çÇéºÍÐÀÉÍÒôÀÖ
+                    case 3://ï¿½Ø¹Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         toMemory();
                         break;
-                    case 4://ÍË³öÓÎÏ·
+                    case 4://ï¿½Ë³ï¿½ï¿½ï¿½Ï·
                         Application.Quit();
                         break;
                 }
@@ -86,7 +87,7 @@ public class TitleSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Ç°Íù¶ÁÈ¡´æµµ½çÃæ
+    /// Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½æµµï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void toLoadGame()
     {
@@ -96,17 +97,17 @@ public class TitleSystem : MonoBehaviour
         startTitleCanvas.enabled = false;
     }
     /// <summary>
-    /// ¿ªÊ¼ÐÂµÄÓÎÏ·
+    /// ï¿½ï¿½Ê¼ï¿½Âµï¿½ï¿½ï¿½Ï·
     /// </summary>
     private void toNewGame()
     {
         nextScene = true;
-        Debug.Log("¿ªÊ¼¼ÓÔØ³¡¾°");
-        LoadingScript.Scene = 7;//ÉèÖÃ×ªÈë³¡¾°µÄË÷ÒýÖµ
+        Debug.Log("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½");
+        LoadingScript.Scene = 7;//ï¿½ï¿½ï¿½ï¿½×ªï¿½ë³¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
     }
     /// <summary>
-    /// Ç°ÍùÓÎÏ·ÉèÖÃ»­Ãæ
+    /// Ç°ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
     /// </summary>
     private void toSettings()
     {
@@ -116,7 +117,7 @@ public class TitleSystem : MonoBehaviour
         startTitleCanvas.enabled = false;
     }
     /// <summary>
-    /// Ç°Íù»ØÒäÓëÐÀÉÍ»­Ãæ
+    /// Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½
     /// </summary>
     private void toMemory()
     {

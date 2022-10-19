@@ -36,6 +36,7 @@ public class ItemDisplay : MonoBehaviour
     public void Click()
     {
         //if (DialogueSystem.Instance.inDialogue) { return; }
+        if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (SceneItemManager.Instance.itemStates[itemIndex] != ItemState.Interactive || !SceneItemManager.Instance.interactive) { return; }
 
         SceneItemManager.Instance.interactive = false;

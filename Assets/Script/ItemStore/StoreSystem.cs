@@ -79,4 +79,9 @@ public class StoreSystem
         }
         return false;
     }
+
+    public static void Clear()
+    {
+        store = new int[24];
+    }
 }

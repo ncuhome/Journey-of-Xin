@@ -228,27 +228,41 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void GetNumber1()
     {
-        StoreSystem.Add(16);
+        SceneItemManager.Instance.itemStates[8] = ItemState.NotInteractive;
+        SecretNumberManager.Instance.numbersState[0] = 1;
+        SecretNumberManager.Instance.SaveSecretNumbers();
+        SecretNumberManager.Instance.Refresh();
     }
 
     private void GetNumber2()
     {
-        StoreSystem.Add(12);
+        SceneItemManager.Instance.itemStates[9] = ItemState.NotInteractive;
+        SecretNumberManager.Instance.numbersState[1] = 1;
+        SecretNumberManager.Instance.SaveSecretNumbers();
+        SecretNumberManager.Instance.Refresh();
     }
 
     private void GetNumber3()
     {
-        StoreSystem.Add(26);
+        SceneItemManager.Instance.itemStates[14] = ItemState.NotInteractive;
+        SecretNumberManager.Instance.numbersState[2] = 1;
+        SecretNumberManager.Instance.SaveSecretNumbers();
+        SecretNumberManager.Instance.Refresh();
     }
 
     private void GetNumber4()
     {
-        StoreSystem.Add(25);
+        SceneItemManager.Instance.itemStates[20] = ItemState.NotInteractive;
+        SecretNumberManager.Instance.numbersState[3] = 1;
+        SecretNumberManager.Instance.SaveSecretNumbers();
+        SecretNumberManager.Instance.Refresh();
     }
 
     private void GetNumber5()
     {
-        StoreSystem.Add(27);
+        SecretNumberManager.Instance.numbersState[4] = 1;
+        SecretNumberManager.Instance.SaveSecretNumbers();
+        SecretNumberManager.Instance.Refresh();
     }
 
     private void MiniGame4()
