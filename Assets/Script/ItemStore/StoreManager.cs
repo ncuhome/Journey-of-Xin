@@ -8,6 +8,7 @@ using TMPro;
 public class StoreManager : MonoBehaviour
 {
     #region 管理类属性
+    public static StoreManager Instance {get; private set;}
     private int[][] store = new int[][] {new int[8] , new int[8] , new int[8] };//物品id组
     private GameObject[] buttons = new GameObject[10];//按钮组
     public TMP_Text textDesccription;//物品描述文本
@@ -126,6 +127,16 @@ public class StoreManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.Log("有另外的实例");
+            Destroy(this.gameObject);
+        }
+        
         #region 将场景内的按钮载入管理类
 
         for (int i = 0; i < 8; i++)
@@ -156,6 +167,11 @@ public class StoreManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void InputDetect()
     {
         if (Input.GetButtonDown("LastPage")) { LastPage(); }
         else if (Input.GetButtonDown("NextPage")) { NextPage(); }

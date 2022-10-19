@@ -27,30 +27,21 @@ public class SaveButton : MonoBehaviour
 
     public void SaveButtonClick()
     {
-        if (waitForConfirm) 
-        {
-            return;
-        }
+        if (waitForConfirm) { return; }
         effectIndex = 1;
         WaitForConfirm();
     }
 
     public void LoadButtonClick()
     {
-        if (waitForConfirm) 
-        {
-            return;
-        }
+        if (waitForConfirm) { return; }
         effectIndex = 2;
         WaitForConfirm();
     }
 
     public void DeleteButtonClick()
     {
-        if (waitForConfirm) 
-        {
-            return;
-        }
+        if (waitForConfirm) { return; }
         effectIndex = 3;
         WaitForConfirm();
     }
@@ -67,7 +58,7 @@ public class SaveButton : MonoBehaviour
                 if (PlayerData.Instance.FindPath(saveDataIndex))
                 {
                     confirmText.text = "您是否确认要覆盖记忆备份";
-                } 
+                }
                 else
                 {
                     confirmText.text = "您是否确认要进行记忆备份";
@@ -79,7 +70,7 @@ public class SaveButton : MonoBehaviour
                     confirmText.text = "您是否确认要进行记忆下载";
                     break;
                 }
-                else 
+                else
                 {
                     return;
                 }
@@ -89,7 +80,7 @@ public class SaveButton : MonoBehaviour
                     confirmText.text = "您是否确认要格式化记忆备份";
                     break;
                 }
-                else 
+                else
                 {
                     return;
                 }
@@ -114,7 +105,7 @@ public class SaveButton : MonoBehaviour
                 PlayerData.Instance.Load(saveDataIndex);
                 break;
             case 3:
-                PlayerData.Instance.saveDataFileName = "SaveData"+ saveDataIndex.ToString() + ".sav";
+                PlayerData.Instance.saveDataFileName = "SaveData" + saveDataIndex.ToString() + ".sav";
                 PlayerData.Instance.DeletePlayerDataSaveFile();
                 break;
         }
@@ -140,7 +131,7 @@ public class SaveButton : MonoBehaviour
 
     public void UpdateSaveScene()
     {
-        
+
     }
 
     #endregion

@@ -7,7 +7,7 @@ using TMPro;
 public class DialogueSystem : MonoBehaviour
 {
     #region Properties
-    
+
     public static DialogueSystem Instance { get; private set; } // 单例模式
 
     private DialogueTrigger dialogueTrigger = null;
@@ -49,7 +49,7 @@ public class DialogueSystem : MonoBehaviour
 
         // 用字典将名字与头像对应
         imageDic["Ce"] = avatars[0];
-        imageDic["Know"] = avatars[1];   
+        imageDic["Know"] = avatars[1];
 
         //获取组件
         dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
@@ -68,24 +68,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void Update() //按确认键（z）或者点击鼠标就进入下一句话（后续改进
     {
-        if (!inDialogue)
-        {
-            return;
-        }
 
-        if ((Input.GetButtonDown("Submit") || Input.GetMouseButtonDown(0)) && !isChoosing)
-        {
-            if (textIsFinished)
-            {
-                ContinueDialog();
-            }
-            else
-            {
-                StopCoroutine("DisplayDialogue");
-                StartCoroutine("FinishText");
-                dialogText.text = cells[3];
-            }
-        }
     }
 
     #endregion
@@ -116,11 +99,12 @@ public class DialogueSystem : MonoBehaviour
             avatar.sprite = imageDic[name];
         }
         StartCoroutine("DisplayDialogue");
-        
+
     }
 
-    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger ) //开始对话
+    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger) //开始对话
     {
+        InputManager.Instance.sceneState = SceneState.Dialog;
         this.dialogueTrigger = dialogueTrigger;
         dialogIndex = 0;
         dialogText.text = "";
@@ -136,6 +120,7 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogueNode.SetActive(false);
         inDialogue = false;
+        InputManager.Instance.sceneState = SceneState.MainScene;
     }
 
     public void ReadText(TextAsset textAsset) // 把对话文本分割成各行
@@ -227,7 +212,7 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogIndex = id;
         // Debug.Log(dialogIndex);
-        
+
         for (int i = 0; i < buttonGroup.childCount; i++)
         {
             Destroy(buttonGroup.GetChild(i).gameObject);
@@ -275,6 +260,28 @@ public class DialogueSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         textIsFinished = true;
+    }
+
+    public void InputDetect()
+    {
+        if (!inDialogue)
+        {
+            return;
+        }
+
+        if ((Input.GetButtonDown("Submit") || Input.GetMouseButtonDown(0)) && !isChoosing)
+        {
+            if (textIsFinished)
+            {
+                ContinueDialog();
+            }
+            else
+            {
+                StopCoroutine("DisplayDialogue");
+                StartCoroutine("FinishText");
+                dialogText.text = cells[3];
+            }
+        }
     }
 
     #endregion

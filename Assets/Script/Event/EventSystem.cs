@@ -135,15 +135,10 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void IntoWorkTable()
     {
-        StartCoroutine("DisplayIntoWorkTable");
-        StartCoroutine("DelayIntoWorkTable");
-    }
-
-    private IEnumerator DisplayIntoWorkTable()
-    {
-        yield return new WaitForSeconds(0.5f);
         SceneItemManager.Instance.intoWorkTablePanel.SetActive(true);
         SceneItemManager.Instance.intoWorkTablePanel.transform.SetSiblingIndex(SceneItemManager.Instance.intoWorkTablePanel.transform.parent.childCount);
+        InputManager.Instance.sceneState = SceneState.Animation;
+        StartCoroutine("DelayIntoWorkTable");
     }
 
     private IEnumerator DelayIntoWorkTable()
@@ -215,11 +210,15 @@ public class EventSystem : MonoBehaviour, IEventList
     private void DeleteRebornDevice()
     {
         StoreSystem.Remove(1);
+        SceneItemManager.Instance.interactive = true;
+        SceneItemManager.Instance.panel.SetActive(false);
     }
 
     private void GetLetterInTrashBin()
     {
         StoreSystem.Add(14);
+        SceneItemManager.Instance.interactive = true;
+        SceneItemManager.Instance.panel.SetActive(false);
     }
 
     private void GetLetterInBox()

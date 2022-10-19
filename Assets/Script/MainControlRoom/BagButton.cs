@@ -6,6 +6,7 @@ public class BagButton : MonoBehaviour
 {
     public void ShowItemStore()
     {
+        if (!SceneItemManager.Instance.interactive) { return; }
         ManagerSystem.Instance.ShowItemStore();
     }
 }

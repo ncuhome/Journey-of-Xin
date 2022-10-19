@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WorkbenchSystem : MonoBehaviour
 {
-    public static WorkbenchSystem Instance {get; private set;}
+    public static WorkbenchSystem Instance { get; private set; }
     #region 管理类属性
     private int[][] itemStore = new int[6][];//背包物品id列
     private int[][] formulaList = new int[3][];//合成配方表
@@ -102,15 +102,15 @@ public class WorkbenchSystem : MonoBehaviour
     }
     public void Make()//制作物品
     {
-        if(cursor < 0)
+        if (cursor < 0)
         {
-            
+
             int id = formulaList[pageFormula][-cursor + -1];//合成物品的id
-            if(ItemSystem.MakeFormula(id,StoreSystem.IdAll()))//判定是否可合成
+            if (ItemSystem.MakeFormula(id, StoreSystem.IdAll()))//判定是否可合成
             {
                 Debug.Log("合成");
                 int[] fomula = ItemSystem.FormulaItem(id);//获取所需原料的id表
-                for(int i=0;i<fomula.Length;i++)
+                for (int i = 0; i < fomula.Length; i++)
                 {
                     int fomulaId = fomula[i];//当前遍历原料的id
                     StoreSystem.Remove(fomulaId);
@@ -136,15 +136,15 @@ public class WorkbenchSystem : MonoBehaviour
     }
     public void UpdateDescription()//更新描述
     {
-        if(cursor<0)//配方描述
+        if (cursor < 0)//配方描述
         {
-            textDesccription.text = "<b>" + ItemSystem.ItemName(formulaList[pageFormula][-cursor+-1]) + "</b> "
-            + ItemSystem.ItemDescription(formulaList[pageFormula][-cursor-1]);
+            textDesccription.text = "<b>" + ItemSystem.ItemName(formulaList[pageFormula][-cursor + -1]) + "</b> "
+            + ItemSystem.ItemDescription(formulaList[pageFormula][-cursor - 1]);
         }
-        else if(cursor>0)//背包物品描述
+        else if (cursor > 0)//背包物品描述
         {
-            textDesccription.text = "<b>" + ItemSystem.ItemName(itemStore[pageItem][cursor-1]) + "</b> "
-            + ItemSystem.ItemDescription(itemStore[pageItem][cursor-1]);
+            textDesccription.text = "<b>" + ItemSystem.ItemName(itemStore[pageItem][cursor - 1]) + "</b> "
+            + ItemSystem.ItemDescription(itemStore[pageItem][cursor - 1]);
         }
     }
     public void UpdateSprite()//更新贴图
@@ -192,13 +192,13 @@ public class WorkbenchSystem : MonoBehaviour
         UpdateFormItemStore();
         #endregion 初始化数组
         #region 匹配按钮
-        for (int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
-            itemButtons[i] = GameObject.Find("Item"+i);
+            itemButtons[i] = GameObject.Find("Item" + i);
         }
         itemButtons[4] = GameObject.Find("UpPage");
         itemButtons[5] = GameObject.Find("DownPage");
-        for(int i=0;i<6;i++)
+        for (int i = 0; i < 6; i++)
         {
             formulaButtons[i] = GameObject.Find("Formula" + i);
         }
@@ -221,15 +221,27 @@ public class WorkbenchSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
-        {
-            WorkbenchCanvas.SetActive(false);
-            //this.gameObject.SetActive(false);
-        }
+
     }
 
     public void ShowWorkbench()
     {
+        InputManager.Instance.sceneState = SceneState.Workbench;
         WorkbenchCanvas.SetActive(true);
+    }
+
+    public void InputDetect()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            HideWorkbench();
+        }
+    }
+
+    public void HideWorkbench()
+    {
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        WorkbenchCanvas.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 }

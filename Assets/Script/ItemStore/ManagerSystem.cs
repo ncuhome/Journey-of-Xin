@@ -29,11 +29,13 @@ public class ManagerSystem : MonoBehaviour
 
     public void ShowItemStore()
     {
+        InputManager.Instance.sceneState = SceneState.Bag;
         Canvas.SetActive(true);
     }
 
     public void HideItemStore()
     {
+        InputManager.Instance.sceneState = SceneState.MainScene;
         Canvas.SetActive(false);
     }
 }

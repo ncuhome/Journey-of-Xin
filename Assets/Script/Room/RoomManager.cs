@@ -87,6 +87,7 @@ public class RoomManager : MonoBehaviour
             return;
         }
 
+        InputManager.Instance.sceneState = SceneState.Animation;
         isExchanging = true;
         isAnimationPlay = true;
         roomIndex++;
@@ -103,6 +104,7 @@ public class RoomManager : MonoBehaviour
             return;
         }
 
+        InputManager.Instance.sceneState = SceneState.Animation;
         isExchanging = true;
         isAnimationPlay = true;
         roomIndex--;
@@ -132,6 +134,7 @@ public class RoomManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         isAnimationPlay = false;
+        InputManager.Instance.sceneState = SceneState.MainScene;
         Destroy(roomExchangeCanvas);
     }
 

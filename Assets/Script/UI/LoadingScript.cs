@@ -28,8 +28,15 @@ public class LoadingScript : MonoBehaviour
     {
         Debug.Log("场景加载进度：" + operation.progress);
         timer += Time.deltaTime;//计时器
+
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.sceneState = SceneState.Animation;
+        }
+
         if (operation.progress == 0.9f && timer >= 3.0 && status == 0)//加载完毕后 且 动画播放完成 后跳转
         {
+
             Debug.Log("加载场景完毕");
             DontDestroyOnLoad(animatorLoading.gameObject);//加载新场景时不销毁过场动画物体
             status = 1;
@@ -37,15 +44,16 @@ public class LoadingScript : MonoBehaviour
             animatorLoading.SetTrigger("nextScene");//播放过场消失动画
             operation.allowSceneActivation = true;//跳转至新场景
         }
-        else if(status == 1 && timer >= 5.0)//定时销毁加载动画
+        else if (status == 1 && timer >= 5.0)//定时销毁加载动画
         {
+            InputManager.Instance.sceneState = SceneState.MainScene;
             Destroy(this.gameObject);
         }
     }
 
     private void toNewScene()//启动新的场景（异步）
     {
-        animatorLoading.SetTrigger("nextScene");//播放过场启动动画
+        //animatorLoading.SetTrigger("nextScene");//播放过场启动动画
         Debug.Log("开始加载场景");
         animatorLoading.SetTrigger("nextScene");//播放过场开始动画
         StartCoroutine(LoadScene());//使用异步加载场景

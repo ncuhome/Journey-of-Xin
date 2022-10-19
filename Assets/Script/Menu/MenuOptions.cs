@@ -41,24 +41,7 @@ public class MenuOptions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Menu"))
-        {
-            if (!menuCanvas.activeInHierarchy)
-            {
-                OpenMenu();
-            }
-            else
-            {
-                if (saveCanvas.activeInHierarchy || settingCanvas.activeInHierarchy)
-                {
-                    ReturnToMenu();
-                }
-                else
-                {
-                    ReturnToGame();
-                }
-            }
-        }
+        
     }
 
 
@@ -105,6 +88,32 @@ public class MenuOptions : MonoBehaviour
         Debug.Log("开始加载场景");
         LoadingScript.Scene = 8;//设置转入场景的索引值
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
+    }
+
+    #endregion
+
+    #region input
+
+    public void InputDetect()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (!menuCanvas.activeInHierarchy)
+            {
+                OpenMenu();
+            }
+            else
+            {
+                if (saveCanvas.activeInHierarchy || settingCanvas.activeInHierarchy)
+                {
+                    ReturnToMenu();
+                }
+                else
+                {
+                    ReturnToGame();
+                }
+            }
+        }
     }
 
     #endregion
