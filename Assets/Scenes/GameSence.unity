@@ -2852,8 +2852,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 382578360}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
+      - m_Target: {fileID: 382578361}
+        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -2864,8 +2864,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 382578361}
-        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
+      - m_Target: {fileID: 382578360}
+        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -6074,8 +6074,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 990905414}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
+      - m_Target: {fileID: 990905415}
+        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -6086,8 +6086,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 990905415}
-        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
+      - m_Target: {fileID: 990905414}
+        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -6520,8 +6520,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994976086}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
+      - m_Target: {fileID: 994976087}
+        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -6532,8 +6532,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 994976087}
-        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
+      - m_Target: {fileID: 994976086}
+        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -6927,8 +6927,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1186118972}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
+      - m_Target: {fileID: 1186118973}
+        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
@@ -6939,8 +6939,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1186118973}
-        m_TargetAssemblyTypeName: SecretNumber, Assembly-CSharp
+      - m_Target: {fileID: 1186118972}
+        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
         m_Arguments:
