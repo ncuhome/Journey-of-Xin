@@ -37,6 +37,7 @@ public class ItemDisplay : MonoBehaviour
     {
         //if (DialogueSystem.Instance.inDialogue) { return; }
         if (SceneItemManager.Instance.itemStates[itemIndex] != ItemState.Interactive || !SceneItemManager.Instance.interactive) { return; }
+
         SceneItemManager.Instance.interactive = false;
         target = new Vector3(-850, -440, 0);
         if (moveToCenter)
@@ -56,7 +57,7 @@ public class ItemDisplay : MonoBehaviour
     void Awake()
     {
         itemImage = GetComponent<Image>();
-        
+
         // 设置图片中只有不透明的地方能触发响应
         itemImage.alphaHitTestMinimumThreshold = 0.1f;
         if (GetComponent<Button>() != null)
@@ -88,10 +89,13 @@ public class ItemDisplay : MonoBehaviour
                 timer += Time.deltaTime;
                 a -= Time.deltaTime * (1 / (1 + timer));
                 gameObject.GetComponent<Image>().color = new Color(255, 255, 255, a);
-                if (a <= 0.2f) { status = 2; }
+                if (a <= 0.2f)
+                {
+                    status = 2;
+                    SceneItemManager.Instance.interactive = true;
+                }
                 break;
             case 2:
-                SceneItemManager.Instance.interactive = true;
                 SceneItemManager.Instance.itemStates[itemIndex] = ItemState.Invisible;
                 break;
         }
@@ -108,7 +112,7 @@ public class ItemDisplay : MonoBehaviour
             itemImage.enabled = true;
         }
 
-        if (itemButton)
+        if (itemButton != null)
         {
             if (SceneItemManager.Instance.itemStates[itemIndex] == ItemState.Interactive)
             {

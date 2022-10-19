@@ -28,6 +28,14 @@ public class ItemSystem
             case 18: return "没有相关描述";
             case 19: return "没有相关描述";
             case 20: return "没有相关描述";
+            case 21: return "没有相关描述";
+            case 22: return "没有相关描述";
+            case 23: return "没有相关描述";
+            case 24: return "没有相关描述";
+            case 25: return "没有相关描述";
+            case 26: return "没有相关描述";
+            case 27: return "没有相关描述";
+
         }
         return "没有相关描述";
     }
@@ -53,9 +61,16 @@ public class ItemSystem
             case 15: return "飞船里的邮";
             case 16: return "基地隐含的数字";
             case 17: return "复活装置（Kown）";
-            case 18: return "工具";
-            case 19: return "未知物品";
-            case 20: return "未知物品";
+            case 18: return "炸药原材料";
+            case 19: return "能量矿石";
+            case 20: return "透视镜头";
+            case 21: return "无尽能源制作装置";
+            case 22: return "中微子调试器";
+            case 23: return "无尽能源";
+            case 24: return "炸药";
+            case 25: return "矿石星球隐含的数字";
+            case 26: return "黑市隐含的数字";
+            case 27: return "复活装置隐含的数字";
         }
         return "未知物品";
     }

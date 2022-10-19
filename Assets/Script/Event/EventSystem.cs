@@ -79,16 +79,40 @@ public class EventSystem : MonoBehaviour, IEventList
                 GetWeapon();
                 break;
             case 5:
-                MiniGame3();
+                MiniGame2();
                 break;
             case 6:
-                GetRebornDevice();
+                DeleteRebornDevice();
                 break;
             case 7:
                 GetLetterInTrashBin();
                 break;
             case 8:
                 GetCoffee();
+                break;
+            case 9:
+                GetLetterInBox();
+                break;
+            case 10:
+                GetNumber1();
+                break;
+            case 11:
+                GetNumber2();
+                break;
+            case 12:
+                GetNumber3();
+                break;
+            case 13:
+                GetNumber4();
+                break;
+            case 14:
+                GetNumber5();
+                break;
+            case 15:
+                MiniGame4();
+                break;
+            case 16:
+                GetMailInShip();
                 break;
             case 32:
                 GetLastLetterAndMail();
@@ -140,18 +164,20 @@ public class EventSystem : MonoBehaviour, IEventList
     // private IEnumerator DelayShowLetterBox()
     // {
     //     yield return new WaitForSeconds(0.5f);
-        
+
     // }
 
     private void GetLastLetterAndMail()
     {
         SceneItemManager.Instance.lastLetter.SetActive(true);
         SceneItemManager.Instance.lastLetter.GetComponent<ItemDisplay>().Click();
+        StoreSystem.Add(5);
+        StoreSystem.Add(6);
         StartCoroutine("GetLastLetter");
         StartCoroutine("ShowLastMail");
         StartCoroutine("GetLastMail");
         // 获得最后的信和最后的邮的事件
-        
+
     }
     private IEnumerator GetLastLetter()
     {
@@ -186,17 +212,55 @@ public class EventSystem : MonoBehaviour, IEventList
         // 小游戏2 华容道
     }
 
-    private void GetRebornDevice()
+    private void DeleteRebornDevice()
     {
-        // 获得复活装置
+        StoreSystem.Remove(1);
     }
 
     private void GetLetterInTrashBin()
     {
-        // 获得垃圾篓中的信
+        StoreSystem.Add(14);
     }
 
-    
+    private void GetLetterInBox()
+    {
+        StoreSystem.Add(14);
+    }
+
+    private void GetNumber1()
+    {
+        StoreSystem.Add(16);
+    }
+
+    private void GetNumber2()
+    {
+        StoreSystem.Add(12);
+    }
+
+    private void GetNumber3()
+    {
+        StoreSystem.Add(26);
+    }
+
+    private void GetNumber4()
+    {
+        StoreSystem.Add(25);
+    }
+
+    private void GetNumber5()
+    {
+        StoreSystem.Add(27);
+    }
+
+    private void MiniGame4()
+    {
+
+    }
+
+    private void GetMailInShip()
+    {
+        StoreSystem.Add(15);
+    }
 
     #endregion
 

@@ -6,10 +6,10 @@ public class MenuOptions : MonoBehaviour
 {
     #region Properties
     public static MenuOptions Instance {get; private set;}
-    private GameObject saveCanvas;
-    private GameObject settingCanvas;
-    private GameObject menuCanvas;
-    private GameObject menuOptions;
+    public GameObject saveCanvas;
+    public GameObject settingCanvas;
+    public GameObject menuCanvas;
+    public GameObject menuOptions;
     public GameObject animatorLoading;//过场动画预制件
 
     #endregion
@@ -23,11 +23,12 @@ public class MenuOptions : MonoBehaviour
         }
         else
         {
+            Debug.Log("有另外的实例");
             Destroy(this.gameObject);
         }
         menuCanvas = GameObject.Find("Menu").gameObject;
-        saveCanvas = menuCanvas.transform.Find("Save").Find("SaveCanvas").gameObject;
-        settingCanvas = menuCanvas.transform.Find("SettingsCanvas").gameObject;
+        saveCanvas = GameObject.Find("Save").transform.Find("SaveCanvas").gameObject;
+        settingCanvas = GameObject.Find("SettingsCanvas").gameObject;
         menuOptions = menuCanvas.transform.Find("MenuOptions").gameObject;
     }
 

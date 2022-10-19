@@ -24,6 +24,7 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("has another settingManager");
             Destroy(this.gameObject);
         }
         volumeSlider = GameObject.Find("VolumeSlider").GetComponent<Slider>();
