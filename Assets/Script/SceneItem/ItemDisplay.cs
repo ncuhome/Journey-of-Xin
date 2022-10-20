@@ -37,10 +37,12 @@ public class ItemDisplay : MonoBehaviour
 
     public void Click()
     {
+        //Debug.Log("Click");
         //if (DialogueSystem.Instance.inDialogue) { return; }
         if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (SceneItemManager.Instance.itemStates[itemIndex] != ItemState.Interactive || !SceneItemManager.Instance.interactive) { return; }
 
+        //Debug.Log("EnableClick");
         SceneItemManager.Instance.interactive = false;
         target = new Vector3(-850, -440, 0);
         if (moveToCenter)
@@ -49,12 +51,12 @@ public class ItemDisplay : MonoBehaviour
             GetComponent<Animator>().SetBool("Scale", true);
         }
         GetComponent<Animator>().SetBool("Click", true);
+        transform.SetSiblingIndex(transform.parent.childCount);
         if (GetComponent<DialogueTrigger>() != null)
         {
             GetComponent<DialogueTrigger>().StartDialogue();
             //InstantiatePanel();
         }
-        transform.SetSiblingIndex(transform.parent.childCount);
     }
 
     void Awake()

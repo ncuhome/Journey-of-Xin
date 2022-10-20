@@ -262,7 +262,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         StoreSystem.Add(14);
         SceneItemManager.Instance.interactive = true;
-        SceneItemManager.Instance.panel.SetActive(false);
+        SceneItemManager.Instance.letterInTrashBin.GetComponent<ItemDisplay>().Click();
     }
 
     private void GetLetterInBox()

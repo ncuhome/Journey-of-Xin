@@ -15,6 +15,7 @@ public class SceneItemManager : MonoBehaviour
     public GameObject blackMineral = null;
     public GameObject perspectiveGlass = null;
     public GameObject endlessEnergyMaker = null;
+    public GameObject letterInTrashBin = null;
     public ItemState[] itemStates = new ItemState[100];
 
     public GameObject panel = null;
@@ -40,6 +41,7 @@ public class SceneItemManager : MonoBehaviour
         blackMineral = GameObject.Find("BlackMineral");
         perspectiveGlass = GameObject.Find("PerspectiveGlass");
         endlessEnergyMaker = GameObject.Find("EndlessEnergyMaker");
+        letterInTrashBin = GameObject.Find("LetterInTrashBin");
     }
     // Start is called before the first frame update
     void Start()

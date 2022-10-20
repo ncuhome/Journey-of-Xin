@@ -188,6 +188,11 @@ public class WorkbenchSystem : MonoBehaviour
         }
         /********/
         //StoreSystem.Add(1);
+        AddFormula(7);
+        AddFormula(8);
+        AddFormula(9);
+        AddFormula(10);
+        AddFormula(11);
         /********/
         UpdateFormItemStore();
         #endregion 初始化数组
@@ -243,5 +248,26 @@ public class WorkbenchSystem : MonoBehaviour
         InputManager.Instance.sceneState = SceneState.MainScene;
         WorkbenchCanvas.SetActive(false);
         //this.gameObject.SetActive(false);
+    }
+
+    public bool AddFormula(int id)
+    {
+        for (int i = 0; i < formulaList.Length; i++)
+        {
+            for (int j = 0; j < formulaList[i].Length; j++)
+            {
+                if (formulaList[i][j] == 0)
+                {
+                    formulaList[i][j] = id;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void UpdateFormula()
+    {
+
     }
 }
