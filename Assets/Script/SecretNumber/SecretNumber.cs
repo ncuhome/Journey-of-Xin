@@ -6,7 +6,6 @@ public class SecretNumber : MonoBehaviour
 {
     private DialogueTrigger correctDialog = null;
     private DialogueTrigger wrongDialog = null;
-    public int number = 0;
     
     public void Click()
     {

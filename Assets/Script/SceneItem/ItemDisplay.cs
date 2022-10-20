@@ -18,8 +18,10 @@ public class ItemDisplay : MonoBehaviour
     private int status = 0;
     public int itemIndex = 0;
     private Vector3 target = Vector3.zero;
-    private GameObject panel = null;
+    public GameObject panelPrefab = null;
     public bool moveToCenter = true;
+
+    private GameObject panel = null;
 
     private Image itemImage = null;
     private Button itemButton = null;
@@ -30,7 +32,7 @@ public class ItemDisplay : MonoBehaviour
     {
         status = 1;
         GetComponent<Animator>().SetBool("Display", true);
-        panel.SetActive(false);
+        //InstantiatePanel();
     }
 
     public void Click()
@@ -50,7 +52,7 @@ public class ItemDisplay : MonoBehaviour
         if (GetComponent<DialogueTrigger>() != null)
         {
             GetComponent<DialogueTrigger>().StartDialogue();
-            panel.SetActive(true);
+            //InstantiatePanel();
         }
         transform.SetSiblingIndex(transform.parent.childCount);
     }
@@ -58,6 +60,7 @@ public class ItemDisplay : MonoBehaviour
     void Awake()
     {
         itemImage = GetComponent<Image>();
+        panelPrefab = Resources.Load<GameObject>("Pref/UI/Panel");
 
         // 设置图片中只有不透明的地方能触发响应
         itemImage.alphaHitTestMinimumThreshold = 0.1f;
@@ -65,12 +68,10 @@ public class ItemDisplay : MonoBehaviour
         {
             itemButton = GetComponent<Button>();
         }
-        panel = GameObject.Find("Canvas/Panel");
     }
 
     void Start()
     {
-        panel.SetActive(false);
         SceneItemManager.Instance.itemStates[itemIndex] = ItemState.Interactive;
     }
 
@@ -124,5 +125,13 @@ public class ItemDisplay : MonoBehaviour
                 itemButton.interactable = false;
             }
         }
+    }
+
+    public void InstantiatePanel()
+    {
+        panel = Instantiate(panelPrefab);
+        panel.transform.SetParent(this.transform.parent);
+        panel.transform.position = Vector2.zero;
+        panel.transform.SetSiblingIndex(panel.transform.parent.childCount);
     }
 }

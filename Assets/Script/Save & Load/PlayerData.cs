@@ -25,7 +25,6 @@ public class PlayerData : MonoBehaviour
     public GameObject animatorLoading;//过场动画预制件
 
     public string saveDataFileName = "SaveData1.sav";
-    public bool[] canEnterDialog = new bool[100];
 
     #endregion
 
@@ -43,7 +42,6 @@ public class PlayerData : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        canEnterDialog = new bool[100];
     }
 
     #endregion
@@ -76,7 +74,7 @@ public class PlayerData : MonoBehaviour
     {
         var saveData = new SaveData();
         saveData.staticEventList = (int[])EventSystem.Instance.staticEventList.Clone();
-        saveData.canEnterDialog = (bool[])canEnterDialog.Clone();
+        saveData.canEnterDialog = (bool[])DialogueSystem.Instance.canEnterDialog.Clone();
         saveData.itemList = StoreSystem.IdAll();//背包物品存入变更
         saveData.itemStates = (ItemState[])SceneItemManager.Instance.itemStates.Clone();
         saveData.roomIndex = RoomManager.Instance.roomIndex;
@@ -90,7 +88,7 @@ public class PlayerData : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         EventSystem.Instance.staticEventList = (int[])saveData.staticEventList.Clone();
-        canEnterDialog = (bool[])saveData.canEnterDialog.Clone();
+        DialogueSystem.Instance.canEnterDialog = (bool[])saveData.canEnterDialog.Clone();
         StoreSystem.SetStore(saveData.itemList);//背包物品读取变更
         SceneItemManager.Instance.itemStates = (ItemState[])saveData.itemStates.Clone();
         RoomManager.Instance.roomIndex = saveData.roomIndex;

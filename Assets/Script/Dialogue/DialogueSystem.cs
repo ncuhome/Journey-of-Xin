@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,8 @@ public class DialogueSystem : MonoBehaviour
 
     public static DialogueSystem Instance { get; private set; } // 单例模式
 
-    private DialogueTrigger dialogueTrigger = null;
+    public bool[] canEnterDialog = new bool[100];
+    public DialogueTrigger dialogueTrigger = null;
     private Image background = null; // 对话框背景
     public Sprite[] backgroundSprite = null; // 两张背景画面
     private Image avatar = null; // 头像组件
@@ -47,6 +49,7 @@ public class DialogueSystem : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        canEnterDialog = new bool[100];
         // 用字典将名字与头像对应
         imageDic["Ce"] = avatars[0];
         imageDic["Know"] = avatars[1];
@@ -140,6 +143,22 @@ public class DialogueSystem : MonoBehaviour
                 continue;
             }
 
+            if (cells[0] == "End") // 如果是结束节点则结束对话
+            {
+                ExitDialogue();
+
+                if (cells[6] != "") //如果效果不为空，则触发动态事件
+                {
+                    string[] effects = cells[6].Split('/'); // 把效果编号进行分割
+                    foreach (string effect in effects)
+                    {
+                        DialogEffect(int.Parse(effect));
+                    }
+                }
+                
+                break;
+            }
+
             if (cells[6] != "") //如果效果不为空，则触发动态事件
             {
                 string[] effects = cells[6].Split('/'); // 把效果编号进行分割
@@ -159,11 +178,6 @@ public class DialogueSystem : MonoBehaviour
             else if (cells[0] == "&") // 如果是选择对话则显示按钮
             {
                 GenerateOption(i);
-                break;
-            }
-            else if (cells[0] == "End") // 如果是结束节点则结束对话
-            {
-                ExitDialogue();
                 break;
             }
         }

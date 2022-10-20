@@ -8,6 +8,9 @@ public class BagButton : MonoBehaviour
     {
         if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (!SceneItemManager.Instance.interactive) { return; }
+        StoreManager.Instance.UpdateStoreSystem();
+        StoreManager.Instance.UpdateDescription();
+        StoreManager.Instance.UpdateSprite();
         ManagerSystem.Instance.ShowItemStore();
     }
 }

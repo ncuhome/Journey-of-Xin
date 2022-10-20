@@ -10,6 +10,11 @@ public class SceneItemManager : MonoBehaviour
     public GameObject letterBox = null;
     public GameObject lastLetter = null;
     public GameObject lastMail = null;
+    public GameObject coffeeInMarket = null;
+    public GameObject neutrinoDebugger = null;
+    public GameObject blackMineral = null;
+    public GameObject perspectiveGlass = null;
+    public GameObject endlessEnergyMaker = null;
     public ItemState[] itemStates = new ItemState[100];
 
     public GameObject panel = null;
@@ -30,6 +35,11 @@ public class SceneItemManager : MonoBehaviour
         lastLetter = GameObject.Find("LastLetter");
         lastMail = GameObject.Find("LastMail");
         panel = GameObject.Find("Canvas/Panel");
+        coffeeInMarket = GameObject.Find("Planet2/Room2/Coffee");
+        neutrinoDebugger = GameObject.Find("NeutrinoDebugger");
+        blackMineral = GameObject.Find("BlackMineral");
+        perspectiveGlass = GameObject.Find("PerspectiveGlass");
+        endlessEnergyMaker = GameObject.Find("EndlessEnergyMaker");
     }
     // Start is called before the first frame update
     void Start()

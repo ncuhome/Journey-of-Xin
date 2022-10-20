@@ -31,15 +31,24 @@ public class RoomManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        rooms = new GameObject[1][];
+        rooms = new GameObject[4][];
         rooms[0] = new GameObject[2];
+        rooms[1] = new GameObject[2];
+        rooms[2] = new GameObject[2];
+        rooms[3] = new GameObject[2];
 
         rooms[0][0] = GameObject.Find("Planet1/Room1");
         rooms[0][1] = GameObject.Find("Planet1/Room2");
+        rooms[1][0] = GameObject.Find("Planet2/Room1");
+        rooms[1][1] = GameObject.Find("Planet2/Room2");
+        rooms[2][0] = GameObject.Find("Planet3/Room1");
+        rooms[2][1] = GameObject.Find("Planet3/Room2");
+        rooms[3][0] = GameObject.Find("Planet4/Room1");
+        rooms[3][1] = GameObject.Find("Planet4/Room2");
 
         leftButton = GameObject.Find("LeftButton");
         rightButton = GameObject.Find("RightButton");
-        
+
     }
 
     void Update()
@@ -49,7 +58,7 @@ public class RoomManager : MonoBehaviour
             return;
         }
 
-        if ((roomIndex == 0)||(!rooms[planetIndex][roomIndex - 1]))
+        if ((roomIndex == 0) || (!rooms[planetIndex][roomIndex - 1]))
         {
             leftButton.SetActive(false);
         }
@@ -58,7 +67,7 @@ public class RoomManager : MonoBehaviour
             leftButton.SetActive(true);
         }
 
-        if ((roomIndex == rooms[planetIndex].Length - 1)||(!rooms[planetIndex][roomIndex + 1]))
+        if ((roomIndex == rooms[planetIndex].Length - 1) || (!rooms[planetIndex][roomIndex + 1]))
         {
             rightButton.SetActive(false);
         }
@@ -67,11 +76,14 @@ public class RoomManager : MonoBehaviour
             rightButton.SetActive(true);
         }
 
-        for (int i = 0; i < rooms[planetIndex].Length; i++)
+        for (int i = 0; i < rooms.Length; i++)
         {
-            if (rooms[planetIndex][i])
+            for (int j = 0; j < rooms[i].Length; j++)
             {
-                rooms[planetIndex][i].SetActive(i == roomIndex);
+                if (rooms[i][j])
+                {
+                    rooms[i][j].SetActive((i == planetIndex)&&(j == roomIndex));
+                }
             }
         }
     }
@@ -92,7 +104,7 @@ public class RoomManager : MonoBehaviour
         isAnimationPlay = true;
         roomIndex++;
         roomExchangeCanvas = Instantiate(roomExchangePre);
-        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left",true);
+        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left", true);
         StartCoroutine("FinishExchange");
         StartCoroutine("DestroyAnimation");
     }
@@ -109,7 +121,7 @@ public class RoomManager : MonoBehaviour
         isAnimationPlay = true;
         roomIndex--;
         roomExchangeCanvas = Instantiate(roomExchangePre);
-        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left",false);
+        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left", false);
         StartCoroutine("FinishExchange");
         StartCoroutine("DestroyAnimation");
     }
@@ -122,6 +134,11 @@ public class RoomManager : MonoBehaviour
     public void LastPlanet()
     {
         planetIndex--;
+    }
+
+    public void ChangePlanet(int planetIndex)
+    {
+        this.planetIndex = planetIndex;
     }
 
     public IEnumerator FinishExchange()

@@ -114,8 +114,52 @@ public class EventSystem : MonoBehaviour, IEventList
             case 16:
                 GetMailInShip();
                 break;
+            case 17:
+                ClickCoffeeInMarket();
+                break;
+            case 18:
+                ClickNeutrinoDebugger();
+                break;
+            case 19:
+                ClickPerspectiveGlass();
+                break;
+            case 20:
+                ClickBlackMineral();
+                break;
+            case 21:
+                ClickEndlessEnergyMaker();
+                break;
+            case 22:
+                GetBlackMineral();
+                break;
+            case 23:
+                GetNeutrinoDebugger();
+                break;
+            case 24:
+                GetEndlessEnergyMaker();
+                break;
+            case 25:
+                GetPerspectiveGlass();
+                break;
+            case 26:
+                MiniGame1();
+                break;
+                
             case 32:
                 GetLastLetterAndMail();
+                break;
+
+            case 50:
+                ToPlanet1();
+                break;
+            case 51:
+                ToPlanet2();
+                break;
+            case 52:
+                ToPlanet3();
+                break;
+            case 53:
+                ToPlanet4();
                 break;
             default:
                 return false;
@@ -274,6 +318,68 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         StoreSystem.Add(15);
     }
+
+    private void ToPlanet1()
+    {
+        RoomManager.Instance.ChangePlanet(0);
+    }
+    private void ToPlanet2()
+    {
+        RoomManager.Instance.ChangePlanet(1);
+    }
+    private void ToPlanet3()
+    {
+        RoomManager.Instance.ChangePlanet(2);
+    }
+    private void ToPlanet4()
+    {
+        RoomManager.Instance.ChangePlanet(3);
+    }
+
+    private void ClickCoffeeInMarket()
+    {
+        SceneItemManager.Instance.coffeeInMarket.GetComponent<ItemDisplay>().Click();
+    }
+    private void ClickNeutrinoDebugger()
+    {
+        SceneItemManager.Instance.neutrinoDebugger.GetComponent<ItemDisplay>().Click();
+    }
+    private void ClickBlackMineral()
+    {
+        SceneItemManager.Instance.blackMineral.GetComponent<ItemDisplay>().Click();
+    }
+    private void ClickPerspectiveGlass()
+    {
+        SceneItemManager.Instance.perspectiveGlass.GetComponent<ItemDisplay>().Click();
+    }
+    private void ClickEndlessEnergyMaker()
+    {
+        SceneItemManager.Instance.endlessEnergyMaker.GetComponent<ItemDisplay>().Click();
+    }
+
+    private void GetNeutrinoDebugger()
+    {
+        StoreSystem.Add(22);
+    }
+
+    private void GetBlackMineral()
+    {
+        StoreSystem.Add(18);
+    }
+    private void GetPerspectiveGlass()
+    {
+        StoreSystem.Add(20);
+    }
+    private void GetEndlessEnergyMaker()
+    {
+        StoreSystem.Add(21);
+    }
+
+    private void MiniGame1()
+    {
+        // 挖矿小游戏
+    }
+
 
     #endregion
 
