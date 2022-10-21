@@ -8,26 +8,26 @@ public class HuaRong : MonoBehaviour
 {
     private int[] square;
     private bool[] squareBool = new bool[16];
-    private GameObject[] blockList;//ÓÎÏ·¶ÔÏó¿é×é
-    private int move = 0;//0:µÈ´ýÊäÈë 1£ºÏòÉÏÒÆ¶¯°×¿éÖÐ 2£ºÏò×óÒÆ¶¯ 3£ºÏòÏÂÒÆ¶¯ 4£ºÏòÓÒÒÆ¶¯
+    private GameObject[] blockList;//ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private int move = 0;//0:ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½×¿ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ 3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ 4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
     public GameObject Canvas;
-    int cursor = 0;//µ±Ç°¹â±ê£¨¿Õ¸ñ£©µÄË÷ÒýÖµ
+    int cursor = 0;//ï¿½ï¿½Ç°ï¿½ï¿½ê£¨ï¿½Õ¸ñ£©µï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 
-    private Vector3 oldPosition;//¾É×ø±ê
-    //×óÏÂ½ÇÎªÆðµã£¬ÓÒÉÏ½ÇÎªÖÕµã
+    private Vector3 oldPosition;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½Â½ï¿½Îªï¿½ï¿½ã£¬ï¿½ï¿½ï¿½Ï½ï¿½Îªï¿½Õµï¿½
 
     private void Awake()
     {
         blockList = new GameObject[16];
         for (int i = 0; i < 16; i++)
         {
-            blockList[i] = GameObject.Find("Canvas/Block (" + i + ")");//³õÊ¼»¯£ºÔØÈëÓÎÏ·ÎïÌå
+            blockList[i] = GameObject.Find("Canvas/Map/Block (" + i + ")");//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
         }
     }
     private void OnEnable()
     {
         Canvas.SetActive(true);
-        square = new int[] { 0, 2, 3, 2, 2, 4, 6, 6, 1, 3, 6, 6, 5, 4, 1, 4 };
+        square = new int[] { 6,1,5,4,0,3,5,3,2,0,5,2,4,1,5,3 };
         for(int i=0;i<squareBool.Length;i++)
         {
             squareBool[i] = false;
@@ -42,7 +42,8 @@ public class HuaRong : MonoBehaviour
         switch(move)
         {
             case 0:
-                if (isSuccess()) { Debug.Log("½âÃÕ³É¹¦£¡£¡"); }
+                UpdateSprite();
+                if (isSuccess()) { Debug.Log("ï¿½ï¿½ï¿½Õ³É¹ï¿½ï¿½ï¿½ï¿½ï¿½"); }
                 if (Input.GetButtonDown("Up"))
                 {
                     Down();
@@ -65,44 +66,44 @@ public class HuaRong : MonoBehaviour
                 }
                 
                 break;
-            case 1://°×¿éÏòÉÏÒÆ¶¯
-                blockList[cursor].transform.position += new Vector3(0, -Time.deltaTime*20, 0);//ÏòÏÂÒÆ¶¯¿é
-                if (blockList[cursor].transform.position.y <= oldPosition.y-200)//ÒÆ¶¯µ½Ö¸¶¨µÄÎ»ÖÃºó
+            case 1://ï¿½×¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
+                blockList[cursor].transform.position += new Vector3(0, -Time.deltaTime* 800, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
+                if (blockList[cursor].transform.position.y <= oldPosition.y-200)//ï¿½Æ¶ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãºï¿½
                 {
-                    move = 0;//»Ö¸´µÈ´ý×´Ì¬
+                    move = 0;//ï¿½Ö¸ï¿½ï¿½È´ï¿½×´Ì¬
                     blockList[cursor].transform.position = oldPosition + new Vector3(0, -200, 0);
                     GameObject gobj = blockList[cursor];
                     blockList[cursor] = blockList[cursor + 4];
                     blockList[cursor + 4] = gobj;
                 }
                 break;
-            case 2://°×¿éÏò×óÒÆ¶¯
-                blockList[cursor].transform.position += new Vector3(Time.deltaTime*20, 0, 0);//ÏòÓÒÒÆ¶¯¿é
-                if (blockList[cursor].transform.position.x >= oldPosition.x+200)//ÒÆ¶¯µ½Ö¸¶¨µÄÎ»ÖÃºó
+            case 2://ï¿½×¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
+                blockList[cursor].transform.position += new Vector3(Time.deltaTime* 800, 0, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
+                if (blockList[cursor].transform.position.x >= oldPosition.x+200)//ï¿½Æ¶ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãºï¿½
                 {
-                    move = 0;//»Ö¸´µÈ´ý×´Ì¬
+                    move = 0;//ï¿½Ö¸ï¿½ï¿½È´ï¿½×´Ì¬
                     blockList[cursor].transform.position = oldPosition + new Vector3(200, 0, 0);
                     GameObject gobj = blockList[cursor];
                     blockList[cursor] = blockList[cursor + 1];
                     blockList[cursor + 1] = gobj;
                 }
                 break;
-            case 3://°×¿éÏòÏÂÒÆ¶¯
-                blockList[cursor].transform.position += new Vector3(0, Time.deltaTime*20, 0);//ÏòÉÏÒÆ¶¯¿é
-                if (blockList[cursor].transform.position.y >= oldPosition.y+200)//ÒÆ¶¯µ½Ö¸¶¨µÄÎ»ÖÃºó
+            case 3://ï¿½×¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
+                blockList[cursor].transform.position += new Vector3(0, Time.deltaTime*800, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
+                if (blockList[cursor].transform.position.y >= oldPosition.y+200)//ï¿½Æ¶ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãºï¿½
                 {
-                    move = 0;//»Ö¸´µÈ´ý×´Ì¬
+                    move = 0;//ï¿½Ö¸ï¿½ï¿½È´ï¿½×´Ì¬
                     blockList[cursor].transform.position = oldPosition + new Vector3(0, 200, 0);
                     GameObject gobj = blockList[cursor];
                     blockList[cursor] = blockList[cursor - 4];
                     blockList[cursor - 4] = gobj;
                 }
                 break;
-            case 4://ÏòÓÒÒÆ¶¯°×¿é
-                blockList[cursor].transform.position += new Vector3(-Time.deltaTime*20, 0, 0);//Ïò×óÒÆ¶¯¿é
-                if (blockList[cursor].transform.position.x <= oldPosition.x-200)//ÒÆ¶¯µ½Ö¸¶¨µÄÎ»ÖÃºó
+            case 4://ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½×¿ï¿½
+                blockList[cursor].transform.position += new Vector3(-Time.deltaTime* 800, 0, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
+                if (blockList[cursor].transform.position.x <= oldPosition.x-200)//ï¿½Æ¶ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãºï¿½
                 {
-                    move = 0;//»Ö¸´µÈ´ý×´Ì¬
+                    move = 0;//ï¿½Ö¸ï¿½ï¿½È´ï¿½×´Ì¬
                     blockList[cursor].transform.position = oldPosition + new Vector3(-200, 0, 0);
                     GameObject gobj = blockList[cursor];
                     blockList[cursor] = blockList[cursor - 1];
@@ -114,91 +115,87 @@ public class HuaRong : MonoBehaviour
         }
        
     }
-    private void UpdateSprite()//¸üÐÂÌùÍ¼
+    private void UpdateSprite()//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
     {
         for (int i = 0; i < square.Length; i++)
         {
             if (squareBool[i])
             {
-                blockList[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Riddle-HuaRong/Block" + i + "1");
+                blockList[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Riddle-HuaRong/Block" + square[i] + "1");
             }
             else
             {
-                blockList[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Riddle-HuaRong/Block" + i + "0");
+                blockList[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Riddle-HuaRong/Block" + square[i] + "0");
             }
         }
     }
-    private void Up()//¿Õ¸ñÏòÉÏ½»»»
+    private void Up()//ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½
     {
-        if (cursor > 3)//¹â±ê²»ÔÚ×î¶¥ÉÏ
+        if (cursor > 3)//ï¿½ï¿½ê²»ï¿½ï¿½ï¿½î¶¥ï¿½ï¿½
         {
             square[cursor] = square[cursor - 4];
-            square[cursor - 4] = 0;
+            square[cursor - 4] = 6;
             cursor -= 4;
             oldPosition = blockList[cursor].transform.position;
             move = 1;
-            UpdateSprite();
         }
     }
 
-    private void Down()//¿Õ¸ñÏòÏÂ½»»»
+    private void Down()//ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½
     {
-        if (cursor < 12)//¹â±ê²»ÔÚ×îÏÂ·½
+        if (cursor < 12)//ï¿½ï¿½ê²»ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½
         {
             square[cursor] = square[cursor + 4];
-            square[cursor + 4] = 0;
+            square[cursor + 4] = 6;
             cursor += 4;
             oldPosition = blockList[cursor].transform.position;
             move = 3;
-            UpdateSprite();
         }
     }
 
-    private void Left()//¿Õ¸ñÏò×ó½»»»
+    private void Left()//ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½ó½»»ï¿½
     {
-        if (cursor % 4 != 0)//¹â±ê²»ÔÚ×î×ó±ß
+        if (cursor % 4 != 0)//ï¿½ï¿½ê²»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             square[cursor] = square[cursor - 1];
-            square[cursor - 1] = 0;
+            square[cursor - 1] = 6;
             cursor--;
             oldPosition = blockList[cursor].transform.position;
             move = 2;
-            UpdateSprite();
         }
     }
 
-    private void Right()//¿Õ¸ñÏòÓÒ½»»»
+    private void Right()//ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½
     {
-        if (cursor % 4 != 3)//¹â±ê²»ÔÚ×îÓÒ±ß
+        if (cursor % 4 != 3)//ï¿½ï¿½ê²»ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½
         {
             square[cursor] = square[cursor + 1];
-            square[cursor + 1] = 0;
+            square[cursor + 1] = 6;
             cursor++;
             oldPosition = blockList[cursor].transform.position;
             move = 4;
-            UpdateSprite();
         }
     }
 
-    private void Cancel()//È¡Ïû¼ü ÍË³ö
+    private void Cancel()//È¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ë³ï¿½
     {
         Canvas.SetActive(false);
     }
-    private bool isSuccess()//ÅÐ¶¨ÊÇ·ñ½âÃÕ³É¹¦
+    private bool isSuccess()//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Õ³É¹ï¿½
     {
         for(int i=0;i<16;i++)
         {
             squareBool[i] = false;
         }
-        int aimIndex = 12;//µ±Ç°Ë÷ÒýÖµ
-        int from = 1;//À´×Ô·½Ïò 0£ºÉÏ 1:×ó 2£ºÏÂ 3£ºÓÒ
-        bool switchBoll = true;//Ñ­»·¿ª¹Ø
-        while (switchBoll)//×óÏÂ½Ç£¨×óÃæ£©ÎªÆðµã£¬ÓÒÉÏ½Ç£¨ÓÒÃæ£©ÎªÖÕµã
+        int aimIndex = 12;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+        int from = 1;//ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ 1:ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½
+        bool switchBoll = true;//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        while (switchBoll)//ï¿½ï¿½ï¿½Â½Ç£ï¿½ï¿½ï¿½ï¿½æ£©Îªï¿½ï¿½ã£¬ï¿½ï¿½ï¿½Ï½Ç£ï¿½ï¿½ï¿½ï¿½æ£©Îªï¿½Õµï¿½
         {
             switch(from)
             {
-                case 0://À´×ÔÉÏ
-                    if(square[aimIndex] == 1)//×ªÏòÓÒ
+                case 0://ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    if(square[aimIndex] == 0)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 1;
@@ -208,7 +205,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex++;
                     }
-                    else if(square[aimIndex] == 4)//×ªÏò×ó
+                    else if(square[aimIndex] == 3)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 3;
@@ -218,7 +215,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex--;
                     }
-                    else if(square[aimIndex] == 6)//×ªÏòÏÂ
+                    else if(square[aimIndex] == 5)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 0;
@@ -233,8 +230,8 @@ public class HuaRong : MonoBehaviour
                         switchBoll = false;
                     }
                     break;
-                case 1://À´×Ô×ó
-                    if (square[aimIndex] == 3)//×ªÏòÏÂ
+                case 1://ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    if (square[aimIndex] == 2)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 0;
@@ -244,7 +241,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex += 4;
                     }
-                    else if (square[aimIndex] == 4)//×ªÏòÉÏ
+                    else if (square[aimIndex] == 3)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 2;
@@ -254,7 +251,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex -=4;
                     }
-                    else if (square[aimIndex] == 5)//×ªÏòÓÒ
+                    else if (square[aimIndex] == 4)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 1;
@@ -273,8 +270,8 @@ public class HuaRong : MonoBehaviour
                         switchBoll = false;
                     }
                     break;
-                case 2://À´×ÔÏÂ
-                    if (square[aimIndex] == 2)//×ªÏòÓÒ
+                case 2://ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    if (square[aimIndex] == 1)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 1;
@@ -288,7 +285,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex++;
                     }
-                    else if (square[aimIndex] == 3)//×ªÏò×ó
+                    else if (square[aimIndex] == 2)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 3;
@@ -298,7 +295,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex--;
                     }
-                    else if (square[aimIndex] == 6)//×ªÏòÉÏ
+                    else if (square[aimIndex] == 5)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 2;
@@ -313,8 +310,8 @@ public class HuaRong : MonoBehaviour
                         switchBoll = false;
                     }
                     break;
-                case 3://À´×ÔÓÒ
-                    if (square[aimIndex] == 1)//×ªÏòÉÏ
+                case 3://ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    if (square[aimIndex] == 0)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 2;
@@ -324,7 +321,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex -= 4;
                     }
-                    else if (square[aimIndex] == 2)//×ªÏòÏÂ
+                    else if (square[aimIndex] == 1)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 0;
@@ -334,7 +331,7 @@ public class HuaRong : MonoBehaviour
                         }
                         aimIndex += 4;
                     }
-                    else if (square[aimIndex] == 5)//×ªÏò×ó
+                    else if (square[aimIndex] == 4)//×ªï¿½ï¿½ï¿½ï¿½
                     {
                         squareBool[aimIndex] = true;
                         from = 3;
@@ -352,9 +349,9 @@ public class HuaRong : MonoBehaviour
             }
         }
         UpdateSprite();
-        if (blockList[3].GetComponent<Animator>().GetBool("active"))
+        if (squareBool[3])
         {
-            if (square[3] == 1 || square[3] == 2 || square[3] == 5)
+            if (square[3] == 0 || square[3] == 1 || square[3] == 4)
             {
                 return true;
             }

@@ -6,128 +6,210 @@ using System;
 
 public class AStroke : MonoBehaviour
 {
-    private float timer = 0;//¼ÆÊ±Æ÷
-    private int[] blockList = new int[45];//0:ÎÞÉ«²Ê   1£º²ÊÉ«    2£º¿ÕÆøÇ½   3£ºÔ´É«²Ê·½¿é
+    private float timer = 0;//ï¿½ï¿½Ê±ï¿½ï¿½
+    private int[] blockList = new int[45];//0:ï¿½ï¿½É«ï¿½ï¿½   1ï¿½ï¿½ï¿½ï¿½É«    2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½   3ï¿½ï¿½Ô´É«ï¿½Ê·ï¿½ï¿½ï¿½
     private GameObject[] gameObjectList = new GameObject[45];
-    public GameObject ASCanvas;//»­²¼
-    public GameObject endImage;//ÖÕÖ¹ÌáÊ¾¿ò
-    public GameObject text0;//Ê§°ÜÌáÊ¾
-    public GameObject text1;//³É¹¦ÌáÊ¾
-    public GameObject progressBar;//½ø¶ÈÌõ
-    public GameObject textTime;//Ê±¼ä
-    private int index = 5;//µ±Ç°²ÊÉ«ÒÆ¶¯¹â±êÎ»ÖÃ
-    private bool start = false;//ÅÐ¶¨ÊÇ·ñÓÎÏ·¿ªÊ¼
+    public GameObject ASCanvas;//ï¿½ï¿½ï¿½ï¿½
+    public GameObject endImage;//ï¿½ï¿½Ö¹ï¿½ï¿½Ê¾ï¿½ï¿½
+    public GameObject text0;//Ê§ï¿½ï¿½ï¿½ï¿½Ê¾
+    public GameObject text1;//ï¿½É¹ï¿½ï¿½ï¿½Ê¾
+    public GameObject progressBar;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject textTime;//Ê±ï¿½ï¿½
+    public GameObject blockOrigin;//Ô´ï¿½é¶¯ï¿½ï¿½ï¿½ï¿½
+    private int index = 5;//ï¿½ï¿½Ç°ï¿½ï¿½É«ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+    private bool start = false;//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ê¼
     private bool stop = false;
-    #region ÊäÈë´¦Àí&ºËÐÄÂß¼­
-    private void Up()//ÏòÉÏÒÆ¶¯Ô´
+    #region ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½&ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
+
+
+    private bool pick = false;
+    public void MouseDown(float mx,float my)//ï¿½ï¿½ê°´ï¿½ï¿½ï¿½Ð¶ï¿½
+    {
+        float ix = gameObjectList[index].transform.position.x;
+        float iy = gameObjectList[index].transform.position.y;
+        Debug.Log("ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½X:" +  + mx+"  Y:" + my +"ï¿½Ê¿ï¿½Î»ï¿½Ã£ï¿½X:" + ix + "  Y:" + iy);
+        if (mx >= ix-100 && mx <= ix+100 && my >= iy-100 && my<=iy+100)
+        {
+            pick = true;
+            Debug.Log("×¥×¡ï¿½ï¿½");
+        }
+        else
+        {
+            pick = false;
+        }
+    }
+    public void MouseUp()//ï¿½ï¿½ï¿½ï¿½É¿ï¿½
+    {
+        pick = false;
+        blockOrigin.transform.position = new Vector3(-1500, 0, -50);
+    }
+    public void MouseDrag(float mx, float my)//ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
+    {
+        if (pick)
+        {
+            blockOrigin.transform.position = new Vector3(mx,my,-20);
+            float ix = 0;
+            float iy = 0;
+            #region ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+            if(index % 9 >0)
+            {
+                ix = gameObjectList[index - 1].transform.position.x;
+                iy = gameObjectList[index - 1].transform.position.y;
+                if (Input.mousePosition.x >= ix - 100 && Input.mousePosition.x <= ix + 100 && Input.mousePosition.y >= iy - 100 && Input.mousePosition.y <= iy + 100)
+                {
+                    Left();
+                    return;
+                }
+            }
+            #endregion
+            #region ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (index % 9 < 8)
+            {
+                ix = gameObjectList[index + 1].transform.position.x;
+                iy = gameObjectList[index + 1].transform.position.y;
+                if (Input.mousePosition.x >= ix - 100 && Input.mousePosition.x <= ix + 100 && Input.mousePosition.y >= iy - 100 && Input.mousePosition.y <= iy + 100)
+                {
+                    Right();
+                    return;
+                }
+            }
+            #endregion
+            #region ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+            if(index / 9>0)
+            {
+                ix = gameObjectList[index - 9].transform.position.x;
+                iy = gameObjectList[index - 9].transform.position.y;
+                if (Input.mousePosition.x >= ix - 100 && Input.mousePosition.x <= ix + 100 && Input.mousePosition.y >= iy - 100 && Input.mousePosition.y <= iy + 100)
+                {
+                    Up();
+                    return;
+                }
+            }
+            #endregion
+            #region ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (index / 9 < 4)
+            {
+
+                ix = gameObjectList[index + 9].transform.position.x;
+                iy = gameObjectList[index + 9].transform.position.y;
+                if (Input.mousePosition.x >= ix - 100 && Input.mousePosition.x <= ix + 100 && Input.mousePosition.y >= iy - 100 && Input.mousePosition.y <= iy + 100)
+                {
+                    Down();
+                    return;
+                }
+            }
+            #endregion
+        }
+    }
+    private void Up()//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Ô´
     {
         start = true;
-        if(index/9 > 0)//²»ÔÚµÚÒ»ÐÐÇÒÈ¥Â·Îª¿ÕÉ«²Ê
+        if(index/9 > 0)//ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½È¥Â·Îªï¿½ï¿½É«ï¿½ï¿½
         {
             if(blockList[index - 9] == 0)
             {
-                blockList[index] = 1;//µ±Ç°Î»ÖÃ¸ÄÎª²ÊÉ«
+                blockList[index] = 1;//ï¿½ï¿½Ç°Î»ï¿½Ã¸ï¿½Îªï¿½ï¿½É«
                 index -= 9;
-                blockList[index] = 3;//ÒÆ¶¯²ÊÉ«Ô´
+                blockList[index] = 3;//ï¿½Æ¶ï¿½ï¿½ï¿½É«Ô´
                 UpdateSprite();
                 if (Success()) { EndSuccess(); }
                 else if (!Next()) { End(); }
             }
         }
     }
-    private void Left()//Ïò×óÒÆ¶¯Ô´
+    private void Left()//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Ô´
     {
         start = true;
-        if (index % 9 > 0)//²»ÔÚµÚÒ»ÐÐÇÒÈ¥Â·Îª¿ÕÉ«²Ê
+        if (index % 9 > 0)//ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½È¥Â·Îªï¿½ï¿½É«ï¿½ï¿½
         {
             if(blockList[index - 1] == 0)
             {
-                blockList[index] = 1;//µ±Ç°Î»ÖÃ¸ÄÎª²ÊÉ«
+                blockList[index] = 1;//ï¿½ï¿½Ç°Î»ï¿½Ã¸ï¿½Îªï¿½ï¿½É«
                 index--;
-                blockList[index] = 3;//ÒÆ¶¯²ÊÉ«Ô´
+                blockList[index] = 3;//ï¿½Æ¶ï¿½ï¿½ï¿½É«Ô´
                 UpdateSprite();
                 if (Success()) { EndSuccess(); }
                 else if (!Next()) { End(); }
             }
         }
     }
-    private void Down()//ÏòÏÂÒÆ¶¯Ô´
+    private void Down()//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Ô´
     {
         start = true;
-        if (index / 9 < 4)//²»ÔÚµÚÒ»ÐÐÇÒÈ¥Â·Îª¿ÕÉ«²Ê
+        if (index / 9 < 4)//ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½È¥Â·Îªï¿½ï¿½É«ï¿½ï¿½
         {
            if(blockList[index + 9] == 0)
            {
-                blockList[index] = 1;//µ±Ç°Î»ÖÃ¸ÄÎª²ÊÉ«
+                blockList[index] = 1;//ï¿½ï¿½Ç°Î»ï¿½Ã¸ï¿½Îªï¿½ï¿½É«
                 index += 9;
-                blockList[index] = 3;//ÒÆ¶¯²ÊÉ«Ô´
+                blockList[index] = 3;//ï¿½Æ¶ï¿½ï¿½ï¿½É«Ô´
                 UpdateSprite();
                 if (Success()) { EndSuccess(); }
                 else if (!Next()) { End(); }
             }
         }
     }
-    private void Right()//ÏòÓÒÒÆ¶¯Ô´
+    private void Right()//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Ô´
     {
         start = true;
-        if (index % 9 < 8)//²»ÔÚµÚÒ»ÐÐÇÒÈ¥Â·Îª¿ÕÉ«²Ê
+        if (index % 9 < 8)//ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½È¥Â·Îªï¿½ï¿½É«ï¿½ï¿½
         {
             if(blockList[index + 1] == 0)
             {
-                blockList[index] = 1;//µ±Ç°Î»ÖÃ¸ÄÎª²ÊÉ«
+                blockList[index] = 1;//ï¿½ï¿½Ç°Î»ï¿½Ã¸ï¿½Îªï¿½ï¿½É«
                 index++;
-                blockList[index] = 3;//ÒÆ¶¯²ÊÉ«Ô´
+                blockList[index] = 3;//ï¿½Æ¶ï¿½ï¿½ï¿½É«Ô´
                 UpdateSprite();
                 if (Success()) { EndSuccess(); }
                 else if (!Next()) { End(); }
             }
         }
     }
-    public void Cancel()//È¡Ïû²¢ÍË³ö
+    public void Cancel()//È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
     {
         ASCanvas.SetActive(false);
         this.gameObject.SetActive(false);
     }
-    private void End()//ÓÎÏ·½áÊø£¨Ê§°Ü£©
+    private void End()//ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½
     {
         stop = true;
         endImage.SetActive(true);
         text0.SetActive(true);
     }
-    private void EndSuccess()//ÓÎÏ·½áÊø£¨³É¹¦£©
+    private void EndSuccess()//ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½
     {
         //EventSystem.changeStaticEvent(83,true);
         stop = true;
         endImage.SetActive(true);
         text1.SetActive(true);
     }
-    private bool Next()//¼ì²âÊÇ·ñÓÎÏ·¿É¼ÌÐø£¨Î´Ê§°Ü£©
+    private bool Next()//ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ï·ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½Î´Ê§ï¿½Ü£ï¿½
     {
-        if (timer > 20) { return false; }//Ê§°Ü
+        if (timer > 20) { return false; }//Ê§ï¿½ï¿½
         else
         {
-            if(index / 9 > 0)//²»ÔÚµÚÒ»²ãÊ±
+            if(index / 9 > 0)//ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½Ê±
             {
                 if (blockList[index - 9] == 0)
                 {
                     return true;
                 }
             }
-            if(index % 9 > 0)//²»ÔÚ×î×ó²àÊ±
+            if(index % 9 > 0)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
             {
                 if (blockList[index-1] == 0)
                 {
                     return true;
                 }
             }
-            if(index / 9 < 4)//²»ÔÚ×îÏÂ²ã
+            if(index / 9 < 4)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â²ï¿½
             {
                 if (blockList[index+9] == 0)
                 {
                     return true;
                 }
             }
-            if(index % 9 < 8)//²»ÔÚ×îÓÒ±ß
+            if(index % 9 < 8)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½
             {
                 if (blockList[index+1] == 0)
                 {
@@ -137,7 +219,7 @@ public class AStroke : MonoBehaviour
         }
         return false;
     }
-    private bool Success()//¼ì²âÓÎÏ·ÊÇ·ñ³É¹¦
+    private bool Success()//ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ç·ï¿½É¹ï¿½
     {
         for(int i = 0; i < blockList.Length;i++)
         {
@@ -148,16 +230,16 @@ public class AStroke : MonoBehaviour
         }
         return true;
     }
-    private void UpdateSprite()//¸üÐÂÌùÍ¼
+    private void UpdateSprite()//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
     {
         for(int i=0;i< gameObjectList.Length;i++)
         {
             try { Animator animator = gameObjectList[i].GetComponent<Animator>(); animator.SetInteger("status", blockList[i]); }
-            catch (Exception e) { Debug.Log("´íÎóÎ»ÖÃ±àºÅ£º"+i); }
+            catch (Exception e) { Debug.Log("ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã±ï¿½Å£ï¿½"+i); }
             
         }
     }
-    private void ResetData()//ÖØÖÃÊý¾Ý
+    private void ResetData()//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         ASCanvas.SetActive(true);
         timer = 0;
@@ -168,7 +250,6 @@ public class AStroke : MonoBehaviour
         {
             blockList[i] = 0;
         }
-        UpdateSprite();
         blockList[0] = 2;
         blockList[5] = 3;
         UpdateSprite();
@@ -177,17 +258,20 @@ public class AStroke : MonoBehaviour
         text1.SetActive(false);
     }
     #endregion
+    private void Awake()
+    {
+        for (int i = 0; i < gameObjectList.Length; i++)
+        {
+            gameObjectList[i] = GameObject.Find("ASCanvas/Block" + i);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
+            blockOrigin.GetComponent<Animator>().SetInteger("status", 3);
+        }
+    }
     private void OnEnable()
     {
         ResetData();
     }
     void Start()
     {
-        for(int i=0;i< gameObjectList.Length;i++)
-        {
-            gameObjectList[i] = GameObject.Find("ASCanvas/Block" + i);//¹ØÁªÓÎÏ·ÎïÌå
-        }
-        ResetData();
     }
     void Update()
     {
@@ -196,8 +280,9 @@ public class AStroke : MonoBehaviour
             if (start)
             {
                 timer += Time.deltaTime;
-                Debug.Log("Time:" + timer);
+                //Debug.Log("Time:" + timer);
                 float progress = (20.0f - timer) / 20;
+                textTime.GetComponent<TMP_Text>().text = (int)(20.0f - timer) + "s";
                 progressBar.transform.localScale = new Vector3(progress,1,1);
                 progressBar.transform.localPosition = new Vector3(750*(progress-1),0,0);
             }
@@ -221,6 +306,7 @@ public class AStroke : MonoBehaviour
             {
                 Cancel();
             }
+            if(timer > 20) { End(); }
         }
     }
 }

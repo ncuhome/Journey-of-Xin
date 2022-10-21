@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 /**<summary>
- * Ê¹ÓÃ¹ý³¡¶¯»­Ç°£¬ÐèÉèÖÃ¶¯»­½«Òª×ªÈëµÄ³¡¾°Ë÷ÒýÖµ.
- * ²¢ÔÚµ÷ÓÃº¯ÊýÖÐ£¬Ìí¼ÓLoadingCanvasÔ¤ÖÆ¼þ.
- * ÐèÒª²¥·Å¶¯»­Ê±£¬Ö»ÐèÉú³ÉLoadingCanvasÔ¤ÖÆ¼þ.
- * LoadingCanvasÔ¤ÖÆ¼þ»á¶¨Ê±Ïú»Ù.
+ * Ê¹ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½Òª×ªï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ.
+ * ï¿½ï¿½ï¿½Úµï¿½ï¿½Ãºï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½LoadingCanvasÔ¤ï¿½Æ¼ï¿½.
+ * ï¿½ï¿½Òªï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½LoadingCanvasÔ¤ï¿½Æ¼ï¿½.
+ * LoadingCanvasÔ¤ï¿½Æ¼ï¿½ï¿½á¶¨Ê±ï¿½ï¿½ï¿½ï¿½.
  * </summary>
  */
 public class LoadingScript : MonoBehaviour
 {
-    private static int scene;//ËùÐèÒª¼ÓÔØµÄ³¡¾°Ë÷ÒýÖµ
-    private AsyncOperation operation;//Òì²½¼ÓÔØ×é¼þ
-    public Animator animatorLoading;//²¥·Å¹ý³¡¶¯»­Æ÷
-    private float timer = 0;//¼ÆÊ±Æ÷
-    private int status = 0;//¶¯»­²¥·Å×´Ì¬ 0£º×¼±¸²¥·Å½¥Èë»­Ãæ  1£º×¼±¸²¥·Å½¥³ö»­Ãæ
+    private static int scene;//ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ØµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    private AsyncOperation operation;//ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public Animator animatorLoading;//ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private float timer = 0;//ï¿½ï¿½Ê±ï¿½ï¿½
+    private int status = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ 0ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½ï¿½ë»­ï¿½ï¿½  1ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public static int Scene { get; set; }
     void Start()
     {
@@ -26,40 +26,40 @@ public class LoadingScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("³¡¾°¼ÓÔØ½ø¶È£º" + operation.progress);
-        timer += Time.deltaTime;//¼ÆÊ±Æ÷
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½ï¿½È£ï¿½" + operation.progress);
+        timer += Time.deltaTime;//ï¿½ï¿½Ê±ï¿½ï¿½
 
         if (InputManager.Instance != null)
         {
             InputManager.Instance.sceneState = SceneState.Animation;
         }
 
-        if (operation.progress == 0.9f && timer >= 3.0 && status == 0)//¼ÓÔØÍê±Ïºó ÇÒ ¶¯»­²¥·ÅÍê³É ºóÌø×ª
+        if (operation.progress == 0.9f && timer >= 3.0 && status == 0)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½×ª
         {
 
-            Debug.Log("¼ÓÔØ³¡¾°Íê±Ï");
-            DontDestroyOnLoad(animatorLoading.gameObject);//¼ÓÔØÐÂ³¡¾°Ê±²»Ïú»Ù¹ý³¡¶¯»­ÎïÌå
+            Debug.Log("ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+            DontDestroyOnLoad(animatorLoading.gameObject);//ï¿½ï¿½ï¿½ï¿½ï¿½Â³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ù¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             status = 1;
-            timer = 0;//¹éÁã¼ÆÊ±Æ÷
-            animatorLoading.SetTrigger("nextScene");//²¥·Å¹ý³¡ÏûÊ§¶¯»­
-            operation.allowSceneActivation = true;//Ìø×ªÖÁÐÂ³¡¾°
+            timer = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+            animatorLoading.SetTrigger("nextScene");//ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½
+            operation.allowSceneActivation = true;//ï¿½ï¿½×ªï¿½ï¿½ï¿½Â³ï¿½ï¿½ï¿½
         }
-        else if (status == 1 && timer >= 5.0)//¶¨Ê±Ïú»Ù¼ÓÔØ¶¯»­
+        else if (status == 1 && timer >= 5.0)//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ù¼ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
         {
             InputManager.Instance.sceneState = SceneState.MainScene;
             Destroy(this.gameObject);
         }
     }
 
-    private void toNewScene()//Æô¶¯ÐÂµÄ³¡¾°£¨Òì²½£©
+    private void toNewScene()//ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì²½ï¿½ï¿½
     {
-        //animatorLoading.SetTrigger("nextScene");//²¥·Å¹ý³¡Æô¶¯¶¯»­
-        Debug.Log("¿ªÊ¼¼ÓÔØ³¡¾°");
-        animatorLoading.SetTrigger("nextScene");//²¥·Å¹ý³¡¿ªÊ¼¶¯»­
-        StartCoroutine(LoadScene());//Ê¹ÓÃÒì²½¼ÓÔØ³¡¾°
+        //animatorLoading.SetTrigger("nextScene");//ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        Debug.Log("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½");
+        animatorLoading.SetTrigger("nextScene");//ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+        StartCoroutine(LoadScene());//Ê¹ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½
     }
 
-    private IEnumerator LoadScene()//Òì²½¼ÓÔØ£¨Ê¹ÓÃÐ­³Ì£©
+    private IEnumerator LoadScene()//ï¿½ì²½ï¿½ï¿½ï¿½Ø£ï¿½Ê¹ï¿½ï¿½Ð­ï¿½Ì£ï¿½
     {
         operation = SceneManager.LoadSceneAsync(Scene);
         operation.allowSceneActivation = false;
