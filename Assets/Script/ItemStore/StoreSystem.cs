@@ -2,32 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ì¬ÏµÍ³
+/// ±³°üÏµÍ³£¬Ò»¸ö¾²Ì¬ÏµÍ³
 /// </summary>
 public class StoreSystem 
 {
     private static int[] store = new int[24];
     /// <summary>
-    /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½idï¿½ï¿½
+    /// »ñÈ¡±³°üÄÚÎïÆ·µÄid×é
     /// </summary>
-    /// <returns>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½</returns>
+    /// <returns>±³°üÄÚÈ«²¿ÎïÆ·À¸µÄidÊý×é</returns>
     public static int[] IdAll()
     {
         return store;
     }
     /// <summary>
-    /// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ÎªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
+    /// ÉèÖÃ±³°üÎïÆ·ÎªÒ»¸öÐÂÊý×éµÄ¸±±¾
     /// </summary>
-    /// <param name="idList">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+    /// <param name="idList">ÐÂÊý×é</param>
     public static void SetStore(int[] idList)
     {
         store = (int[])idList.Clone();
     }
     /// <summary>
-    /// ï¿½ò±³°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ true
+    /// Ïò±³°üÄÚÌí¼ÓÐÂµÄÎïÆ·£¬Ìí¼Ó³É¹¦·µ»Ø true
     /// </summary>
-    /// <param name="id">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ id Öµ</param>
-    /// <returns>ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bool Öµ</returns>
+    /// <param name="id">Ìí¼ÓÎïÆ·µÄ id Öµ</param>
+    /// <returns>·´Ó³²Ù×÷½á¹ûµÄ bool Öµ</returns>
     public static bool Add(int id)
     {
         for (int i = 0; i < 24; i++)
@@ -41,13 +41,13 @@ public class StoreSystem
         return false;
     }
     /// <summary>
-    /// ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ö¸ï¿½ï¿½ id ï¿½ï¿½Æ· É¾ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ true
+    /// ÒÆ³ý±³°üÄÚµÄÖ¸¶¨ id ÎïÆ· É¾³ý³É¹¦·µ»Ø true
     /// </summary>
-    /// <param name="id">ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Æ·idÖµ</param>
-    /// <returns>ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bool Öµ</returns>
+    /// <param name="id">Óû½«É¾³ýµÄÖ¸¶¨ÎïÆ·idÖµ</param>
+    /// <returns>·´Ó³²Ù×÷½á¹ûµÄ bool Öµ</returns>
     public static bool Remove(int id)
     {
-        bool change = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        bool change = false;//½»»»¿ª¹Ø
         for (int i = 0; i < 24; i++)
         {
             if (store[i] == id)
@@ -55,7 +55,7 @@ public class StoreSystem
                 store[i] = 0;
                 change = true;
             }
-            if (change && i < 23)//ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½î²»Îªï¿½ï¿½
+            if (change && i < 23)//Èç¹ûÒÑ¾­¿ªÆô½»»»ÇÒÏÂÒ»Ïî²»Îª¿Õ
             {
                 store[i] = store[i + 1];
                 store[i + 1] = 0;
@@ -64,10 +64,10 @@ public class StoreSystem
         return change;
     }
     /// <summary>
-    /// ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½Æ·
+    /// ²éÕÒ±³°üÄÚÊÇ·ñÓÐ¸ÃÎïÆ·
     /// </summary>
-    /// <param name="id">ï¿½ï¿½Ñ¯Ä¿ï¿½ï¿½ï¿½ id Öµ</param>
-    /// <returns>ï¿½ï¿½Ó³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ bool Öµ</returns>
+    /// <param name="id">²éÑ¯Ä¿±êµÄ id Öµ</param>
+    /// <returns>·´Ó³²éÑ¯½á¹û bool Öµ</returns>
     public static bool Find(int id)
     {
         for (int i = 0; i < 24; i++)

@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½ï¿½
+/// ?UI
 /// </summary>
 public class TitleSystem : MonoBehaviour
 {
     private bool canChoose = true;
-    public Animator animator;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    public GameObject animatorLoading;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½Æ¼ï¿½
-    private int cursor = 0;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-    private bool nextScene = false;//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    //0ï¿½ï¿½Xinï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½     1ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½Âµï¿½ï¿½ï¿½Ï·    2ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½      3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·      4ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·
+    public Animator animator;//
+    public GameObject animatorLoading;//??
+    private int cursor = 0;//??
+    private bool nextScene = false;//??
+    //0Xin?     1?µ?    2?      3?      4??
     private GameObject settingsCanvas = null;
     private GameObject saveCanvas = null;
     public GameObject background = null;
@@ -37,38 +37,38 @@ public class TitleSystem : MonoBehaviour
 
     void Update()
     {
-        if (!nextScene && canChoose)//ï¿½Úµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ ï¿½Â¶ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½
+        if (!nextScene && canChoose)//?? ¶??
         {
-            if (Input.GetButtonDown("Up"))//Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (Input.GetButtonDown("Up"))//?
             {
                 animator.SetTrigger("up");
                 cursor--;
                 if (cursor < 0) { cursor = 4; }
 
             }
-            else if (Input.GetButtonDown("Down"))//Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            else if (Input.GetButtonDown("Down"))//?
             {
                 animator.SetTrigger("down");
                 cursor++;
                 if (cursor > 4) { cursor = 0; }
             }
-            else if (Input.GetButtonDown("Submit"))//È·ï¿½ï¿½
+            else if (Input.GetButtonDown("Submit"))//?
             {
                 switch (cursor)
                 {
-                    case 0://ï¿½ï¿½È¡ï¿½æµµ
+                    case 0://??
                         toLoadGame();
                         break;
-                    case 1://ï¿½ï¿½Ê¼ï¿½Âµï¿½ï¿½ï¿½Ï·
+                    case 1://?µ?
                         toNewGame();
                         break;
-                    case 2://ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
+                    case 2://?
                         toSettings();
                         break;
-                    case 3://ï¿½Ø¹Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    case 3://??
                         toMemory();
                         break;
-                    case 4://ï¿½Ë³ï¿½ï¿½ï¿½Ï·
+                    case 4://??
                         Application.Quit();
                         break;
                 }
@@ -87,7 +87,7 @@ public class TitleSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½æµµï¿½ï¿½ï¿½ï¿½
+    /// ???
     /// </summary>
     private void toLoadGame()
     {
@@ -97,17 +97,17 @@ public class TitleSystem : MonoBehaviour
         startTitleCanvas.enabled = false;
     }
     /// <summary>
-    /// ï¿½ï¿½Ê¼ï¿½Âµï¿½ï¿½ï¿½Ï·
+    /// ?µ?
     /// </summary>
     private void toNewGame()
     {
         nextScene = true;
-        Debug.Log("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½");
-        LoadingScript.Scene = 7;//ï¿½ï¿½ï¿½ï¿½×ªï¿½ë³¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+        Debug.Log("??????");
+        LoadingScript.Scene = 7;//??
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
     }
     /// <summary>
-    /// Ç°ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+    /// ??û
     /// </summary>
     private void toSettings()
     {
@@ -117,7 +117,7 @@ public class TitleSystem : MonoBehaviour
         startTitleCanvas.enabled = false;
     }
     /// <summary>
-    /// Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½
+    /// ??
     /// </summary>
     private void toMemory()
     {

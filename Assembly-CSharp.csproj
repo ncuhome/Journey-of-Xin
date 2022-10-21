@@ -72,6 +72,13 @@
      <Compile Include="Assets\Script\MainControlRoom\LetterBox\LetterBox.cs" />
      <Compile Include="Assets\Script\SceneManager\LoadScene.cs" />
      <Compile Include="Assets\Script\Save &amp; Load\PlayerData.cs" />
+     <Compile Include="Assets\Script\Riddle\ConnectionCollider.cs" />
+     <Compile Include="Assets\Script\Riddle\Escape\StarMove.cs" />
+     <Compile Include="Assets\Script\Riddle\StoneMove.cs" />
+     <Compile Include="Assets\Script\Riddle\AStrokeCollider.cs" />
+     <Compile Include="Assets\Script\Riddle\InterstellarPassage.cs" />
+     <Compile Include="Assets\Script\Riddle\InterstellarPassagePlayer.cs" />
+     <Compile Include="Assets\Script\Riddle\Connection.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
