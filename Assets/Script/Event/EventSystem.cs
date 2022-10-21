@@ -446,6 +446,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private void DisplayGetRebornMachineCE()
     {
         RoomManager.Instance.canChangeRoom = false;
+        SceneItemManager.Instance.itemStates[23] = ItemState.Interactive;
         SceneItemManager.Instance.rebornMachineCE.GetComponent<ItemDisplay>().Click();
     }
 

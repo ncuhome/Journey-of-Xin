@@ -121,6 +121,8 @@ public class PlayerData : MonoBehaviour
         
         CeController.Instance.state = saveData.ceState;
         CeController.Instance.ControlCEs();
+
+        SceneItemManager.Instance.FindItems();
         //StoreManager.Instance.SetStore(saveData.itemList);//已修改
     }
 

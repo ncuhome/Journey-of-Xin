@@ -52,6 +52,11 @@ public class RoomManager : MonoBehaviour
         leftButton = GameObject.Find("LeftButton");
         rightButton = GameObject.Find("RightButton");
 
+    }
+
+    void Start()
+    {
+    
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 2; j++)
@@ -61,7 +66,6 @@ public class RoomManager : MonoBehaviour
         }
 
         rooms[0][0].SetActive(true);
-
     }
 
     void Update()

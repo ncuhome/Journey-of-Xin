@@ -150,6 +150,8 @@ public class StoreManager : MonoBehaviour
         /*****/
         //StoreSystem.Add(1);
         //StoreSystem.Add(2);
+        StoreSystem.Add(3);
+        StoreSystem.Add(4);
         /*****/
         UpdateStoreSystem();//更新背包物品列表;
     }

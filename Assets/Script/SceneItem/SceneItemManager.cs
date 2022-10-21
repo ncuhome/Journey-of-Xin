@@ -34,26 +34,15 @@ public class SceneItemManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        intoWorkTablePanel = GameObject.Find("IntoWorkTable");
-        letterBox = GameObject.Find("LetterBoxPanel");
-        lastLetter = GameObject.Find("LastLetter");
-        lastMail = GameObject.Find("LastMail");
-        panel = GameObject.Find("Canvas/Panel");
-        coffeeInMarket = GameObject.Find("Planet2/Room2/Coffee");
-        neutrinoDebugger = GameObject.Find("NeutrinoDebugger");
-        blackMineral = GameObject.Find("BlackMineral");
-        perspectiveGlass = GameObject.Find("PerspectiveGlass");
-        endlessEnergyMaker = GameObject.Find("EndlessEnergyMaker");
-        letterInTrashBin = GameObject.Find("LetterInTrashBin");
-        rebornMachineCE = GameObject.Find("RebornMachine(CE)");
     }
     // Start is called before the first frame update
     void Start()
     {
+        
+        FindItems();
+
         intoWorkTablePanel.SetActive(false);
         letterBox.SetActive(false);
-        lastLetter.SetActive(false);
-        lastMail.SetActive(false);
         panel.SetActive(false);
 
         for (int i = 0; i < itemStates.Length; i++)
@@ -67,5 +56,12 @@ public class SceneItemManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void FindItems()
+    {
+        intoWorkTablePanel = GameObject.Find("Canvas").transform.Find("IntoWorkTable").gameObject;
+        letterBox = GameObject.Find("Canvas").transform.Find("LetterBoxPanel").gameObject;
+        panel = GameObject.Find("Canvas").transform.Find("Panel").gameObject;
     }
 }

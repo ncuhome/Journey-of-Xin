@@ -70,11 +70,14 @@ public class ItemDisplay : MonoBehaviour
         {
             itemButton = GetComponent<Button>();
         }
+        
     }
 
     void Start()
     {
         SceneItemManager.Instance.items[itemIndex] = this;
+
+        UpdateItem();
     }
 
     // Update is called once per frame
@@ -135,5 +138,24 @@ public class ItemDisplay : MonoBehaviour
         panel.transform.SetParent(this.transform.parent);
         panel.transform.position = Vector2.zero;
         panel.transform.SetSiblingIndex(panel.transform.parent.childCount);
+    }
+
+    public void UpdateItem()
+    {
+        switch (itemIndex)
+        {
+            case 0: SceneItemManager.Instance.lastLetter = this.gameObject; break;
+            case 1: SceneItemManager.Instance.lastMail = this.gameObject; break;
+            case 7: SceneItemManager.Instance.letterInTrashBin = this.gameObject; break;
+            case 15: SceneItemManager.Instance.coffeeInMarket = this.gameObject; break;
+            case 16: SceneItemManager.Instance.neutrinoDebugger = this.gameObject; break;
+            case 17: SceneItemManager.Instance.blackMineral = this.gameObject; break;
+            case 18: SceneItemManager.Instance.perspectiveGlass = this.gameObject; break;
+            case 19: SceneItemManager.Instance.endlessEnergyMaker = this.gameObject; break;
+            case 23: SceneItemManager.Instance.rebornMachineCE = this.gameObject; break;
+            
+        }
+            
+
     }
 }
