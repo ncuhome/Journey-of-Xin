@@ -16,6 +16,7 @@ public class SceneItemManager : MonoBehaviour
     public GameObject perspectiveGlass = null;
     public GameObject endlessEnergyMaker = null;
     public GameObject letterInTrashBin = null;
+    public GameObject rebornMachineCE = null;
     public ItemDisplay[] items = new ItemDisplay[100];
     public ItemState[] itemStates = new ItemState[100];
     public DialogueTrigger[] dialogueTriggers = new DialogueTrigger[50];
@@ -44,6 +45,7 @@ public class SceneItemManager : MonoBehaviour
         perspectiveGlass = GameObject.Find("PerspectiveGlass");
         endlessEnergyMaker = GameObject.Find("EndlessEnergyMaker");
         letterInTrashBin = GameObject.Find("LetterInTrashBin");
+        rebornMachineCE = GameObject.Find("RebornMachine(CE)");
     }
     // Start is called before the first frame update
     void Start()

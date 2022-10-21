@@ -110,6 +110,9 @@ public class EventSystem : MonoBehaviour, IEventList
             case 41: startTimeRecord3(); break;
             case 42: ChangeToSpaceShip(); break;
             case 43: AfterGetLetterInBox(); break;
+            case 44: GetRebornMachineCE(); break;
+            case 45: DisplayGetRebornMachineCE(); break;
+            case 46: CanClickTrashBin(); break;
             case 50: ToPlanet1(); break;
             case 51: ToPlanet2(); break;
             case 52: ToPlanet3(); break;
@@ -434,6 +437,27 @@ public class EventSystem : MonoBehaviour, IEventList
         TimeManager.Instance.StartTimeRecord(5, 0, 0, 4);
     }
 
+    private void GetRebornMachineCE()
+    {
+        StoreSystem.Add(17);
+        StartCoroutine("DelayStartDialogNode11");
+    }
+
+    private void DisplayGetRebornMachineCE()
+    {
+        RoomManager.Instance.canChangeRoom = false;
+        SceneItemManager.Instance.rebornMachineCE.GetComponent<ItemDisplay>().Click();
+    }
+
+    private IEnumerator DelayStartDialogNode11()
+    {
+        yield return new WaitForSeconds(1.5f);
+    }
+
+    private void CanClickTrashBin()
+    {
+        SceneItemManager.Instance.itemStates[13] = ItemState.Interactive;
+    }
 
     #endregion
 
