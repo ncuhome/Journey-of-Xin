@@ -1,5 +1,4 @@
-using System;
-using System.Security.AccessControl;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +6,14 @@ using System.IO;
 
 public class PlayerData : MonoBehaviour
 {
+
     // 需要转化成存档的数据（随需要存档的数据而修改
     #region Fields
     public static PlayerData Instance { get; private set; } // 单例模式
 
     // 将所有的存档数据放入 SaveData 类中方便转化成 Json 文件
     [System.Serializable]
-    class SaveData
+    public class SaveData
     {
         public int[] staticEventList = new int[100];
         public bool[] canEnterDialog = new bool[100];
@@ -21,6 +21,12 @@ public class PlayerData : MonoBehaviour
         public ItemState[] itemStates = new ItemState[100];
         public int roomIndex;
         public int planetIndex;
+        public bool timeRecordStart = false;
+        public float targetTime = 0f;
+        public int timeRoomIndex = 0;
+        public int timePlanetIndex = 0;
+        public int callbackIndex = 0;
+        public int ceState = 0;
     }
     public GameObject animatorLoading;//过场动画预制件
 
@@ -67,6 +73,7 @@ public class PlayerData : MonoBehaviour
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
         saveDataFileName = "SaveData" + saveIndex.ToString() + ".sav";
         LoadFromJson();
+        StartCoroutine("LoadingTimeManager", saveIndex);
     }
 
     // 将数据存入 SaveData 类中（随需要存档的数据而修改
@@ -79,6 +86,13 @@ public class PlayerData : MonoBehaviour
         saveData.itemStates = (ItemState[])SceneItemManager.Instance.itemStates.Clone();
         saveData.roomIndex = RoomManager.Instance.roomIndex;
         saveData.planetIndex = RoomManager.Instance.planetIndex;
+
+        saveData.timeRecordStart = TimeManager.Instance.timeRecordStart;
+        saveData.targetTime = TimeManager.Instance.targetTime;
+        saveData.timeRoomIndex = TimeManager.Instance.roomIndex;
+        saveData.planetIndex = TimeManager.Instance.planetIndex;
+        saveData.callbackIndex = TimeManager.Instance.callbackIndex;
+        saveData.ceState = CeController.Instance.state;
         //saveData.itemList = StoreManager.Instance.IdAll();//已修改
         return saveData;
     }
@@ -87,13 +101,33 @@ public class PlayerData : MonoBehaviour
     private IEnumerator LoadingData(SaveData saveData)
     {
         yield return new WaitForSeconds(4f);
+
+        Debug.Log("Load");
+
         EventSystem.Instance.staticEventList = (int[])saveData.staticEventList.Clone();
         DialogueSystem.Instance.canEnterDialog = (bool[])saveData.canEnterDialog.Clone();
         StoreSystem.SetStore(saveData.itemList);//背包物品读取变更
         SceneItemManager.Instance.itemStates = (ItemState[])saveData.itemStates.Clone();
         RoomManager.Instance.roomIndex = saveData.roomIndex;
         RoomManager.Instance.planetIndex = saveData.planetIndex;
+
+        TimeManager.Instance.time = 0;
+        TimeManager.Instance.timeRecordStart = saveData.timeRecordStart;
+        TimeManager.Instance.targetTime = saveData.targetTime;
+        TimeManager.Instance.roomIndex = saveData.timeRoomIndex;
+        TimeManager.Instance.planetIndex = saveData.planetIndex;
+        TimeManager.Instance.callbackIndex = saveData.callbackIndex;
+        TimeManager.Instance.callBack = TimeManager.GetCallback(saveData.callbackIndex);
+        
+        CeController.Instance.state = saveData.ceState;
+        CeController.Instance.ControlCEs();
         //StoreManager.Instance.SetStore(saveData.itemList);//已修改
+    }
+
+    private IEnumerator LoadingTimeManager(int saveIndex)
+    {
+        yield return new WaitForSeconds(4f);
+
     }
 
     public bool FindPath(int saveIndex)
