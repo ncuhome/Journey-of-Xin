@@ -74,7 +74,7 @@ public class ItemDisplay : MonoBehaviour
 
     void Start()
     {
-        SceneItemManager.Instance.itemStates[itemIndex] = ItemState.Interactive;
+        SceneItemManager.Instance.items[itemIndex] = this;
     }
 
     // Update is called once per frame

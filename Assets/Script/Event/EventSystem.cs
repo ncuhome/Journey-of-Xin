@@ -30,6 +30,7 @@ public class EventSystem : MonoBehaviour, IEventList
         {
             Destroy(this.gameObject);
         }
+        staticEventList = new int[100];
     }
 
     #endregion
@@ -66,103 +67,54 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         switch (index)
         {
-            case 1:
-                MiniGame3();
-                break;
-            case 2:
-                IntoWorkTable();
-                break;
-            case 3:
-                ShowLetterBox();
-                break;
-            case 4:
-                GetWeapon();
-                break;
-            case 5:
-                MiniGame2();
-                break;
-            case 6:
-                DeleteRebornDevice();
-                break;
-            case 7:
-                GetLetterInTrashBin();
-                break;
-            case 8:
-                GetCoffee();
-                break;
-            case 9:
-                GetLetterInBox();
-                break;
-            case 10:
-                GetNumber1();
-                break;
-            case 11:
-                GetNumber2();
-                break;
-            case 12:
-                GetNumber3();
-                break;
-            case 13:
-                GetNumber4();
-                break;
-            case 14:
-                GetNumber5();
-                break;
-            case 15:
-                MiniGame4();
-                break;
-            case 16:
-                GetMailInShip();
-                break;
-            case 17:
-                ClickCoffeeInMarket();
-                break;
-            case 18:
-                ClickNeutrinoDebugger();
-                break;
-            case 19:
-                ClickPerspectiveGlass();
-                break;
-            case 20:
-                ClickBlackMineral();
-                break;
-            case 21:
-                ClickEndlessEnergyMaker();
-                break;
-            case 22:
-                GetBlackMineral();
-                break;
-            case 23:
-                GetNeutrinoDebugger();
-                break;
-            case 24:
-                GetEndlessEnergyMaker();
-                break;
-            case 25:
-                GetPerspectiveGlass();
-                break;
-            case 26:
-                MiniGame1();
-                break;
-                
-            case 32:
-                GetLastLetterAndMail();
-                break;
-
-            case 50:
-                ToPlanet1();
-                break;
-            case 51:
-                ToPlanet2();
-                break;
-            case 52:
-                ToPlanet3();
-                break;
-            case 53:
-                ToPlanet4();
-                break;
-            default:
-                return false;
+            case 1: MiniGame3(); break;
+            case 2: IntoWorkTable(); break;
+            case 3: ShowLetterBox(); break;
+            case 4: GetWeapon(); break;
+            case 5: MiniGame2(); break;
+            case 6: DeleteRebornDevice(); break;
+            case 7: GetLetterInTrashBin(); break;
+            case 8: GetCoffee(); break;
+            case 9: GetLetterInBox(); break;
+            case 10: GetNumber1(); break;
+            case 11: GetNumber2(); break;
+            case 12: GetNumber3(); break;
+            case 13: GetNumber4(); break;
+            case 14: GetNumber5(); break;
+            case 15: MiniGame4(); break;
+            case 16: GetMailInShip(); break;
+            case 17: ClickCoffeeInMarket(); break;
+            case 18: ClickNeutrinoDebugger(); break;
+            case 19: ClickPerspectiveGlass(); break;
+            case 20: ClickBlackMineral(); break;
+            case 21: ClickEndlessEnergyMaker(); break;
+            case 22: GetBlackMineral(); break;
+            case 23: GetNeutrinoDebugger(); break;
+            case 24: GetEndlessEnergyMaker(); break;
+            case 25: GetPerspectiveGlass(); break;
+            case 26: MiniGame1(); break;
+            case 27: StartDialog23(); break;
+            case 28: CanOperate(); break;
+            case 29: CanNotOperate(); break;
+            case 30: FinishMiniGame1(); break;
+            case 31: FinishMiniGame2(); break;
+            case 32: GetLastLetterAndMail(); break;
+            case 33: FinishMiniGame3(); break;
+            case 34: FinishMiniGame4(); break;
+            case 35: CanChooseRedBox(); break;
+            case 36: CeWalkToSpaceShip(); break;
+            case 37: OpenMainRoomItem(); break;
+            case 38: GetEndlessEnergy(); break;
+            case 39: ChangeToMainRoom(); break;
+            case 40: CELeaveMainRoom(); break;
+            case 41: startTimeRecord3(); break;
+            case 42: ChangeToSpaceShip(); break;
+            case 43: AfterGetLetterInBox(); break;
+            case 50: ToPlanet1(); break;
+            case 51: ToPlanet2(); break;
+            case 52: ToPlanet3(); break;
+            case 53: ToPlanet4(); break;
+            default: return false;
         }
         return true;
     }
@@ -378,6 +330,108 @@ public class EventSystem : MonoBehaviour, IEventList
     private void MiniGame1()
     {
         // 挖矿小游戏
+    }
+
+    private void StartDialog23()
+    {
+        SceneItemManager.Instance.dialogueTriggers[23].StartDialogue();
+    }
+
+    private void CanOperate()
+    {
+        SceneItemManager.Instance.interactive = true;
+    }
+
+    private void CanNotOperate()
+    {
+        SceneItemManager.Instance.interactive = false;
+    }
+
+    private void FinishMiniGame1()
+    {
+        staticEventList[1] = 1;
+    }
+    private void FinishMiniGame2()
+    {
+        staticEventList[2] = 1;
+        SceneItemManager.Instance.interactive = true;
+    }
+    private void FinishMiniGame3()
+    {
+        staticEventList[3] = 1;
+    }
+    private void FinishMiniGame4()
+    {
+        staticEventList[4] = 1;
+    }
+
+    private void CanChooseRedBox()
+    {
+        SceneItemManager.Instance.itemStates[10] = ItemState.Interactive;
+        CeController.Instance.state = 1;
+        TimeManager.Instance.StartTimeRecord(5f, 0, 0, 1);
+    }
+    private void CeWalkToSpaceShip()
+    {
+        CeController.Instance.CeWalkToSpaceShip();
+    }
+    private void OpenMainRoomItem()
+    {
+        SceneItemManager.Instance.itemStates[2] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[3] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[4] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[6] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[8] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[9] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[11] = ItemState.Interactive;
+    }
+
+    private void GetEndlessEnergy()
+    {
+        StoreSystem.Add(23);
+    }
+
+    private void ChangeToMainRoom()
+    {
+        RoomManager.Instance.LastRoom();
+        RoomManager.Instance.canChangeRoom = false;
+        TimeManager.Instance.StartTimeRecord(5, 0, 0, 2);
+    }
+
+    private void CELeaveMainRoom()
+    {
+        CeController.Instance.CELeaveMainRoom();
+    }
+
+    public void IncomingLetter()
+    {
+        SceneItemManager.Instance.itemStates[7] = ItemState.Interactive;
+        TimeManager.Instance.StartTimeRecord(15, 0, 0, 4);
+    }
+
+    private void startTimeRecord3()
+    {
+
+        TimeManager.Instance.StartTimeRecord(32, 0, 0, 3);
+    }
+
+    private void ChangeToSpaceShip()
+    {
+        SceneItemManager.Instance.itemStates[12] = ItemState.Interactive;
+        StartCoroutine("DelayToSpaceShip");
+    }
+
+    private IEnumerator DelayToSpaceShip()
+    {
+        yield return new WaitForSeconds(2.5f);
+        RoomManager.Instance.NextRoom();
+    }
+
+    private void AfterGetLetterInBox()
+    {
+        staticEventList[10] = 1;
+        TimeManager.Instance.StopTimeRecord();
+        TimeManager.Instance.StartTimeRecord(5, 0, 0, 4);
     }
 
 

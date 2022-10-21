@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneItemManager : MonoBehaviour
 {
-    public static SceneItemManager Instance {get; private set;}
+    public static SceneItemManager Instance { get; private set; }
     public bool interactive = true;
     public GameObject intoWorkTablePanel = null;
     public GameObject letterBox = null;
@@ -16,7 +16,9 @@ public class SceneItemManager : MonoBehaviour
     public GameObject perspectiveGlass = null;
     public GameObject endlessEnergyMaker = null;
     public GameObject letterInTrashBin = null;
+    public ItemDisplay[] items = new ItemDisplay[100];
     public ItemState[] itemStates = new ItemState[100];
+    public DialogueTrigger[] dialogueTriggers = new DialogueTrigger[50];
 
     public GameObject panel = null;
 
@@ -51,11 +53,17 @@ public class SceneItemManager : MonoBehaviour
         lastLetter.SetActive(false);
         lastMail.SetActive(false);
         panel.SetActive(false);
+
+        for (int i = 0; i < itemStates.Length; i++)
+        {
+            itemStates[i] = ItemState.NotInteractive;
+        }
+        itemStates[7] = ItemState.Invisible;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

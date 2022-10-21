@@ -11,8 +11,7 @@ public class SecretNumber : MonoBehaviour
     {
         if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (SceneItemManager.Instance.itemStates[GetComponent<ItemDisplay>().itemIndex] != ItemState.Interactive || !SceneItemManager.Instance.interactive) { return; }
-        //if (StoreSystem.Find(20))
-        if (true)
+        if (StoreSystem.Find(20))
         {   
             correctDialog.StartDialogue();
         }

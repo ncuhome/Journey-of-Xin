@@ -12,27 +12,33 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool autoEnterDialogue = false; // 是否在进入场景/房间 时就自动进行对话
 
+    public bool DialogOnce = true; // 是否只能进行一次对话
 
     #endregion
 
     #region Unity Methods
 
+    private void Start()
+    {
+        SceneItemManager.Instance.dialogueTriggers[dialogIndex] = this;
+    }
+
     private void OnEnable() // 依靠 autoEnterDialogue 变量与触发器的激活来开启自动进入对话
     {
-        if (DialogueSystem.Instance)
+
+    }
+
+    private void Update() // 如果鼠标在触发器内且点击了，就进入对话
+    {
+        if ((DialogueSystem.Instance) && (InputManager.Instance.sceneState == SceneState.MainScene))
         {
             AutoDialog();
         }
     }
 
-    private void Update() // 如果鼠标在触发器内且点击了，就进入对话
-    {
-
-    }
-
 
     #endregion
-    
+
     #region Trigger
 
     public void StartDialogue() //判断是否正在对话，如果没有正在对话则开始新的对话
@@ -42,19 +48,23 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
         Debug.Log("StartDialog");
-        //DialogueSystem.Instance.canEnterDialog[dialogIndex] = false;
-        DialogueSystem.Instance.StartCoroutine("StartDialogue",this);
+        if (DialogOnce)
+        {
+            DialogueSystem.Instance.canEnterDialog[dialogIndex] = false;
+        }
+        DialogueSystem.Instance.StartCoroutine("StartDialogue", this);
     }
 
     public void AutoDialog()
     {
-        //if (autoEnterDialogue && DialogueSystem.Instance.canEnterDialog[dialogIndex]){
-        if (autoEnterDialogue)
+        if (autoEnterDialogue && DialogueSystem.Instance.canEnterDialog[dialogIndex])
         {
-            StartDialogue();
-            this.gameObject.SetActive(false);
+            {
+                StartDialogue();
+                this.gameObject.SetActive(false);
+            }
         }
+        
     }
-
     #endregion
 }

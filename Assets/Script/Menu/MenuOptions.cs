@@ -70,11 +70,13 @@ public class MenuOptions : MonoBehaviour
 
     public void ReturnToGame()
     {
+        InputManager.Instance.sceneState = SceneState.MainScene;
         menuCanvas.SetActive(false);
     }
 
     public void OpenMenu()
     {
+        InputManager.Instance.sceneState = SceneState.Menu;
         menuCanvas.SetActive(true);
     }
 
@@ -98,13 +100,13 @@ public class MenuOptions : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (!menuCanvas.activeInHierarchy)
+            if (InputManager.Instance.sceneState == SceneState.MainScene)
             {
                 OpenMenu();
             }
             else
             {
-                if (saveCanvas.activeInHierarchy || settingCanvas.activeInHierarchy)
+                if (settingCanvas.activeInHierarchy || saveCanvas.activeInHierarchy)
                 {
                     ReturnToMenu();
                 }

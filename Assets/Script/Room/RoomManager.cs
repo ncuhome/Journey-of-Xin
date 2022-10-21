@@ -9,13 +9,14 @@ public class RoomManager : MonoBehaviour
     public static RoomManager Instance { get; private set; }
     public int planetIndex = 0;
     public int roomIndex = 0;
-    private GameObject[][] rooms = null;
+    public GameObject[][] rooms = null;
     public GameObject leftButton = null;
     public GameObject rightButton = null;
     public GameObject roomExchangePre = null;
     private GameObject roomExchangeCanvas = null;
     private bool isExchanging = false;
     private bool isAnimationPlay = false;
+    public bool canChangeRoom = true;
 
     #endregion
 
@@ -30,6 +31,8 @@ public class RoomManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        canChangeRoom = true;
 
         rooms = new GameObject[4][];
         rooms[0] = new GameObject[2];
@@ -49,6 +52,16 @@ public class RoomManager : MonoBehaviour
         leftButton = GameObject.Find("LeftButton");
         rightButton = GameObject.Find("RightButton");
 
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                rooms[i][j].SetActive(false);
+            }
+        }
+
+        rooms[0][0].SetActive(true);
+
     }
 
     void Update()
@@ -58,7 +71,7 @@ public class RoomManager : MonoBehaviour
             return;
         }
 
-        if ((roomIndex == 0) || (!rooms[planetIndex][roomIndex - 1]))
+        if ((roomIndex == 0) || (!rooms[planetIndex][roomIndex - 1]) || (!canChangeRoom))
         {
             leftButton.SetActive(false);
         }
@@ -67,7 +80,7 @@ public class RoomManager : MonoBehaviour
             leftButton.SetActive(true);
         }
 
-        if ((roomIndex == rooms[planetIndex].Length - 1) || (!rooms[planetIndex][roomIndex + 1]))
+        if ((roomIndex == rooms[planetIndex].Length - 1) || (!rooms[planetIndex][roomIndex + 1]) || (!canChangeRoom))
         {
             rightButton.SetActive(false);
         }
@@ -82,7 +95,7 @@ public class RoomManager : MonoBehaviour
             {
                 if (rooms[i][j])
                 {
-                    rooms[i][j].SetActive((i == planetIndex)&&(j == roomIndex));
+                    rooms[i][j].SetActive((i == planetIndex) && (j == roomIndex));
                 }
             }
         }
@@ -94,6 +107,7 @@ public class RoomManager : MonoBehaviour
 
     public void NextRoom()
     {
+        if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (isAnimationPlay)
         {
             return;
@@ -111,6 +125,7 @@ public class RoomManager : MonoBehaviour
 
     public void LastRoom()
     {
+        if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (isAnimationPlay)
         {
             return;
@@ -144,6 +159,7 @@ public class RoomManager : MonoBehaviour
     public IEnumerator FinishExchange()
     {
         yield return new WaitForSeconds(1f);
+        CeController.Instance.ControlCEs();
         isExchanging = false;
     }
 

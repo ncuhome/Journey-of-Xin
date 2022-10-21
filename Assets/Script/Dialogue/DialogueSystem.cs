@@ -65,6 +65,10 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0;i < 100;i++)
+        {
+            canEnterDialog[i] = true;
+        }
         dialogueNode.SetActive(false);
         // StartDialogue(dialogDataFile);
     }
@@ -101,7 +105,7 @@ public class DialogueSystem : MonoBehaviour
             avatar.gameObject.SetActive(true);
             avatar.sprite = imageDic[name];
         }
-        StartCoroutine("DisplayDialogue");
+        StartCoroutine("DisplayDialogue", text);
 
     }
 
@@ -155,7 +159,7 @@ public class DialogueSystem : MonoBehaviour
                         DialogEffect(int.Parse(effect));
                     }
                 }
-                
+
                 break;
             }
 
@@ -177,6 +181,8 @@ public class DialogueSystem : MonoBehaviour
             }
             else if (cells[0] == "&") // 如果是选择对话则显示按钮
             {
+                UpdateText(cells[2], "");
+
                 GenerateOption(i);
                 break;
             }
@@ -257,13 +263,13 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public IEnumerator DisplayDialogue()//一个字一个字显示文本
+    public IEnumerator DisplayDialogue(string text)//一个字一个字显示文本
     {
         // Debug.Log("开始打字");
         textIsFinished = false;
-        for (int i = 0; i < cells[3].Length; i++)
+        for (int i = 0; i < text.Length; i++)
         {
-            dialogText.text += cells[3][i];
+            dialogText.text += text[i];
 
             yield return new WaitForSeconds(textSpeed);
         }

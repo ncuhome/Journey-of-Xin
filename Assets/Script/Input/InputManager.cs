@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum SceneState
 {
-    MainScene, Bag, Workbench, Dialog, Animation
+    MainScene, Bag, Workbench, Dialog, Animation , Menu
 }
 public class InputManager : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sceneState == SceneState.MainScene)
+        if ((sceneState == SceneState.MainScene)||(sceneState == SceneState.Menu))
         {
             MenuOptions.Instance.InputDetect();
         }
