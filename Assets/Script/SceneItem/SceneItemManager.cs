@@ -16,6 +16,7 @@ public class SceneItemManager : MonoBehaviour
     public GameObject perspectiveGlass = null;
     public GameObject endlessEnergyMaker = null;
     public GameObject letterInTrashBin = null;
+    public GameObject trashBin = null;
     public GameObject rebornMachineCE = null;
     public ItemDisplay[] items = new ItemDisplay[100];
     public ItemState[] itemStates = new ItemState[100];
@@ -50,6 +51,7 @@ public class SceneItemManager : MonoBehaviour
             itemStates[i] = ItemState.NotInteractive;
         }
         itemStates[7] = ItemState.Invisible;
+        itemStates[22] = ItemState.Invisible;
     }
 
     // Update is called once per frame
@@ -63,5 +65,24 @@ public class SceneItemManager : MonoBehaviour
         intoWorkTablePanel = GameObject.Find("Canvas").transform.Find("IntoWorkTable").gameObject;
         letterBox = GameObject.Find("Canvas").transform.Find("LetterBoxPanel").gameObject;
         panel = GameObject.Find("Canvas").transform.Find("Panel").gameObject;
+    }
+
+    
+
+    public void ClickTrashBin1()
+    {
+        if (EventSystem.Instance.staticEventList[11] != 1)
+        {
+            trashBin.transform.Find("Dialog1").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        
+    }
+
+    public void ClickTrashBin2()
+    {
+        if (EventSystem.Instance.staticEventList[11] == 1)
+        {
+            trashBin.transform.Find("Dialog2").GetComponent<DialogueTrigger>().StartDialogue();
+        }
     }
 }

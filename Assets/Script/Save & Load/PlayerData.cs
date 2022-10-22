@@ -26,6 +26,7 @@ public class PlayerData : MonoBehaviour
         public int timeRoomIndex = 0;
         public int timePlanetIndex = 0;
         public int callbackIndex = 0;
+        public bool needStay = false;
         public int ceState = 0;
     }
     public GameObject animatorLoading;//过场动画预制件
@@ -92,6 +93,8 @@ public class PlayerData : MonoBehaviour
         saveData.timeRoomIndex = TimeManager.Instance.roomIndex;
         saveData.planetIndex = TimeManager.Instance.planetIndex;
         saveData.callbackIndex = TimeManager.Instance.callbackIndex;
+        saveData.needStay = TimeManager.Instance.needStay;
+        
         saveData.ceState = CeController.Instance.state;
         //saveData.itemList = StoreManager.Instance.IdAll();//已修改
         return saveData;
@@ -117,6 +120,7 @@ public class PlayerData : MonoBehaviour
         TimeManager.Instance.roomIndex = saveData.timeRoomIndex;
         TimeManager.Instance.planetIndex = saveData.planetIndex;
         TimeManager.Instance.callbackIndex = saveData.callbackIndex;
+        TimeManager.Instance.needStay = saveData.needStay;
         TimeManager.Instance.callBack = TimeManager.GetCallback(saveData.callbackIndex);
         
         CeController.Instance.state = saveData.ceState;

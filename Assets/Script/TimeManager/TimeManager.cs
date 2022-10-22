@@ -14,6 +14,7 @@ public class TimeManager : MonoBehaviour
     public int roomIndex = 0;
     public int planetIndex = 0;
     public int callbackIndex = 0;
+    public bool needStay = true;
     public CallBack callBack = null;
 
     private void Awake()
@@ -31,7 +32,7 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
-        if ((RoomManager.Instance.roomIndex != roomIndex) || (RoomManager.Instance.planetIndex != planetIndex))
+        if (((RoomManager.Instance.roomIndex != roomIndex) || (RoomManager.Instance.planetIndex != planetIndex)) && (needStay))
         {
             time = 0;
             return;
@@ -49,12 +50,13 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    public void StartTimeRecord(float target, int planet, int room, int call)
+    public void StartTimeRecord(float target, int planet, int room, int call, bool stay)
     {
         planetIndex = planet;
+        needStay = stay;
         roomIndex = room;
         callbackIndex = call;
-        callBack = GetCallback(callbackIndex);
+        callBack = GetCallback(call);
         time = 0;
         targetTime = target;
         timeRecordStart = true;
@@ -74,6 +76,8 @@ public class TimeManager : MonoBehaviour
             case 2: return CeController.Instance.CEMoveToMainRoom;
             case 3: return EventSystem.Instance.IncomingLetter;
             case 4: return CeController.Instance.CEMoveToMainRoom;
+            case 5: return EventSystem.Instance.StartDialogNode12;
+            case 6: return EventSystem.Instance.StartDialogRemind1;
         }
         return null;
     }

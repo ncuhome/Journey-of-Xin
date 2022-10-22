@@ -43,11 +43,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public void StartDialogue() //判断是否正在对话，如果没有正在对话则开始新的对话
     {
-        if (DialogueSystem.inDialogue)
-        {
-            return;
-        }
-        Debug.Log("StartDialog");
+        if (DialogueSystem.inDialogue) { return; }
+        if (!DialogueSystem.Instance.canEnterDialog[dialogIndex]) { return; }
         if (DialogOnce)
         {
             DialogueSystem.Instance.canEnterDialog[dialogIndex] = false;
@@ -64,7 +61,7 @@ public class DialogueTrigger : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
-        
+
     }
     #endregion
 }

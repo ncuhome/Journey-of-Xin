@@ -130,6 +130,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1335031919068753876, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031919068753876, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031919068753879, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -630
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031919068753879, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 158
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031919738817666, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031919738817666, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f3281d91cbdd2644595718fe288a3e9e, type: 3}
+    - target: {fileID: 1335031919738817677, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031919738817677, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1335031920317242369, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -218,6 +250,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1335031920328183651, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -700
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031920328183651, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031920478304764, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335031920478304764, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
 --- !u!1 &2089609797
@@ -267,8 +315,8 @@ MonoBehaviour:
   canEnterDialog: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   dialogueTrigger: {fileID: 0}
   backgroundSprite:
-  - {fileID: 21300000, guid: e2c489789a1d56f4f84c3acd8cb893f7, type: 3}
-  - {fileID: 21300000, guid: b75deeadbe04a134fb8a43b1db061f0e, type: 3}
+  - {fileID: 21300000, guid: 03df45ac0d4593d46be6bface5451db8, type: 3}
+  - {fileID: 21300000, guid: f3281d91cbdd2644595718fe288a3e9e, type: 3}
   avatars:
   - {fileID: 0}
   - {fileID: 0}

@@ -21,21 +21,32 @@ public class CeController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
         CEs[0] = RoomManager.Instance.rooms[0][0].transform.Find("CE1").gameObject;
         CEs[1] = RoomManager.Instance.rooms[0][1].transform.Find("CE2").gameObject;
         CEs[2] = RoomManager.Instance.rooms[0][0].transform.Find("CE3").gameObject;
+        CEs[3] = RoomManager.Instance.rooms[0][1].transform.Find("CE4").gameObject;
 
+        // ÉèÖÃÍ¼Æ¬ÖÐÖ»ÓÐ²»Í¸Ã÷µÄµØ·½ÄÜ´¥·¢ÏìÓ¦
+        // CEs[0].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
+        // CEs[1].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
+        // CEs[2].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
+        // CEs[3].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
     }
     // Start is called before the first frame update
     void Start()
     {
-        centerOfCanvas = new Vector3(960, 540, 0);
+        centerOfCanvas = new Vector3(960, 340, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ControlCEs();
+        // CEs[0].GetComponent<Image>().rectTransform.sizeDelta = new Vector2 (CEs[0].GetComponent<Image>().sprite.rect.width * imageSizeScale, CEs[0].GetComponent<Image>().sprite.rect.height * imageSizeScale);
+        // CEs[1].GetComponent<Image>().rectTransform.sizeDelta = new Vector2 (CEs[1].GetComponent<Image>().sprite.rect.width * imageSizeScale, CEs[1].GetComponent<Image>().sprite.rect.height * imageSizeScale);
+        // CEs[2].GetComponent<Image>().rectTransform.sizeDelta = new Vector2 (CEs[2].GetComponent<Image>().sprite.rect.width * imageSizeScale, CEs[2].GetComponent<Image>().sprite.rect.height * imageSizeScale);
+        // CEs[3].GetComponent<Image>().rectTransform.sizeDelta = new Vector2 (CEs[3].GetComponent<Image>().sprite.rect.width * imageSizeScale, CEs[3].GetComponent<Image>().sprite.rect.height * imageSizeScale);
+        ControlCEs();
     }
 
     public void Click1()
@@ -58,11 +69,11 @@ public class CeController : MonoBehaviour
     public void CeWalkToSpaceShip()
     {
 
-        // å¼€å§‹æ’­æ”¾åŠ¨ç”»
+        // å¼€å§‹æ’­æ”¾åŠ¨ç”?
         InputManager.Instance.sceneState = SceneState.Animation;
         CEs[0].GetComponent<Button>().interactable = false;
 
-        // å¾…æ·»åŠ åŠ¨ç”»
+        // å¾…æ·»åŠ åŠ¨ç”?
         CEs[0].GetComponent<Animator>().SetTrigger("StartWalking");
         StartCoroutine("FinishWalkToSpaceShip");
     }
@@ -97,6 +108,7 @@ public class CeController : MonoBehaviour
         {
             StoreSystem.Remove(9);
             EventSystem.Instance.staticEventList[7] = 1;
+            state = 5;
             CEs[1].transform.Find("LostDialog").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
@@ -124,28 +136,43 @@ public class CeController : MonoBehaviour
             case 1:
                 CEs[0].transform.position = centerOfCanvas;
                 CEs[1].transform.position = centerOfCanvas;
-                CEs[2].transform.position = centerOfCanvas + new Vector3(1016, 0, 0);
+                CEs[2].transform.position = centerOfCanvas + new Vector3(1150, 0, 0);
+                CEs[3].transform.position = centerOfCanvas;
                 break;
             case 2:
                 // CEs[0].GetComponent<Animator>().enabled = false;
                 // CEs[0].transform.position = centerOfCanvas + new Vector3(1016, 0, 0);
                 CEs[0].SetActive(false);
                 CEs[1].transform.position = centerOfCanvas;
-                CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount);
-                CEs[2].transform.position = centerOfCanvas + new Vector3(1016, 0, 0);
+                CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount - 2);
+                CEs[2].transform.position = centerOfCanvas + new Vector3(1150, 0, 0);
+                CEs[3].transform.position = centerOfCanvas;
                 break;
             case 3:
                 CEs[0].SetActive(false);
                 CEs[1].SetActive(false);
                 CEs[2].transform.position = centerOfCanvas + new Vector3(-607, 0, 0);
+                CEs[2].GetComponent<Animator>().Play("Stand 0");
+                CEs[3].transform.position = centerOfCanvas;
                 break;
             case 4:
                 CEs[0].SetActive(false);
                 CEs[1].SetActive(true);
                 CEs[1].GetComponent<Button>().enabled = false;
                 CEs[1].transform.position = centerOfCanvas;
-                CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount);
-                CEs[2].transform.position = centerOfCanvas + new Vector3(1040, 0, 0);
+                CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount - 2);
+                CEs[2].transform.position = centerOfCanvas + new Vector3(1150, 0, 0);
+                CEs[3].transform.position = centerOfCanvas;
+                break;
+            case 5:
+                CEs[0].SetActive(false);
+                CEs[1].SetActive(false);
+                CEs[2].SetActive(false);
+                CEs[3].transform.SetSiblingIndex(CEs[3].transform.parent.childCount - 2);
+                CEs[3].GetComponent<Animator>().Play("Sleep");
+                CEs[3].transform.position = centerOfCanvas;
+                break;
+            case 6:
                 break;
         }
     }
@@ -156,6 +183,7 @@ public class CeController : MonoBehaviour
     {
         InputManager.Instance.sceneState = SceneState.Animation;
         CEs[2].GetComponent<Animator>().SetTrigger("StartWalking");
+        CEs[2].transform.SetSiblingIndex(CEs[2].transform.parent.childCount);
         StartCoroutine("FinishWalkToMainControlRoom");
     }
 
@@ -179,13 +207,13 @@ public class CeController : MonoBehaviour
                 CEs[2].transform.Find("Dialog34").GetComponent<DialogueTrigger>().StartDialogue();
             }
         }
-        
+
     }
 
     public void CELeaveMainRoom()
     {
         InputManager.Instance.sceneState = SceneState.Animation;
-        CEs[2].GetComponent<Animator>().SetTrigger("StartWalking"); 
+        CEs[2].GetComponent<Animator>().SetTrigger("StartWalking");
         StartCoroutine("FinishLeaveMainRoom");
     }
 
@@ -195,6 +223,26 @@ public class CeController : MonoBehaviour
         state = 4;
         InputManager.Instance.sceneState = SceneState.MainScene;
         SceneItemManager.Instance.itemStates[5] = ItemState.Interactive;
+    }
+
+
+    public void ClickFaintCe()
+    {
+        if (EventSystem.Instance.staticEventList[12] != 1)
+        {
+            CEs[3].GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else
+        {
+            AwakeCe();
+        }
+    }
+
+    public void AwakeCe()
+    {
+        state = 6;
+        CEs[3].GetComponent<Animator>().SetBool("Sleep", false);
+        CEs[3].transform.Find("DialogNode9").GetComponent<DialogueTrigger>().StartDialogue();
     }
 
 }

@@ -113,10 +113,15 @@ public class EventSystem : MonoBehaviour, IEventList
             case 44: GetRebornMachineCE(); break;
             case 45: DisplayGetRebornMachineCE(); break;
             case 46: CanClickTrashBin(); break;
+            case 47: LetterIntoTrashBin(); break;
+            case 48: CeFaint(); break;
+            case 49: StealCe(); break;
             case 50: ToPlanet1(); break;
             case 51: ToPlanet2(); break;
             case 52: ToPlanet3(); break;
             case 53: ToPlanet4(); break;
+            case 54: AwakeCe(); break;
+            case 55: AfterDialogNode9(); break;
             default: return false;
         }
         return true;
@@ -217,6 +222,8 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         StoreSystem.Add(14);
         SceneItemManager.Instance.interactive = true;
+        SceneItemManager.Instance.itemStates[7] = ItemState.Interactive;
+        SceneItemManager.Instance.letterInTrashBin.transform.SetSiblingIndex(SceneItemManager.Instance.letterInTrashBin.transform.parent.childCount);
         SceneItemManager.Instance.letterInTrashBin.GetComponent<ItemDisplay>().Click();
     }
 
@@ -372,7 +379,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         SceneItemManager.Instance.itemStates[10] = ItemState.Interactive;
         CeController.Instance.state = 1;
-        TimeManager.Instance.StartTimeRecord(5f, 0, 0, 1);
+        TimeManager.Instance.StartTimeRecord(5, 0, 0, 1, true);
     }
     private void CeWalkToSpaceShip()
     {
@@ -398,7 +405,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         RoomManager.Instance.LastRoom();
         RoomManager.Instance.canChangeRoom = false;
-        TimeManager.Instance.StartTimeRecord(5, 0, 0, 2);
+        TimeManager.Instance.StartTimeRecord(5, 0, 0, 2, true);
     }
 
     private void CELeaveMainRoom()
@@ -409,13 +416,13 @@ public class EventSystem : MonoBehaviour, IEventList
     public void IncomingLetter()
     {
         SceneItemManager.Instance.itemStates[7] = ItemState.Interactive;
-        TimeManager.Instance.StartTimeRecord(15, 0, 0, 4);
+        TimeManager.Instance.StartTimeRecord(15, 0, 0, 4, true);
     }
 
     private void startTimeRecord3()
     {
-
-        TimeManager.Instance.StartTimeRecord(32, 0, 0, 3);
+        
+        TimeManager.Instance.StartTimeRecord(32, 0, 0, 3, true);
     }
 
     private void ChangeToSpaceShip()
@@ -434,30 +441,108 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         staticEventList[10] = 1;
         TimeManager.Instance.StopTimeRecord();
-        TimeManager.Instance.StartTimeRecord(5, 0, 0, 4);
+        TimeManager.Instance.StartTimeRecord(5, 0, 0, 4, true);
     }
 
     private void GetRebornMachineCE()
     {
         StoreSystem.Add(17);
-        StartCoroutine("DelayStartDialogNode11");
+        if (staticEventList[6] == 1)
+        {
+            StartCoroutine("DelayStartDialogNode11");
+        }
+        else
+        {
+            staticEventList[12] = 1;
+            CeController.Instance.CEs[3].transform.Find("DialogRemind2").GetComponent<DialogueTrigger>().StartDialogue();
+        }
     }
 
     private void DisplayGetRebornMachineCE()
     {
         RoomManager.Instance.canChangeRoom = false;
         SceneItemManager.Instance.itemStates[23] = ItemState.Interactive;
+        SceneItemManager.Instance.rebornMachineCE.transform.SetSiblingIndex(SceneItemManager.Instance.rebornMachineCE.transform.parent.childCount -1 );
         SceneItemManager.Instance.rebornMachineCE.GetComponent<ItemDisplay>().Click();
     }
 
     private IEnumerator DelayStartDialogNode11()
     {
         yield return new WaitForSeconds(1.5f);
+        GameObject.Find("DialogNode11").GetComponent<DialogueTrigger>().StartDialogue();
     }
 
     private void CanClickTrashBin()
     {
         SceneItemManager.Instance.itemStates[13] = ItemState.Interactive;
+        TimeManager.Instance.StartTimeRecord(15, 0, 1, 5, true);
+    }
+
+    public void StartDialogNode12()
+    {
+        CeController.Instance.CEs[1].GetComponent<Animator>().SetTrigger("LeaveSpaceShip");
+        InputManager.Instance.sceneState = SceneState.Animation;
+        StartCoroutine("EndAnimation");
+        StartCoroutine("DelayStartDialogNode12");
+    }
+
+    private IEnumerator DelayStartDialogNode12()
+    {
+        yield return new WaitForSeconds(2.1f);
+        GameObject.Find("DialogNode12").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private void LetterIntoTrashBin()
+    {
+        CeController.Instance.CEs[1].GetComponent<Animator>().SetTrigger("WalkToTrashbin");
+        
+        InputManager.Instance.sceneState = SceneState.Animation;
+        StartCoroutine("EndAnimation");
+        
+        staticEventList[11] = 1;
+        SceneItemManager.Instance.itemStates[12] = ItemState.Interactive;
+    }
+
+    private void CeFaint()
+    {
+        CeController.Instance.state = 5;
+        CeController.Instance.CEs[3].GetComponent<Animator>().SetBool("Sleep", true);
+        StartCoroutine("AfterCeFaint");
+    }
+
+    private IEnumerator AfterCeFaint()
+    {
+        yield return new WaitForSeconds(2f);
+        RoomManager.Instance.LastRoom();
+        SceneItemManager.Instance.itemStates[5] = ItemState.Interactive;
+        TimeManager.Instance.StartTimeRecord(60, 0, 0, 6, false);
+    }
+
+    public void StartDialogRemind1()
+    {
+        GameObject.Find("DialogRemind1").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private void StealCe()
+    {
+        SceneItemManager.Instance.itemStates[23] = ItemState.Interactive;
+        SceneItemManager.Instance.rebornMachineCE.GetComponent<ItemDisplay>().Click();
+    }
+
+    private void AwakeCe()
+    {
+        CeController.Instance.AwakeCe();
+    }
+
+    private void AfterDialogNode9()
+    {
+        SceneItemManager.Instance.itemStates[12] = ItemState.Interactive;
+    }
+
+    public IEnumerator EndAnimation()
+    {
+        yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
     }
 
     #endregion

@@ -20,6 +20,8 @@ public class ItemDisplay : MonoBehaviour
     private Vector3 target = Vector3.zero;
     public GameObject panelPrefab = null;
     public bool moveToCenter = true;
+    public bool showInHighestLevel = true;
+    public bool highLight = true;
 
     private GameObject panel = null;
 
@@ -50,13 +52,23 @@ public class ItemDisplay : MonoBehaviour
             gameObject.transform.localPosition = Vector3.zero;
             GetComponent<Animator>().SetBool("Scale", true);
         }
-        GetComponent<Animator>().SetBool("Click", true);
-        transform.SetSiblingIndex(transform.parent.childCount);
+        if (highLight)
+        {
+            GetComponent<Animator>().SetBool("Click", true);
+        }
+        if (showInHighestLevel)
+        {
+            transform.SetSiblingIndex(transform.parent.childCount);
+        }
         if (GetComponent<DialogueTrigger>() != null)
         {
             GetComponent<DialogueTrigger>().StartDialogue();
-            //InstantiatePanel();
         }
+    }
+
+    public void CancelClick()
+    {
+        GetComponent<Animator>().SetBool("Click", false);
     }
 
     void Awake()
@@ -70,7 +82,7 @@ public class ItemDisplay : MonoBehaviour
         {
             itemButton = GetComponent<Button>();
         }
-        
+
     }
 
     void Start()
@@ -147,15 +159,17 @@ public class ItemDisplay : MonoBehaviour
             case 0: SceneItemManager.Instance.lastLetter = this.gameObject; break;
             case 1: SceneItemManager.Instance.lastMail = this.gameObject; break;
             case 7: SceneItemManager.Instance.letterInTrashBin = this.gameObject; break;
+            case 13: SceneItemManager.Instance.trashBin = this.gameObject; break;
             case 15: SceneItemManager.Instance.coffeeInMarket = this.gameObject; break;
+
             case 16: SceneItemManager.Instance.neutrinoDebugger = this.gameObject; break;
             case 17: SceneItemManager.Instance.blackMineral = this.gameObject; break;
             case 18: SceneItemManager.Instance.perspectiveGlass = this.gameObject; break;
             case 19: SceneItemManager.Instance.endlessEnergyMaker = this.gameObject; break;
             case 23: SceneItemManager.Instance.rebornMachineCE = this.gameObject; break;
-            
+
         }
-            
+
 
     }
 }
