@@ -126,7 +126,14 @@ public class CeController : MonoBehaviour
             CEs[1].transform.Find("LastLostDialog").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
-        CEs[1].transform.Find("NoItemDialog").GetComponent<DialogueTrigger>().StartDialogue();
+        if ((EventSystem.Instance.staticEventList[5] != 1)
+        && (EventSystem.Instance.staticEventList[6] != 1)
+        && (EventSystem.Instance.staticEventList[7] != 1)
+        && (EventSystem.Instance.staticEventList[8] != 1)
+        && (EventSystem.Instance.staticEventList[9] != 1))
+        {
+            CEs[1].transform.Find("NoItemDialog").GetComponent<DialogueTrigger>().StartDialogue();
+        }
     }
 
     public void ControlCEs()
@@ -152,7 +159,10 @@ public class CeController : MonoBehaviour
                 CEs[0].SetActive(false);
                 CEs[1].SetActive(false);
                 CEs[2].transform.position = centerOfCanvas + new Vector3(-607, 0, 0);
-                CEs[2].GetComponent<Animator>().Play("Stand 0");
+                if (EventSystem.Instance.staticEventList[13] != 1)
+                {
+                    CEs[2].GetComponent<Animator>().Play("Stand 0");
+                }
                 CEs[3].transform.position = centerOfCanvas;
                 break;
             case 4:
@@ -169,7 +179,7 @@ public class CeController : MonoBehaviour
                 CEs[1].SetActive(false);
                 CEs[2].SetActive(false);
                 CEs[3].transform.SetSiblingIndex(CEs[3].transform.parent.childCount - 2);
-                CEs[3].GetComponent<Animator>().Play("Sleep");
+                CEs[3].GetComponent<Animator>().SetBool("Sleep", true);
                 CEs[3].transform.position = centerOfCanvas;
                 break;
             case 6:
@@ -190,6 +200,7 @@ public class CeController : MonoBehaviour
     public IEnumerator FinishWalkToMainControlRoom()
     {
         yield return new WaitForSeconds(2f);
+        EventSystem.Instance.staticEventList[13] = 1;
         state = 3;
         InputManager.Instance.sceneState = SceneState.MainScene;
         if (DialogueSystem.Instance.canEnterDialog[33])

@@ -70,7 +70,7 @@ public class PlayerData : MonoBehaviour
 
     public void Load(int saveIndex)
     {
-        LoadingScript.Scene = 7;//设置转入场景的索引值
+        LoadingScript.Scene = 3;//设置转入场景的索引值
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
         saveDataFileName = "SaveData" + saveIndex.ToString() + ".sav";
         LoadFromJson();

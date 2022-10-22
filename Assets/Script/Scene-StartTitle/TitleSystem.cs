@@ -103,7 +103,7 @@ public class TitleSystem : MonoBehaviour
     {
         nextScene = true;
         Debug.Log("??????");
-        LoadingScript.Scene = 7;//??
+        LoadingScript.Scene = 3;//??
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
     }
     /// <summary>

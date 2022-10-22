@@ -91,7 +91,7 @@ public class ItemSystem
             case 10: return Resources.Load<Sprite>("Image/Item/冲泡好的咖啡");
             case 11: return Resources.Load<Sprite>("Image/Item/冲泡好的咖啡");
             case 12: return Resources.Load<Sprite>("Image/Item/空物品");
-            case 13: return Resources.Load<Sprite>("Image/Item/空物品");
+            case 13: return Resources.Load<Sprite>("Image/Item/武器");
             case 14: return Resources.Load<Sprite>("Image/Item/邮箱里的信");
             case 15: return Resources.Load<Sprite>("Image/Item/飞船里的邮");
             case 16: return Resources.Load<Sprite>("Image/Item/空物品");

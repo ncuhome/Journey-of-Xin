@@ -70,6 +70,7 @@ public class SecretNumberManager : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     [MenuItem("SecretNumbers/DeleteNumbers")]
     public static void DeleteNumbers()
     {
@@ -79,4 +80,5 @@ public class SecretNumberManager : MonoBehaviour
         PlayerPrefs.SetInt("Number4",0);
         PlayerPrefs.SetInt("Number5",0);
     }
+    #endif
 }

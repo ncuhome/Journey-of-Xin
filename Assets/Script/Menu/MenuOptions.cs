@@ -26,17 +26,18 @@ public class MenuOptions : MonoBehaviour
             Debug.Log("有另外的实例");
             Destroy(this.gameObject);
         }
-        menuCanvas = GameObject.Find("Menu").gameObject;
-        saveCanvas = GameObject.Find("Save").transform.Find("SaveCanvas").gameObject;
-        settingCanvas = GameObject.Find("SettingsCanvas").gameObject;
-        menuOptions = menuCanvas.transform.Find("MenuOptions").gameObject;
+        // menuCanvas = GameObject.Find("Menu").gameObject;
+        // saveCanvas = GameObject.Find("Save").transform.Find("SaveCanvas").gameObject;
+        // settingCanvas = GameObject.Find("SettingsCanvas").gameObject;
+        // menuOptions = menuCanvas.transform.Find("MenuOptions").gameObject;
+        saveCanvas.SetActive(false);
+        settingCanvas.SetActive(false);
+        menuCanvas.SetActive(false);
     }
 
     private void Start() 
     {
-        saveCanvas.SetActive(false);
-        settingCanvas.SetActive(false);
-        menuCanvas.SetActive(false);
+
     }
 
     private void Update()
