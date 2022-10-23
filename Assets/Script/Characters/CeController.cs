@@ -27,7 +27,8 @@ public class CeController : MonoBehaviour
         CEs[2] = RoomManager.Instance.rooms[0][0].transform.Find("CE3").gameObject;
         CEs[3] = RoomManager.Instance.rooms[0][1].transform.Find("CE4").gameObject;
         CEs[4] = RoomManager.Instance.rooms[0][1].transform.Find("CE5").gameObject;
-        // ÉèÖÃÍ¼Æ¬ÖÐÖ»ÓÐ²»Í¸Ã÷µÄµØ·½ÄÜ´¥·¢ÏìÓ¦
+        CEs[5] = RoomManager.Instance.rooms[1][0].transform.Find("CE6").gameObject;
+        // ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ö»ï¿½Ð²ï¿½Í¸ï¿½ï¿½ï¿½ÄµØ·ï¿½ï¿½Ü´ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
         // CEs[0].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
         // CEs[1].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
         // CEs[2].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
@@ -69,11 +70,11 @@ public class CeController : MonoBehaviour
     public void CeWalkToSpaceShip()
     {
 
-        // å¼€å§‹æ’­æ”¾åŠ¨ç”?
+        // å¼€å§‹æ’­æ”¾åŠ¨ï¿½?
         InputManager.Instance.sceneState = SceneState.Animation;
         CEs[0].GetComponent<Button>().interactable = false;
 
-        // å¾…æ·»åŠ åŠ¨ç”?
+        // å¾…æ·»åŠ åŠ¨ï¿½?
         CEs[0].GetComponent<Animator>().SetTrigger("StartWalking");
         StartCoroutine("FinishWalkToSpaceShip");
     }
