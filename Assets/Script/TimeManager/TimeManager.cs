@@ -78,6 +78,7 @@ public class TimeManager : MonoBehaviour
             case 4: return CeController.Instance.CEMoveToMainRoom;
             case 5: return EventSystem.Instance.StartDialogNode12;
             case 6: return EventSystem.Instance.StartDialogRemind1;
+            case 7: return EventSystem.Instance.EnterBlackMarket;
         }
         return null;
     }

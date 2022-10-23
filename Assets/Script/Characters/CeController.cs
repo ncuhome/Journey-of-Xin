@@ -26,7 +26,7 @@ public class CeController : MonoBehaviour
         CEs[1] = RoomManager.Instance.rooms[0][1].transform.Find("CE2").gameObject;
         CEs[2] = RoomManager.Instance.rooms[0][0].transform.Find("CE3").gameObject;
         CEs[3] = RoomManager.Instance.rooms[0][1].transform.Find("CE4").gameObject;
-
+        CEs[4] = RoomManager.Instance.rooms[0][1].transform.Find("CE5").gameObject;
         // 设置图片中只有不透明的地方能触发响应
         // CEs[0].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
         // CEs[1].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
@@ -179,10 +179,15 @@ public class CeController : MonoBehaviour
                 CEs[1].SetActive(false);
                 CEs[2].SetActive(false);
                 CEs[3].transform.SetSiblingIndex(CEs[3].transform.parent.childCount - 2);
-                CEs[3].GetComponent<Animator>().SetBool("Sleep", true);
+                if (EventSystem.Instance.staticEventList[14] == 1)
+                {
+                    CEs[3].GetComponent<Animator>().SetBool("Sleep", true);
+                }
                 CEs[3].transform.position = centerOfCanvas;
                 break;
             case 6:
+                CEs[1].transform.SetSiblingIndex(0);
+                CEs[4].transform.SetSiblingIndex(CEs[4].transform.parent.childCount - 2);
                 break;
         }
     }
@@ -193,7 +198,7 @@ public class CeController : MonoBehaviour
     {
         InputManager.Instance.sceneState = SceneState.Animation;
         CEs[2].GetComponent<Animator>().SetTrigger("StartWalking");
-        CEs[2].transform.SetSiblingIndex(CEs[2].transform.parent.childCount);
+        CEs[2].transform.SetSiblingIndex(CEs[2].transform.parent.childCount - 2);
         StartCoroutine("FinishWalkToMainControlRoom");
     }
 
@@ -224,6 +229,7 @@ public class CeController : MonoBehaviour
     public void CELeaveMainRoom()
     {
         InputManager.Instance.sceneState = SceneState.Animation;
+        state = 4;
         CEs[2].GetComponent<Animator>().SetTrigger("StartWalking");
         StartCoroutine("FinishLeaveMainRoom");
     }
@@ -231,7 +237,6 @@ public class CeController : MonoBehaviour
     public IEnumerator FinishLeaveMainRoom()
     {
         yield return new WaitForSeconds(2f);
-        state = 4;
         InputManager.Instance.sceneState = SceneState.MainScene;
         SceneItemManager.Instance.itemStates[5] = ItemState.Interactive;
     }
@@ -251,7 +256,7 @@ public class CeController : MonoBehaviour
 
     public void AwakeCe()
     {
-        state = 6;
+        EventSystem.Instance.staticEventList[14] = 1;
         CEs[3].GetComponent<Animator>().SetBool("Sleep", false);
         CEs[3].transform.Find("DialogNode9").GetComponent<DialogueTrigger>().StartDialogue();
     }

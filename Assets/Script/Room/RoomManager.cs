@@ -43,11 +43,11 @@ public class RoomManager : MonoBehaviour
         rooms[0][0] = GameObject.Find("Planet1/Room1");
         rooms[0][1] = GameObject.Find("Planet1/Room2");
         rooms[1][0] = GameObject.Find("Planet2/Room1");
-        rooms[1][1] = GameObject.Find("Planet2/Room2");
+        rooms[1][1] = GameObject.Find("Planet1/Room2");
         rooms[2][0] = GameObject.Find("Planet3/Room1");
-        rooms[2][1] = GameObject.Find("Planet3/Room2");
+        rooms[2][1] = GameObject.Find("Planet1/Room2");
         rooms[3][0] = GameObject.Find("Planet4/Room1");
-        rooms[3][1] = GameObject.Find("Planet4/Room2");
+        rooms[3][1] = GameObject.Find("Planet1/Room2");
 
         leftButton = GameObject.Find("LeftButton");
         rightButton = GameObject.Find("RightButton");
@@ -56,7 +56,7 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
-    
+
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 2; j++)
@@ -93,15 +93,22 @@ public class RoomManager : MonoBehaviour
             rightButton.SetActive(true);
         }
 
-        for (int i = 0; i < rooms.Length; i++)
+
+        if (roomIndex == 0)
         {
-            for (int j = 0; j < rooms[i].Length; j++)
+            for (int i = 0; i < rooms.Length; i++)
             {
-                if (rooms[i][j])
-                {
-                    rooms[i][j].SetActive((i == planetIndex) && (j == roomIndex));
-                }
+                rooms[i][0].SetActive(i == planetIndex);
             }
+            rooms[0][1].SetActive(false);
+        }
+        else
+        {
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                rooms[i][0].SetActive(false);
+            }
+            rooms[0][1].SetActive(true);
         }
     }
 
@@ -157,7 +164,20 @@ public class RoomManager : MonoBehaviour
 
     public void ChangePlanet(int planetIndex)
     {
+        if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
+        if (isAnimationPlay)
+        {
+            return;
+        }
+
+        InputManager.Instance.sceneState = SceneState.Animation;
+        isExchanging = true;
+        isAnimationPlay = true;
         this.planetIndex = planetIndex;
+        roomExchangeCanvas = Instantiate(roomExchangePre);
+        roomExchangeCanvas.GetComponent<Animator>().SetBool("Left", false);
+        StartCoroutine("FinishExchange");
+        StartCoroutine("DestroyAnimation");
     }
 
     public IEnumerator FinishExchange()

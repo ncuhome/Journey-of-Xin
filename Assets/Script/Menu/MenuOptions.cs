@@ -89,7 +89,7 @@ public class MenuOptions : MonoBehaviour
     public void ReturnToMainMenu()//开始新的游戏
     {
         Debug.Log("开始加载场景");
-        LoadingScript.Scene = 8;//设置转入场景的索引值
+        LoadingScript.Scene = 0;//设置转入场景的索引值
         Instantiate(animatorLoading, Vector3.zero, Quaternion.identity);
     }
 

@@ -20,7 +20,7 @@ public class SceneItemManager : MonoBehaviour
     public GameObject rebornMachineCE = null;
     public ItemDisplay[] items = new ItemDisplay[100];
     public ItemState[] itemStates = new ItemState[100];
-    public DialogueTrigger[] dialogueTriggers = new DialogueTrigger[50];
+    public DialogueTrigger[] dialogueTriggers = new DialogueTrigger[100];
 
     public GameObject panel = null;
 
@@ -35,6 +35,9 @@ public class SceneItemManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        items = new ItemDisplay[100];
+        itemStates = new ItemState[100];
+        dialogueTriggers = new DialogueTrigger[100];
     }
     // Start is called before the first frame update
     void Start()

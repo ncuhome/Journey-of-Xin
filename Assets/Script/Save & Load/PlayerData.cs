@@ -21,6 +21,7 @@ public class PlayerData : MonoBehaviour
         public ItemState[] itemStates = new ItemState[100];
         public int roomIndex;
         public int planetIndex;
+        public bool canChangeRoom;
         public bool timeRecordStart = false;
         public float targetTime = 0f;
         public int timeRoomIndex = 0;
@@ -83,10 +84,13 @@ public class PlayerData : MonoBehaviour
         var saveData = new SaveData();
         saveData.staticEventList = (int[])EventSystem.Instance.staticEventList.Clone();
         saveData.canEnterDialog = (bool[])DialogueSystem.Instance.canEnterDialog.Clone();
+
         saveData.itemList = StoreSystem.IdAll();//背包物品存入变更
         saveData.itemStates = (ItemState[])SceneItemManager.Instance.itemStates.Clone();
+
         saveData.roomIndex = RoomManager.Instance.roomIndex;
         saveData.planetIndex = RoomManager.Instance.planetIndex;
+        saveData.canChangeRoom = RoomManager.Instance.canChangeRoom;
 
         saveData.timeRecordStart = TimeManager.Instance.timeRecordStart;
         saveData.targetTime = TimeManager.Instance.targetTime;
@@ -109,10 +113,13 @@ public class PlayerData : MonoBehaviour
 
         EventSystem.Instance.staticEventList = (int[])saveData.staticEventList.Clone();
         DialogueSystem.Instance.canEnterDialog = (bool[])saveData.canEnterDialog.Clone();
+        
         StoreSystem.SetStore(saveData.itemList);//背包物品读取变更
         SceneItemManager.Instance.itemStates = (ItemState[])saveData.itemStates.Clone();
+
         RoomManager.Instance.roomIndex = saveData.roomIndex;
         RoomManager.Instance.planetIndex = saveData.planetIndex;
+        RoomManager.Instance.canChangeRoom = saveData.canChangeRoom;
 
         TimeManager.Instance.time = 0;
         TimeManager.Instance.timeRecordStart = saveData.timeRecordStart;
