@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #region  Interface
-public interface IEventList//接口，用于�?�理全局事件：静态事件：�?发生或未发生的事件状态；动态事件：一�?会�?�游戏产生影响的功能函数
+public interface IEventList//接口，用于�?�理全局事件：静态事件：�??发生或未发生的事件状态；动态事件：一�??会�?�游戏产生影响的功能函数
 {
-    public bool isStaticEvent(int index);//通过索引值�?�索�?�静态事件是否�??触发
+    public bool isStaticEvent(int index);//通过索引值�?�索�??�静态事件是否�??触发
     public bool ActiveEvent(int index);//通过索引值触发�?�动态事件的功能函数,成功调用返回true
 }
 #endregion
@@ -20,7 +20,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     #region Unity Methods
 
-    private void Awake() // 创建单例以及静态事件列�?
+    private void Awake() // 创建单例以及静态事件列�??
     {
         if (Instance == null)
         {
@@ -31,12 +31,17 @@ public class EventSystem : MonoBehaviour, IEventList
             Destroy(this.gameObject);
         }
         staticEventList = new int[100];
+        staticEventList[16] = 1;
+        staticEventList[17] = 1;
+        staticEventList[18] = 1;
+        staticEventList[19] = 1;
+        staticEventList[20] = 1;
     }
 
     #endregion
 
     #region  EventSystem
-    public void changeStaticEvent(int index, bool active) //改变静态事�?
+    public void changeStaticEvent(int index, bool active) //改变静态事�??
     {
         if (active)
         {
@@ -49,7 +54,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     }
 
-    public bool isStaticEvent(int index) //查�?�静态事�?
+    public bool isStaticEvent(int index) //查�?�静态事�??
     {
         if (index == 0)
         {
@@ -63,7 +68,7 @@ public class EventSystem : MonoBehaviour, IEventList
         return true;
     }
 
-    public bool ActiveEvent(int index) //进�?�动态事�?
+    public bool ActiveEvent(int index) //进�?�动态事�??
     {
         switch (index)
         {
@@ -127,6 +132,7 @@ public class EventSystem : MonoBehaviour, IEventList
             case 58: ChooseGoods(); break;
             case 59: AfterChooseGoods(); break;
             case 60: AfterDialogNode14(); break;
+            case 61: LeaveSpaceShipToMainRoom(); break;
             default: return false;
         }
         return true;
@@ -137,8 +143,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void MiniGame3()
     {
-        Debug.Log("进入小游�?");
-        // 进入小游�?3
+        Debug.Log("进入小游�??");
+        // 进入小游�??3
 
     }
 
@@ -155,7 +161,7 @@ public class EventSystem : MonoBehaviour, IEventList
         yield return new WaitForSeconds(1.5f);
         SceneItemManager.Instance.intoWorkTablePanel.SetActive(false);
         SceneItemManager.Instance.interactive = true;
-        //进入工作台界�?
+        //进入工作台界�??
         WorkbenchSystem.Instance.ShowWorkbench();
     }
 
@@ -180,7 +186,7 @@ public class EventSystem : MonoBehaviour, IEventList
         StartCoroutine("GetLastLetter");
         StartCoroutine("ShowLastMail");
         StartCoroutine("GetLastMail");
-        // 获得最后的信和最后的�?的事�?
+        // 获得最后的信和最后的�??的事�??
 
     }
     private IEnumerator GetLastLetter()
@@ -213,7 +219,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void MiniGame2()
     {
-        // 小游�?2 华�?�道
+        // 小游�??2 华�?�道
     }
 
     private void DeleteRebornDevice()
@@ -354,7 +360,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void MiniGame1()
     {
-        // 挖矿小游�?
+        // 挖矿小游�??
     }
 
     private void StartDialog23()
@@ -455,6 +461,8 @@ public class EventSystem : MonoBehaviour, IEventList
     private void AfterGetLetterInBox()
     {
         staticEventList[10] = 1;
+        staticEventList[17] = 0;
+        staticEventList[19] = 1;
         TimeManager.Instance.StopTimeRecord();
         TimeManager.Instance.StartTimeRecord(5, 0, 0, 4, true);
     }
@@ -664,8 +672,78 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         yield return new WaitForSeconds(2f);
         RoomManager.Instance.NextRoom();
+        CeController.Instance.state = 7;
+        TimeManager.Instance.StartTimeRecord(15, 1, 1, 8, false);
     }
 
+    public void ReturnToMainControlRoom()
+    {
+        RoomManager.Instance.ChangePlanet(0);
+        StartCoroutine("ReturnMainControlRoomDialog");
+    }
+
+    public IEnumerator ReturnMainControlRoomDialog()
+    {
+        yield return new WaitForSeconds(2.5f);
+        Debug.Log("DialogSpaceShipToMarket");
+        if (staticEventList[5] == 1)
+        {
+            if (staticEventList[10] != 1)
+            {
+                GameObject.Find("Dialog4-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            else
+            {
+                GameObject.Find("Dialog4-1-2").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+        }
+        if (staticEventList[6] == 1)
+        {
+            GameObject.Find("Dialog4-2").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        if (staticEventList[7] == 1)
+        {
+            GameObject.Find("Dialog4-1-4").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
+
+    private void LeaveSpaceShipToMainRoom()
+    {
+        CeController.Instance.CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
+        CeController.Instance.CEs[4].GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine("IntoMainControlRoom");
+    }
+
+    private IEnumerator IntoMainControlRoom()
+    {
+        yield return new WaitForSeconds(2f);
+        RoomManager.Instance.LastRoom();
+        StartCoroutine("StartDialogChapter4");
+    }
+
+    private IEnumerator StartDialogChapter4()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (staticEventList[5] == 1)
+        {
+            if (staticEventList[10] != 1)
+            {
+                GameObject.Find("DialogNode17").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            else
+            {
+                GameObject.Find("DialogNode17").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+        }
+        if (staticEventList[6] == 1)
+        {
+            GameObject.Find("DialogNode18").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        if (staticEventList[7] == 1)
+        {
+            GameObject.Find("DialogNode17").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
 
     #endregion
 

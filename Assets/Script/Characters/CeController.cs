@@ -70,11 +70,11 @@ public class CeController : MonoBehaviour
     public void CeWalkToSpaceShip()
     {
 
-        // 开始播放动�?
+        // 开始播放动�??
         InputManager.Instance.sceneState = SceneState.Animation;
         CEs[0].GetComponent<Button>().interactable = false;
 
-        // 待添加动�?
+        // 待添加动�??
         CEs[0].GetComponent<Animator>().SetTrigger("StartWalking");
         StartCoroutine("FinishWalkToSpaceShip");
     }
@@ -95,6 +95,7 @@ public class CeController : MonoBehaviour
         {
             StoreSystem.Remove(7);
             EventSystem.Instance.staticEventList[5] = 1;
+            EventSystem.Instance.staticEventList[19] = 0;
             CEs[1].transform.Find("CoffeeDialog").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
@@ -102,6 +103,7 @@ public class CeController : MonoBehaviour
         {
             StoreSystem.Remove(8);
             EventSystem.Instance.staticEventList[6] = 1;
+            EventSystem.Instance.staticEventList[18] = 0;
             CEs[1].transform.Find("RememberDialog").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
@@ -109,6 +111,7 @@ public class CeController : MonoBehaviour
         {
             StoreSystem.Remove(9);
             EventSystem.Instance.staticEventList[7] = 1;
+            EventSystem.Instance.staticEventList[19] = 0;
             state = 5;
             CEs[1].transform.Find("LostDialog").GetComponent<DialogueTrigger>().StartDialogue();
             return;
@@ -189,6 +192,9 @@ public class CeController : MonoBehaviour
             case 6:
                 CEs[1].transform.SetSiblingIndex(0);
                 CEs[4].transform.SetSiblingIndex(CEs[4].transform.parent.childCount - 2);
+                break;
+            case 7:
+                CEs[4].transform.position = centerOfCanvas;
                 break;
         }
     }
