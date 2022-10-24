@@ -31,6 +31,7 @@ public class EventSystem : MonoBehaviour, IEventList
             Destroy(this.gameObject);
         }
         staticEventList = new int[100];
+
         staticEventList[16] = 1;
         staticEventList[17] = 1;
         staticEventList[18] = 1;
@@ -144,6 +145,16 @@ public class EventSystem : MonoBehaviour, IEventList
             case 70: End1Sleep(); break;
             case 71: AfterDialogNode37(); break;
             case 72: AfterDialogNode48(); break;
+            case 73: CE9Fade(); break;
+            case 74: LeaveGalaxyAlliance(); break;
+            case 75: StartMiniGame7(); break;
+            case 76: StartCoroutine("AfterMiniGame7"); break;
+            case 77: StartCoroutine("ToGalaxyGalaxyAllianceAlone"); break;
+            case 78: End2Trail(); break;
+            case 79: EndS1GameOver(); break;
+            case 80: EndR1(); break;
+            case 81: EndR2(); break;
+            case 82: End3ContinueAdventure(); break;
             default: return false;
         }
         return true;
@@ -190,6 +201,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void GetLastLetterAndMail()
     {
+        SceneItemManager.Instance.itemStates[0] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[1] = ItemState.Interactive;
         SceneItemManager.Instance.lastLetter.SetActive(true);
         SceneItemManager.Instance.lastLetter.GetComponent<ItemDisplay>().Click();
         StoreSystem.Add(5);
@@ -1069,6 +1082,110 @@ public class EventSystem : MonoBehaviour, IEventList
         {
             GameObject.Find("DialogNode52").GetComponent<DialogueTrigger>().StartDialogue();
         }
+    }
+
+    private void CE9Fade()
+    {
+        InputManager.Instance.sceneState = SceneState.Animation;
+        CeController.Instance.CEs[8].GetComponent<Animator>().SetTrigger("Fade");
+        StartCoroutine("AfterCE9Fade");
+    }
+
+    private IEnumerator AfterCE9Fade()
+    {
+        yield return new WaitForSeconds(1f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        if (StoreSystem.Find(13))
+        {
+            staticEventList[28] = 1;
+            CeController.Instance.state = 10;
+            GameObject.Find("DialogNode54").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else
+        {
+            staticEventList[29] = 1;
+            LeaveGalaxyAlliance();
+        }
+    }
+
+    private void LeaveGalaxyAlliance()
+    {
+        RoomManager.Instance.NextRoom();
+        StartCoroutine("StartDialogNode53");
+    }
+
+    private IEnumerator StartDialogNode53()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GameObject.Find("DialogNode53").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private void StartMiniGame7()
+    {
+        WinMiniGame7();
+    }
+
+    private void WinMiniGame7()
+    {
+        GameObject.Find("DialogRemindCharge").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private IEnumerator AfterMiniGame7()
+    {
+        RoomManager.Instance.planetIndex = 0;
+        RoomManager.Instance.LastRoom();
+
+        if (staticEventList[29] == 1)
+        {
+            CeController.Instance.state = 11;
+        }
+
+        yield return new WaitForSeconds(2.5f);
+
+        if (staticEventList[29] == 1)
+        {
+            GameObject.Find("DialogNode58").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+
+        if (staticEventList[28] == 1)
+        {
+            CeController.Instance.state = 11;
+            GameObject.Find("DialogNode56").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
+
+    private IEnumerator ToGalaxyGalaxyAllianceAlone()
+    {
+        RoomManager.Instance.ChangePlanet(3);
+        CeController.Instance.state = 12;
+        yield return new WaitForSeconds(2.5f);
+        GameObject.Find("DialogNode59").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private void End2Trail()
+    {
+        Debug.Log("达成结局：审判");
+    }
+
+    private void EndS1GameOver()
+    {
+        Debug.Log("达成结局：游戏结束");
+    }
+
+    private void EndR1()
+    {
+        Debug.Log("达成结局：反客为主");
+    }
+
+    private void EndR2()
+    {
+        CeController.Instance.CEs[7].GetComponent<Animator>().SetBool("Sleep", false);
+        Debug.Log("达成结局：安稳的梦");
+    }
+
+    private void End3ContinueAdventure()
+    {
+        Debug.Log("达成结局：继续冒险");
     }
 
     #endregion

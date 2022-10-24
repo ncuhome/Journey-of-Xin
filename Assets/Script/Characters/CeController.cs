@@ -22,6 +22,8 @@ public class CeController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        state = 1;
+
         CEs[0] = RoomManager.Instance.rooms[0][0].transform.Find("CE1").gameObject;
         CEs[1] = RoomManager.Instance.rooms[0][1].transform.Find("CE2").gameObject;
         CEs[2] = RoomManager.Instance.rooms[0][0].transform.Find("CE3").gameObject;
@@ -111,7 +113,7 @@ public class CeController : MonoBehaviour
             StoreSystem.Remove(7);
             EventSystem.Instance.staticEventList[5] = 1;
             EventSystem.Instance.staticEventList[19] = 0;
-            CEs[1].transform.Find("CoffeeDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode4").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if (StoreSystem.Find(8))
@@ -119,7 +121,7 @@ public class CeController : MonoBehaviour
             StoreSystem.Remove(8);
             EventSystem.Instance.staticEventList[6] = 1;
             EventSystem.Instance.staticEventList[18] = 0;
-            CEs[1].transform.Find("RememberDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode10").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if (StoreSystem.Find(9))
@@ -128,21 +130,21 @@ public class CeController : MonoBehaviour
             EventSystem.Instance.staticEventList[7] = 1;
             EventSystem.Instance.staticEventList[19] = 0;
             state = 5;
-            CEs[1].transform.Find("LostDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode8").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if (StoreSystem.Find(10))
         {
             StoreSystem.Remove(10);
             EventSystem.Instance.staticEventList[8] = 1;
-            CEs[1].transform.Find("LastRememberDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode38").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if (StoreSystem.Find(11))
         {
             StoreSystem.Remove(11);
             EventSystem.Instance.staticEventList[9] = 1;
-            CEs[1].transform.Find("LastLostDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode39").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if ((EventSystem.Instance.staticEventList[5] != 1)
@@ -223,6 +225,17 @@ public class CeController : MonoBehaviour
                 CEs[0].SetActive(false);
                 CEs[7].transform.SetSiblingIndex(CeController.Instance.CEs[7].transform.parent.childCount - 2);
                 CEs[7].GetComponent<Animator>().SetBool("Sleep", true);
+                break;
+            case 10:
+                CEs[3].transform.SetSiblingIndex(CeController.Instance.CEs[3].transform.parent.childCount - 2);
+                CEs[3].GetComponent<Button>().interactable = false;
+                break;
+            case 11:
+                CEs[0].transform.SetSiblingIndex(0);
+                CEs[7].transform.SetSiblingIndex(0);
+                break;
+            case 12:
+                CEs[8].SetActive(false);
                 break;
         }
     }
@@ -373,14 +386,14 @@ public class CeController : MonoBehaviour
         {
             StoreSystem.Remove(10);
             EventSystem.Instance.staticEventList[8] = 1;
-            CEs[1].transform.Find("LastRememberDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode38").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if (StoreSystem.Find(11))
         {
             StoreSystem.Remove(11);
             EventSystem.Instance.staticEventList[9] = 1;
-            CEs[1].transform.Find("LastLostDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("DialogNode39").GetComponent<DialogueTrigger>().StartDialogue();
             return;
         }
         if ((EventSystem.Instance.staticEventList[22] != 1)

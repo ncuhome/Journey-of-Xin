@@ -51,8 +51,8 @@ public class DialogueSystem : MonoBehaviour
 
         canEnterDialog = new bool[100];
         // 用字典将名字与头像对应
-        imageDic["Ce"] = avatars[0];
-        imageDic["Know"] = avatars[1];
+        imageDic["ce"] = avatars[0];
+        imageDic["kown"] = avatars[1];
 
         //获取组件
         dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
@@ -96,15 +96,7 @@ public class DialogueSystem : MonoBehaviour
         {
             background.sprite = backgroundSprite[1];
         }
-        if (name == "")
-        {
-            avatar.gameObject.SetActive(false);
-        }
-        else
-        {
-            avatar.gameObject.SetActive(true);
-            avatar.sprite = imageDic[name];
-        }
+        avatar.gameObject.SetActive(false);
         StartCoroutine("DisplayDialogue", text);
 
     }
