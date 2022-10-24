@@ -13,7 +13,7 @@ public class PlayerData : MonoBehaviour
 
     // 将所有的存档数据放入 SaveData 类中方便转化成 Json 文件
     [System.Serializable]
-    public class SaveData
+    class SaveData
     {
         public int[] staticEventList = new int[100];
         public bool[] canEnterDialog = new bool[100];
@@ -81,7 +81,7 @@ public class PlayerData : MonoBehaviour
     // 将数据存入 SaveData 类中（随需要存档的数据而修改
     private SaveData SavingData()
     {
-        var saveData = new SaveData();
+        SaveData saveData = new SaveData();
         saveData.staticEventList = (int[])EventSystem.Instance.staticEventList.Clone();
         saveData.canEnterDialog = (bool[])DialogueSystem.Instance.canEnterDialog.Clone();
 
@@ -95,12 +95,11 @@ public class PlayerData : MonoBehaviour
         saveData.timeRecordStart = TimeManager.Instance.timeRecordStart;
         saveData.targetTime = TimeManager.Instance.targetTime;
         saveData.timeRoomIndex = TimeManager.Instance.roomIndex;
-        saveData.planetIndex = TimeManager.Instance.planetIndex;
+        saveData.timePlanetIndex = TimeManager.Instance.planetIndex;
         saveData.callbackIndex = TimeManager.Instance.callbackIndex;
         saveData.needStay = TimeManager.Instance.needStay;
         
         saveData.ceState = CeController.Instance.state;
-        //saveData.itemList = StoreManager.Instance.IdAll();//已修改
         return saveData;
     }
 
@@ -120,6 +119,8 @@ public class PlayerData : MonoBehaviour
         RoomManager.Instance.roomIndex = saveData.roomIndex;
         RoomManager.Instance.planetIndex = saveData.planetIndex;
         RoomManager.Instance.canChangeRoom = saveData.canChangeRoom;
+        //Debug.Log(saveData.planetIndex);
+        //Debug.Log(RoomManager.Instance.planetIndex);
 
         TimeManager.Instance.time = 0;
         TimeManager.Instance.timeRecordStart = saveData.timeRecordStart;
@@ -162,7 +163,8 @@ public class PlayerData : MonoBehaviour
     //将数据转换成 SaveData 类并进行存档
     private void SaveByJson()
     {
-        SaveSystem.SaveByJson(saveDataFileName, SavingData());
+        SaveData data = SavingData();
+        SaveSystem.SaveByJson(saveDataFileName, data);
     }
 
     //将 Json 文件转化成 SaveData 类并进行读取数据

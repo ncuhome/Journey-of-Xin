@@ -10,6 +10,7 @@ public class SaveSystem
     //将数据转换为 Json 文件并存到 Unity 默认存档路径，名字为 saveFileName
     public static void SaveByJson(string saveFileName, object data)
     {
+        
         var json = JsonUtility.ToJson(data);
         var path = Path.Combine(Application.persistentDataPath, saveFileName);
 
