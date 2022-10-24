@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [System.Serializable]
 public delegate void CallBack();
@@ -80,7 +81,17 @@ public class TimeManager : MonoBehaviour
             case 6: return EventSystem.Instance.StartDialogRemind1;
             case 7: return EventSystem.Instance.EnterBlackMarket;
             case 8: return EventSystem.Instance.ReturnToMainControlRoom;
+            case 9: return EventSystem.Instance.EnterMineralPlanet;
+            case 10: return EventSystem.Instance.EnterGalaxyAlliance;
         }
         return null;
     }
+
+    #if UNITY_EDITOR
+    [MenuItem("TimeManager/StartEventNow")]
+    public static void DeleteNumbers()
+    {   
+        Instance.targetTime = 0;
+    }
+    #endif
 }

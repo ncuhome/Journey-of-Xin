@@ -133,6 +133,17 @@ public class EventSystem : MonoBehaviour, IEventList
             case 59: AfterChooseGoods(); break;
             case 60: AfterDialogNode14(); break;
             case 61: LeaveSpaceShipToMainRoom(); break;
+            case 62: LeaveSpaceShipToMineralPlanet(); break;
+            case 63: StartMiniGameMineral(); break;
+            case 64: LeaveMineralPlanet(); break;
+            case 65: GetCoffee2(); break;
+            case 66: CE8LeaveMainControlRoom(); break;
+            case 67: LeaveSpaceShipToGalaxyAlliance(); break;
+            case 68: CE9LeaveGalaxyAlliance(); break;
+            case 69: StartCoroutine("DelayHideLetterInBox"); break;
+            case 70: End1Sleep(); break;
+            case 71: AfterDialogNode37(); break;
+            case 72: AfterDialogNode48(); break;
             default: return false;
         }
         return true;
@@ -592,7 +603,7 @@ public class EventSystem : MonoBehaviour, IEventList
             }
             else
             {
-                GameObject.Find("Dialog3-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+                GameObject.Find("Dialog3-1-3").GetComponent<DialogueTrigger>().StartDialogue();
             }
         }
         if (staticEventList[6] == 1)
@@ -607,6 +618,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void LeaveSpaceShipToMarket()
     {
+        InputManager.Instance.sceneState = SceneState.Animation;
         CeController.Instance.CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
         CeController.Instance.CEs[4].GetComponent<Animator>().SetTrigger("Leave");
         StartCoroutine("IntoBlackMarket");
@@ -615,6 +627,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private IEnumerator IntoBlackMarket()
     {
         yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.LastRoom();
         StartCoroutine("StartBlackMarketDialog");
     }
@@ -664,6 +677,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void AfterDialogNode14()
     {
+        InputManager.Instance.sceneState = SceneState.Animation;
         CeController.Instance.CEs[5].GetComponent<Animator>().SetTrigger("Leave");
         StartCoroutine("DelayLeaveMarket");
     }
@@ -671,6 +685,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private IEnumerator DelayLeaveMarket()
     {
         yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.NextRoom();
         CeController.Instance.state = 7;
         TimeManager.Instance.StartTimeRecord(15, 1, 1, 8, false);
@@ -679,7 +694,25 @@ public class EventSystem : MonoBehaviour, IEventList
     public void ReturnToMainControlRoom()
     {
         RoomManager.Instance.ChangePlanet(0);
-        StartCoroutine("ReturnMainControlRoomDialog");
+        if ((staticEventList[22] != 1) && (staticEventList[23] != 1) && (staticEventList[24] != 1))
+        {
+            if (staticEventList[21] != 1)
+            {
+                StartCoroutine("ReturnMainControlRoomDialog");
+                return;
+            }
+            else
+            {
+                CeController.Instance.state = 8;
+                StartCoroutine("StartDialogBackFromMineralPlanet");
+                return;
+            }
+        }
+        else
+        {
+            StartCoroutine("StartDialogBackFromGalaxyAlliance");
+            return;
+        }
     }
 
     public IEnumerator ReturnMainControlRoomDialog()
@@ -690,11 +723,11 @@ public class EventSystem : MonoBehaviour, IEventList
         {
             if (staticEventList[10] != 1)
             {
-                GameObject.Find("Dialog4-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+                GameObject.Find("Dialog4-1").GetComponent<DialogueTrigger>().StartDialogue();
             }
             else
             {
-                GameObject.Find("Dialog4-1-2").GetComponent<DialogueTrigger>().StartDialogue();
+                GameObject.Find("Dialog4-1").GetComponent<DialogueTrigger>().StartDialogue();
             }
         }
         if (staticEventList[6] == 1)
@@ -703,12 +736,13 @@ public class EventSystem : MonoBehaviour, IEventList
         }
         if (staticEventList[7] == 1)
         {
-            GameObject.Find("Dialog4-1-4").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("Dialog4-1").GetComponent<DialogueTrigger>().StartDialogue();
         }
     }
 
     private void LeaveSpaceShipToMainRoom()
     {
+        InputManager.Instance.sceneState = SceneState.Animation;
         CeController.Instance.CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
         CeController.Instance.CEs[4].GetComponent<Animator>().SetTrigger("Leave");
         StartCoroutine("IntoMainControlRoom");
@@ -717,8 +751,26 @@ public class EventSystem : MonoBehaviour, IEventList
     private IEnumerator IntoMainControlRoom()
     {
         yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.LastRoom();
-        StartCoroutine("StartDialogChapter4");
+        if (staticEventList[24] == 1)
+        {
+            StartCoroutine("StartDialogNode57");
+        }
+        else if ((staticEventList[22] == 1) || (staticEventList[23] == 1))
+        {
+            StartCoroutine("StartDialogNode55");
+
+        }
+        else if (staticEventList[21] != 1)
+        {
+            StartCoroutine("StartDialogChapter4");
+        }
+        else
+        {
+            CeController.Instance.state = 8;
+            StartCoroutine("StartDialogNode34");
+        }
     }
 
     private IEnumerator StartDialogChapter4()
@@ -742,6 +794,280 @@ public class EventSystem : MonoBehaviour, IEventList
         if (staticEventList[7] == 1)
         {
             GameObject.Find("DialogNode17").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
+
+    public void EnterMineralPlanet()
+    {
+        RoomManager.Instance.ChangePlanet(2);
+        CeController.Instance.state = 6;
+        StartCoroutine("EnterMineralPlanetDialog");
+    }
+
+    public IEnumerator EnterMineralPlanetDialog()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (staticEventList[5] == 1)
+        {
+            if (staticEventList[10] != 1)
+            {
+                GameObject.Find("Dialog4-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            else
+            {
+                GameObject.Find("Dialog4-1-2").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+        }
+        if (staticEventList[7] == 1)
+        {
+            GameObject.Find("Dialog4-1-4").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
+
+    private void LeaveSpaceShipToMineralPlanet()
+    {
+        InputManager.Instance.sceneState = SceneState.Animation;
+        CeController.Instance.CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
+        CeController.Instance.CEs[4].GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine("IntoMineralPlanet");
+    }
+
+    private IEnumerator IntoMineralPlanet()
+    {
+        yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        staticEventList[21] = 1;
+        RoomManager.Instance.LastRoom();
+        StartCoroutine("StartMineralPlanetDialog");
+    }
+
+    private IEnumerator StartMineralPlanetDialog()
+    {
+        yield return new WaitForSeconds(3f);
+        if (staticEventList[5] == 1)
+        {
+            if (staticEventList[10] != 1)
+            {
+                GameObject.Find("DialogNode19").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            else
+            {
+                GameObject.Find("DialogNode20").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+        }
+        if (staticEventList[7] == 1)
+        {
+            GameObject.Find("DialogNode19").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
+
+    private void StartMiniGameMineral()
+    {
+        MiniGameMineralWin();
+    }
+
+    private void MiniGameMineralWin()
+    {
+        GameObject.Find("DialogNode21").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private void LeaveMineralPlanet()
+    {
+        InputManager.Instance.sceneState = SceneState.Animation;
+        CeController.Instance.CEs[6].GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine("DelayLeaveMineralPlanet");
+    }
+
+    private IEnumerator DelayLeaveMineralPlanet()
+    {
+        yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        RoomManager.Instance.NextRoom();
+        CeController.Instance.state = 7;
+        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
+    }
+
+    private IEnumerator StartDialogBackFromMineralPlanet()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (staticEventList[5] == 1)
+        {
+            if (staticEventList[10] != 1)
+            {
+                GameObject.Find("Dialog4-1-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            else
+            {
+                GameObject.Find("Dialog5-1-2-1").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+        }
+    }
+
+    private IEnumerator StartDialogNode34()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (!StoreSystem.Find(2))
+        {
+            GameObject.Find("DialogNode34").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else
+        {
+            GameObject.Find("DialogNode33").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+    }
+
+    private void GetCoffee2()
+    {
+        SceneItemManager.Instance.itemStates[24] = ItemState.Interactive;
+        SceneItemManager.Instance.items[24].GetComponent<ItemDisplay>().Click();
+    }
+
+    private void CE8LeaveMainControlRoom()
+    {
+        InputManager.Instance.sceneState = SceneState.Animation;
+        CeController.Instance.CEs[7].GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine("DelayLeaveMainControlRoom");
+    }
+
+    private IEnumerator DelayLeaveMainControlRoom()
+    {
+        yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        RoomManager.Instance.NextRoom();
+        TimeManager.Instance.StartTimeRecord(5, 1, 1, 10, false);
+        StartCoroutine("DelayChangeState7");
+    }
+
+    private IEnumerator DelayChangeState7()
+    {
+        yield return new WaitForSeconds(1f);
+        CeController.Instance.state = 7;
+    }
+
+    public void EnterGalaxyAlliance()
+    {
+        RoomManager.Instance.ChangePlanet(3);
+        CeController.Instance.state = 6;
+        StartCoroutine("EnterGalaxyAllianceDialog");
+    }
+
+    private IEnumerator EnterGalaxyAllianceDialog()
+    {
+        yield return new WaitForSeconds(3f);
+        if (staticEventList[5] == 1)
+        {
+            if ((staticEventList[22] == 1) || (staticEventList[23] == 1))
+            {
+                GameObject.Find("Dialog7-1").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            if (staticEventList[24] == 1)
+            {
+                GameObject.Find("Dialog7-4").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+        }
+    }
+
+    private void LeaveSpaceShipToGalaxyAlliance()
+    {
+        InputManager.Instance.sceneState = SceneState.Animation;
+        CeController.Instance.CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
+        CeController.Instance.CEs[4].GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine("IntoGalaxyAlliance");
+    }
+
+    private IEnumerator IntoGalaxyAlliance()
+    {
+        yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        RoomManager.Instance.LastRoom();
+        StartCoroutine("StartGalaxyAllianceDialog");
+    }
+
+    private IEnumerator StartGalaxyAllianceDialog()
+    {
+        yield return new WaitForSeconds(3f);
+        if (staticEventList[5] == 1)
+        {
+            if ((staticEventList[22] == 1) || (staticEventList[23] == 1))
+            {
+                GameObject.Find("DialogNode47").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            if (staticEventList[24] == 1)
+            {
+                GameObject.Find("DialogNode48").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+
+        }
+    }
+
+    private void CE9LeaveGalaxyAlliance()
+    {
+        InputManager.Instance.sceneState = SceneState.Animation;
+        CeController.Instance.CEs[8].GetComponent<Animator>().SetTrigger("Leave");
+        StartCoroutine("DelayLeaveGalaxyAlliance");
+    }
+
+    private IEnumerator DelayLeaveGalaxyAlliance()
+    {
+        yield return new WaitForSeconds(2f);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        RoomManager.Instance.NextRoom();
+        CeController.Instance.state = 7;
+        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
+    }
+
+    private IEnumerator StartDialogBackFromGalaxyAlliance()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if ((staticEventList[22] == 1) || (staticEventList[23] == 1))
+        {
+            GameObject.Find("Dialog7-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else
+        {
+            GameObject.Find("Dialog7-4-1").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+
+    }
+
+    private IEnumerator StartDialogNode55()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GameObject.Find("DialogNode55").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private IEnumerator StartDialogNode57()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GameObject.Find("DialogNode57").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    private IEnumerator DelayHideLetterInBox()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneItemManager.Instance.itemStates[7] = ItemState.Invisible;
+    }
+
+    private void End1Sleep()
+    {
+        Debug.Log("½á¾Ö£º°²Ãß");
+    }
+
+    private void AfterDialogNode37()
+    {
+        CeController.Instance.state = 9;
+        SceneItemManager.Instance.itemStates[22] = ItemState.Interactive;
+    }
+
+    private void AfterDialogNode48()
+    {
+        if (StoreSystem.Find(24) || StoreSystem.Find(23))
+        {
+            GameObject.Find("DialogNode51").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else
+        {
+            GameObject.Find("DialogNode52").GetComponent<DialogueTrigger>().StartDialogue();
         }
     }
 

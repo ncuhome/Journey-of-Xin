@@ -152,18 +152,9 @@ public class RoomManager : MonoBehaviour
         StartCoroutine("DestroyAnimation");
     }
 
-    public void NextPlanet()
+    public void ChangePlanet(int planet)
     {
-        planetIndex++;
-    }
-
-    public void LastPlanet()
-    {
-        planetIndex--;
-    }
-
-    public void ChangePlanet(int planetIndex)
-    {
+        Debug.Log("ChangePlanet");
         if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
         if (isAnimationPlay)
         {
@@ -173,7 +164,7 @@ public class RoomManager : MonoBehaviour
         InputManager.Instance.sceneState = SceneState.Animation;
         isExchanging = true;
         isAnimationPlay = true;
-        this.planetIndex = planetIndex;
+        planetIndex = planet;
         roomExchangeCanvas = Instantiate(roomExchangePre);
         roomExchangeCanvas.GetComponent<Animator>().SetBool("Left", false);
         StartCoroutine("FinishExchange");

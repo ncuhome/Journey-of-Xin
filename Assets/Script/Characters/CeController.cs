@@ -28,6 +28,9 @@ public class CeController : MonoBehaviour
         CEs[3] = RoomManager.Instance.rooms[0][1].transform.Find("CE4").gameObject;
         CEs[4] = RoomManager.Instance.rooms[0][1].transform.Find("CE5").gameObject;
         CEs[5] = RoomManager.Instance.rooms[1][0].transform.Find("CE6").gameObject;
+        CEs[6] = RoomManager.Instance.rooms[2][0].transform.Find("CE7").gameObject;
+        CEs[7] = RoomManager.Instance.rooms[0][0].transform.Find("CE8").gameObject;
+        CEs[8] = RoomManager.Instance.rooms[3][0].transform.Find("CE9").gameObject;
         // ����ͼƬ��ֻ�в�͸���ĵط��ܴ�����Ӧ
         // CEs[0].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
         // CEs[1].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
@@ -82,10 +85,22 @@ public class CeController : MonoBehaviour
     public IEnumerator FinishWalkToSpaceShip()
     {
         yield return new WaitForSeconds(2f);
-        state = 2;
         InputManager.Instance.sceneState = SceneState.MainScene;
-        EventSystem.Instance.ActiveEvent(37);
-        CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount);
+        if ((EventSystem.Instance.staticEventList[5] != 1)
+        && (EventSystem.Instance.staticEventList[6] != 1)
+        && (EventSystem.Instance.staticEventList[7] != 1)
+        && (EventSystem.Instance.staticEventList[8] != 1)
+        && (EventSystem.Instance.staticEventList[9] != 1))
+        {
+            state = 2;
+            EventSystem.Instance.ActiveEvent(37);
+            CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount);
+        }
+        else
+        {
+            RoomManager.Instance.NextRoom();
+            TimeManager.Instance.StartTimeRecord(5, 0, 1, 9, true);
+        }
     }
 
     public void Click2()
@@ -195,6 +210,19 @@ public class CeController : MonoBehaviour
                 break;
             case 7:
                 CEs[4].transform.position = centerOfCanvas;
+                CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
+                CEs[0].SetActive(true);
+                CEs[0].transform.position = centerOfCanvas;
+                CEs[0].transform.SetSiblingIndex(CeController.Instance.CEs[0].transform.parent.childCount - 2);
+                break;
+            case 8:
+                CEs[0].SetActive(false);
+                CEs[7].transform.SetSiblingIndex(CeController.Instance.CEs[7].transform.parent.childCount - 2);
+                break;
+            case 9:
+                CEs[0].SetActive(false);
+                CEs[7].transform.SetSiblingIndex(CeController.Instance.CEs[7].transform.parent.childCount - 2);
+                CEs[7].GetComponent<Animator>().SetBool("Sleep", true);
                 break;
         }
     }
@@ -266,6 +294,103 @@ public class CeController : MonoBehaviour
         EventSystem.Instance.staticEventList[14] = 1;
         CEs[3].GetComponent<Animator>().SetBool("Sleep", false);
         CEs[3].transform.Find("DialogNode9").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    public void Click8()
+    {
+        if (InputManager.Instance.sceneState != SceneState.MainScene) { return; }
+        if (state == 9)
+        {
+            state = 8;
+            CEs[7].GetComponent<Animator>().SetBool("Sleep", false);
+            GameObject.Find("DialogNode46").GetComponent<DialogueTrigger>().StartDialogue();
+            return;
+        }
+        if (StoreSystem.Find(7))
+        {
+            StoreSystem.Remove(7);
+            if (EventSystem.Instance.staticEventList[5] == 1)
+            {
+                if (EventSystem.Instance.staticEventList[10] != 1)
+                {
+                    EventSystem.Instance.staticEventList[22] = 1;
+                    GameObject.Find("DialogNode35").GetComponent<DialogueTrigger>().StartDialogue();
+                }
+                else
+                {
+                    EventSystem.Instance.staticEventList[25] = 1;
+                    GameObject.Find("DialogNode40").GetComponent<DialogueTrigger>().StartDialogue();
+                }
+            }
+            if (EventSystem.Instance.staticEventList[6] == 1)
+            {
+                EventSystem.Instance.staticEventList[22] = 1;
+                GameObject.Find("DialogNode35").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            if (EventSystem.Instance.staticEventList[7] == 1)
+            {
+                EventSystem.Instance.staticEventList[22] = 1;
+                GameObject.Find("DialogNode35").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            return;
+        }
+        if (StoreSystem.Find(8))
+        {
+            StoreSystem.Remove(8);
+            if (EventSystem.Instance.staticEventList[5] == 1)
+            {
+                if (EventSystem.Instance.staticEventList[10] != 1)
+                {
+                    EventSystem.Instance.staticEventList[23] = 1;
+                    GameObject.Find("DialogNode36").GetComponent<DialogueTrigger>().StartDialogue();
+                }
+                else
+                {
+                    EventSystem.Instance.staticEventList[26] = 1;
+                    GameObject.Find("DialogNode41").GetComponent<DialogueTrigger>().StartDialogue();
+                }
+            }
+            if (EventSystem.Instance.staticEventList[6] == 1)
+            {
+                EventSystem.Instance.staticEventList[27] = 1;
+                GameObject.Find("DialogNode42").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            if (EventSystem.Instance.staticEventList[7] == 1)
+            {
+                EventSystem.Instance.staticEventList[23] = 1;
+                GameObject.Find("DialogNode36").GetComponent<DialogueTrigger>().StartDialogue();
+            }
+            return;
+        }
+        if (StoreSystem.Find(9))
+        {
+            StoreSystem.Remove(9);
+            EventSystem.Instance.staticEventList[24] = 1;
+            GameObject.Find("DialogNode37").GetComponent<DialogueTrigger>().StartDialogue();
+            return;
+        }
+        if (StoreSystem.Find(10))
+        {
+            StoreSystem.Remove(10);
+            EventSystem.Instance.staticEventList[8] = 1;
+            CEs[1].transform.Find("LastRememberDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            return;
+        }
+        if (StoreSystem.Find(11))
+        {
+            StoreSystem.Remove(11);
+            EventSystem.Instance.staticEventList[9] = 1;
+            CEs[1].transform.Find("LastLostDialog").GetComponent<DialogueTrigger>().StartDialogue();
+            return;
+        }
+        if ((EventSystem.Instance.staticEventList[22] != 1)
+        && (EventSystem.Instance.staticEventList[23] != 1)
+        && (EventSystem.Instance.staticEventList[24] != 1)
+        && (EventSystem.Instance.staticEventList[8] != 1)
+        && (EventSystem.Instance.staticEventList[9] != 1))
+        {
+            CEs[1].transform.Find("NoItemDialog").GetComponent<DialogueTrigger>().StartDialogue();
+        }
     }
 
 }
