@@ -644,7 +644,7 @@ public class EventSystem : MonoBehaviour, IEventList
         }
         else
         {
-            CeController.Instance.state = 6;
+            StartCoroutine("DelayChangeState6");
         }
         StartCoroutine("EnterBlackMarketDialog");
     }
@@ -727,8 +727,11 @@ public class EventSystem : MonoBehaviour, IEventList
         GameObject.Find("ChooseGoods").GetComponent<DialogueTrigger>().StartDialogue();
     }
 
+
+
     private void AfterChooseGoods()
     {
+        if (staticEventList[35] == 1) { return; }
         if ((staticEventList[31] != 1) && (staticEventList[34] != 1))
         {
             StartCoroutine("StartDialogNode14");
@@ -896,8 +899,21 @@ public class EventSystem : MonoBehaviour, IEventList
     public void EnterMineralPlanet()
     {
         RoomManager.Instance.ChangePlanet(2);
-        CeController.Instance.state = 6;
+        if (staticEventList[34] == 1)
+        {
+            CeController.Instance.state = 13;
+        }
+        else
+        {
+            StartCoroutine("DelayChangeState6");
+        }
         StartCoroutine("EnterMineralPlanetDialog");
+    }
+
+    private IEnumerator DelayChangeState6()
+    {
+        yield return new WaitForSeconds(1f);
+        CeController.Instance.state = 6;
     }
 
     public IEnumerator EnterMineralPlanetDialog()
@@ -1478,12 +1494,13 @@ public class EventSystem : MonoBehaviour, IEventList
     private void AfterDialogNode27()
     {
         RoomManager.Instance.NextRoom();
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, true);
+        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
     }
 
     private void ToMineralPlanetAfterDialogNode18()
     {
-        TimeManager.Instance.StartTimeRecord(5, 0, 1, 7, true);
+        staticEventList[35] = 1;
+        TimeManager.Instance.StartTimeRecord(5, 0, 1, 9, false);
     }
 
     private void IntoMineralPlanetAfterDialogNode18()

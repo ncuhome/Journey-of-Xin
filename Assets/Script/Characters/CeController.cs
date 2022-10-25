@@ -244,6 +244,7 @@ public class CeController : MonoBehaviour
                 CEs[3].transform.SetSiblingIndex(0);
                 CEs[4].transform.SetSiblingIndex(0);
                 CEs[5].transform.SetSiblingIndex(0);
+                CEs[6].transform.SetSiblingIndex(0);
                 break;
         }
     }

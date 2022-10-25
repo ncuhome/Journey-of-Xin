@@ -7961,6 +7961,7 @@ GameObject:
   - component: {fileID: 511184789}
   - component: {fileID: 511184788}
   - component: {fileID: 511184787}
+  - component: {fileID: 511184793}
   m_Layer: 5
   m_Name: EnergyMineral
   m_TagString: Untagged
@@ -8047,18 +8048,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 511184789}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 511184787}
         m_TargetAssemblyTypeName: EventTrigger, Assembly-CSharp
         m_MethodName: StartEvent
@@ -8146,6 +8135,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511184785}
   m_CullTransparentMesh: 1
+--- !u!114 &511184793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511184785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogDataFile: {fileID: 4900000, guid: c2d8f1bf4159e7044840298549a7b7a2, type: 3}
+  dialogIndex: 116
+  autoEnterDialogue: 0
+  DialogOnce: 1
 --- !u!1 &529735814
 GameObject:
   m_ObjectHideFlags: 0
