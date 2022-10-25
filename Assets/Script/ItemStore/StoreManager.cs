@@ -148,9 +148,9 @@ public class StoreManager : MonoBehaviour
 
         #endregion 将场景内的按钮载入管理类
         /*****/
-        //StoreSystem.Add(1);
-        //StoreSystem.Add(2);
         StoreSystem.Add(3);
+        StoreSystem.Add(3);
+        StoreSystem.Add(4);
         StoreSystem.Add(4);
         /*****/
         UpdateStoreSystem();//更新背包物品列表;

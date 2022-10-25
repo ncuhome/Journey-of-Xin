@@ -182,6 +182,7 @@ public class RoomManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         isAnimationPlay = false;
+        CeController.Instance.ControlCEs();
         InputManager.Instance.sceneState = SceneState.MainScene;
         Destroy(roomExchangeCanvas);
     }
