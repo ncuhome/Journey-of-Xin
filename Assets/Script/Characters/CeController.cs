@@ -172,7 +172,7 @@ public class CeController : MonoBehaviour
                 // CEs[0].transform.position = centerOfCanvas + new Vector3(1016, 0, 0);
                 CEs[0].SetActive(false);
                 CEs[1].transform.position = centerOfCanvas;
-                CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount - 2);
+                CEs[1].transform.SetSiblingIndex(CEs[1].transform.parent.childCount - 4);
                 CEs[2].transform.position = centerOfCanvas + new Vector3(1150, 0, 0);
                 CEs[3].transform.position = centerOfCanvas;
                 break;
@@ -237,6 +237,12 @@ public class CeController : MonoBehaviour
             case 12:
                 CEs[8].SetActive(false);
                 break;
+            case 13:
+                CEs[1].transform.SetSiblingIndex(0);
+                CEs[3].transform.SetSiblingIndex(0);
+                CEs[4].transform.SetSiblingIndex(0);
+                CEs[5].transform.SetSiblingIndex(0);
+                break;
         }
     }
 
@@ -286,7 +292,10 @@ public class CeController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         InputManager.Instance.sceneState = SceneState.MainScene;
-        SceneItemManager.Instance.itemStates[5] = ItemState.Interactive;
+        if (!StoreSystem.Find(5))
+        {
+            SceneItemManager.Instance.itemStates[5] = ItemState.Interactive;
+        }
     }
 
 

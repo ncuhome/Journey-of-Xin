@@ -16,7 +16,7 @@ public class PlayerData : MonoBehaviour
     class SaveData
     {
         public int[] staticEventList = new int[100];
-        public bool[] canEnterDialog = new bool[100];
+        public bool[] canEnterDialog = new bool[200];
         public int[] itemList = new int[24];
         public ItemState[] itemStates = new ItemState[100];
         public int roomIndex;

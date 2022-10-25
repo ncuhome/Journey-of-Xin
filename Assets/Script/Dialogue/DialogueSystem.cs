@@ -11,7 +11,7 @@ public class DialogueSystem : MonoBehaviour
 
     public static DialogueSystem Instance { get; private set; } // 单例模式
 
-    public bool[] canEnterDialog = new bool[100];
+    public bool[] canEnterDialog = new bool[200];
     public DialogueTrigger dialogueTrigger = null;
     private Image background = null; // 对话框背景
     public Sprite[] backgroundSprite = null; // 两张背景画面
@@ -49,7 +49,7 @@ public class DialogueSystem : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        canEnterDialog = new bool[100];
+        canEnterDialog = new bool[200];
         // 用字典将名字与头像对应
         imageDic["ce"] = avatars[0];
         imageDic["kown"] = avatars[1];
@@ -65,7 +65,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0;i < 100;i++)
+        for (int i = 0;i < 200;i++)
         {
             canEnterDialog[i] = true;
         }
