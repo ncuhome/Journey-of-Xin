@@ -2,43 +2,44 @@ using System.Data.SqlTypes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+
+using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
     #region Properties
 
-    public static DialogueSystem Instance { get; private set; } // å•ä¾‹æ¨¡å¼
+    public static DialogueSystem Instance { get; private set; } // µ¥ÀıÄ£Ê½
 
     public bool[] canEnterDialog = new bool[200];
     public DialogueTrigger dialogueTrigger = null;
-    private Image background = null; // å¯¹è¯æ¡†èƒŒæ™¯
-    public Sprite[] backgroundSprite = null; // ä¸¤å¼ èƒŒæ™¯ç”»é¢
-    private Image avatar = null; // å¤´åƒç»„ä»¶
-    private TMP_Text nameText = null; // åå­—æ–‡æœ¬
-    private TMP_Text dialogText = null; // å¯¹è¯æ–‡æœ¬
-    private GameObject dialogueNode = null; // å¯¹è¯ç³»ç»Ÿçš„æ•´ä½“èŠ‚ç‚¹
-    public List<Sprite> avatars = new List<Sprite>(); // å¤´åƒåˆ—è¡¨
-    Dictionary<string, Sprite> imageDic = new Dictionary<string, Sprite>();  // åå­—ä¸å¤´åƒçš„å¯¹åº”å…³ç³»
+    private Image background = null; // ¶Ô»°¿ò±³¾°
+    public Sprite[] backgroundSprite = null; // Á½ÕÅ±³¾°»­Ãæ
+    private Image avatar = null; // Í·Ïñ×é¼ş
+    private TMP_Text nameText = null; // Ãû×ÖÎÄ±¾
+    private TMP_Text dialogText = null; // ¶Ô»°ÎÄ±¾
+    private GameObject dialogueNode = null; // ¶Ô»°ÏµÍ³µÄÕûÌå½Úµã
+    public List<Sprite> avatars = new List<Sprite>(); // Í·ÏñÁĞ±í
+    Dictionary<string, Sprite> imageDic = new Dictionary<string, Sprite>();  // Ãû×ÖÓëÍ·ÏñµÄ¶ÔÓ¦¹ØÏµ
 
-    private int dialogIndex = 0; // å½“å‰çš„æ–‡æœ¬ ID
-    private bool isChoosing = false; // æ­£åœ¨é€‰æ‹©é€‰é¡¹
-    public static bool inDialogue = false; // æ­£åœ¨è¿›è¡Œå¯¹è¯
-    private string[] dialogRows = null; // å‚¨å­˜æ¯ä¸€è¡Œå¯¹è¯æ–‡æœ¬çš„æ•°ç»„
-    private string[] cells = null; // æ¯ä¸€è¡Œçš„å„ä¸ªéƒ¨åˆ†
-    public GameObject optionButton = null; // é€‰é¡¹æŒ‰é’®é¢„åˆ¶ä»¶
-    private Transform buttonGroup = null; // é€‰é¡¹æŒ‰é’®çˆ¶ç‰©ä½“
+    private int dialogIndex = 0; // µ±Ç°µÄÎÄ±¾ ID
+    private bool isChoosing = false; // ÕıÔÚÑ¡ÔñÑ¡Ïî
+    public static bool inDialogue = false; // ÕıÔÚ½øĞĞ¶Ô»°
+    private string[] dialogRows = null; // ´¢´æÃ¿Ò»ĞĞ¶Ô»°ÎÄ±¾µÄÊı×é
+    private string[] cells = null; // Ã¿Ò»ĞĞµÄ¸÷¸ö²¿·Ö
+    public GameObject optionButton = null; // Ñ¡Ïî°´Å¥Ô¤ÖÆ¼ş
+    private Transform buttonGroup = null; // Ñ¡Ïî°´Å¥¸¸ÎïÌå
 
-    private bool textIsFinished = false; // æ–‡æœ¬æ˜¯å¦æ˜¾ç¤ºå®Œæ¯•
-    public float textSpeed = 0.05f; // æ¯ä¸ªå­—çš„æ˜¾ç¤ºé€Ÿåº¦
+    private bool textIsFinished = false; // ÎÄ±¾ÊÇ·ñÏÔÊ¾Íê±Ï
+    public float textSpeed = 0.05f; // Ã¿¸ö×ÖµÄÏÔÊ¾ËÙ¶È
 
     #endregion
 
 
     #region Unity Methods
 
-    private void Awake() // æŠŠåå­—ä¸å¤´åƒå¯¹åº”ï¼ˆå¤´åƒè¿˜æ²¡å›¾
+    private void Awake() // °ÑÃû×ÖÓëÍ·Ïñ¶ÔÓ¦£¨Í·Ïñ»¹Ã»Í¼
     {
         if (Instance == null)
         {
@@ -50,11 +51,11 @@ public class DialogueSystem : MonoBehaviour
         }
 
         canEnterDialog = new bool[200];
-        // ç”¨å­—å…¸å°†åå­—ä¸å¤´åƒå¯¹åº”
+        // ÓÃ×Öµä½«Ãû×ÖÓëÍ·Ïñ¶ÔÓ¦
         imageDic["ce"] = avatars[0];
         imageDic["kown"] = avatars[1];
 
-        //è·å–ç»„ä»¶
+        //»ñÈ¡×é¼ş
         dialogueNode = GameObject.Find("DialogCanvas/Dialogue");
         avatar = dialogueNode.transform.Find("Avatar").GetComponent<Image>();
         nameText = dialogueNode.transform.Find("NameText").GetComponent<TMP_Text>();
@@ -73,7 +74,7 @@ public class DialogueSystem : MonoBehaviour
         // StartDialogue(dialogDataFile);
     }
 
-    private void Update() //æŒ‰ç¡®è®¤é”®ï¼ˆzï¼‰æˆ–è€…ç‚¹å‡»é¼ æ ‡å°±è¿›å…¥ä¸‹ä¸€å¥è¯ï¼ˆåç»­æ”¹è¿›
+    private void Update() //°´È·ÈÏ¼ü£¨z£©»òÕßµã»÷Êó±ê¾Í½øÈëÏÂÒ»¾ä»°£¨ºóĞø¸Ä½ø
     {
 
     }
@@ -83,7 +84,7 @@ public class DialogueSystem : MonoBehaviour
 
     #region Dialogue
 
-    public void UpdateText(string name, string text) // æ˜¾ç¤ºæ–‡æœ¬ä¸å¤´åƒ
+    public void UpdateText(string name, string text) // ÏÔÊ¾ÎÄ±¾ÓëÍ·Ïñ
     {
         // Debug.Log("UpdateText");
         dialogText.text = "";
@@ -101,7 +102,7 @@ public class DialogueSystem : MonoBehaviour
 
     }
 
-    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger) //å¼€å§‹å¯¹è¯
+    public IEnumerator StartDialogue(DialogueTrigger dialogueTrigger) //¿ªÊ¼¶Ô»°
     {
         InputManager.Instance.sceneState = SceneState.Dialog;
         this.dialogueTrigger = dialogueTrigger;
@@ -122,30 +123,30 @@ public class DialogueSystem : MonoBehaviour
         InputManager.Instance.sceneState = SceneState.MainScene;
     }
 
-    public void ReadText(TextAsset textAsset) // æŠŠå¯¹è¯æ–‡æœ¬åˆ†å‰²æˆå„è¡Œ
+    public void ReadText(TextAsset textAsset) // °Ñ¶Ô»°ÎÄ±¾·Ö¸î³É¸÷ĞĞ
     {
         dialogRows = textAsset.text.Split('\n');
     }
 
-    public void ShowDialogRow() // æ˜¾ç¤ºå¯¹è¯è¡Œ
+    public void ShowDialogRow() // ÏÔÊ¾¶Ô»°ĞĞ
     {
         // Debug.Log(dialogIndex);
         for (int i = 1; i < dialogRows.Length; i++)
         {
-            cells = dialogRows[i].Split(','); // æŠŠå¯¹è¯è¡Œåˆ†å‰²æˆå„ä¸ªæ•°æ®
+            cells = dialogRows[i].Split(','); // °Ñ¶Ô»°ĞĞ·Ö¸î³É¸÷¸öÊı¾İ
 
             if (int.Parse(cells[1]) != dialogIndex)
             {
                 continue;
             }
 
-            if (cells[0] == "End") // å¦‚æœæ˜¯ç»“æŸèŠ‚ç‚¹åˆ™ç»“æŸå¯¹è¯
+            if (cells[0] == "End") // Èç¹ûÊÇ½áÊø½ÚµãÔò½áÊø¶Ô»°
             {
                 ExitDialogue();
 
-                if (cells[6] != "") //å¦‚æœæ•ˆæœä¸ä¸ºç©ºï¼Œåˆ™è§¦å‘åŠ¨æ€äº‹ä»¶
+                if (cells[6] != "") //Èç¹ûĞ§¹û²»Îª¿Õ£¬Ôò´¥·¢¶¯Ì¬ÊÂ¼ş
                 {
-                    string[] effects = cells[6].Split('/'); // æŠŠæ•ˆæœç¼–å·è¿›è¡Œåˆ†å‰²
+                    string[] effects = cells[6].Split('/'); // °ÑĞ§¹û±àºÅ½øĞĞ·Ö¸î
                     foreach (string effect in effects)
                     {
                         DialogEffect(int.Parse(effect));
@@ -155,23 +156,23 @@ public class DialogueSystem : MonoBehaviour
                 break;
             }
 
-            if (cells[6] != "") //å¦‚æœæ•ˆæœä¸ä¸ºç©ºï¼Œåˆ™è§¦å‘åŠ¨æ€äº‹ä»¶
+            if (cells[6] != "") //Èç¹ûĞ§¹û²»Îª¿Õ£¬Ôò´¥·¢¶¯Ì¬ÊÂ¼ş
             {
-                string[] effects = cells[6].Split('/'); // æŠŠæ•ˆæœç¼–å·è¿›è¡Œåˆ†å‰²
+                string[] effects = cells[6].Split('/'); // °ÑĞ§¹û±àºÅ½øĞĞ·Ö¸î
                 foreach (string effect in effects)
                 {
                     DialogEffect(int.Parse(effect));
                 }
             }
 
-            if (cells[0] == "#") //å¦‚æœæ˜¯æ™®é€šå¯¹è¯ä¸” ID æ˜¯æ­£åœ¨è¿›è¡Œçš„å¯¹è¯ ID å°±æ˜¾ç¤º
+            if (cells[0] == "#") //Èç¹ûÊÇÆÕÍ¨¶Ô»°ÇÒ ID ÊÇÕıÔÚ½øĞĞµÄ¶Ô»° ID ¾ÍÏÔÊ¾
             {
                 UpdateText(cells[2], cells[3]);
 
-                dialogIndex = int.Parse(cells[4]); // è·³è½¬ä¸‹ä¸€æ¡å¯¹è¯
+                dialogIndex = int.Parse(cells[4]); // Ìø×ªÏÂÒ»Ìõ¶Ô»°
                 break;
             }
-            else if (cells[0] == "&") // å¦‚æœæ˜¯é€‰æ‹©å¯¹è¯åˆ™æ˜¾ç¤ºæŒ‰é’®
+            else if (cells[0] == "&") // Èç¹ûÊÇÑ¡Ôñ¶Ô»°ÔòÏÔÊ¾°´Å¥
             {
                 UpdateText(cells[2], "");
 
@@ -181,22 +182,22 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public void ContinueDialog() //è¿›è¡Œä¸‹ä¸€è¡Œå¯¹è¯
+    public void ContinueDialog() //½øĞĞÏÂÒ»ĞĞ¶Ô»°
     {
         ShowDialogRow();
     }
 
-    public void GenerateOption(int index) // ç”ŸæˆæŒ‰é’®å¹¶æ·»åŠ æŒ‰é’®äº‹ä»¶
+    public void GenerateOption(int index) // Éú³É°´Å¥²¢Ìí¼Ó°´Å¥ÊÂ¼ş
     {
         isChoosing = true;
         string[] cells = dialogRows[index].Split(',');
-        string[] conditions = cells[5].Split('/'); // æŠŠæ¡ä»¶ç¼–å·è¿›è¡Œåˆ†å‰²
+        string[] conditions = cells[5].Split('/'); // °ÑÌõ¼ş±àºÅ½øĞĞ·Ö¸î
         if (cells[0] == "&")
         {
             GameObject button = Instantiate(optionButton, buttonGroup);
             button.GetComponentInChildren<TMP_Text>().text = cells[3];
 
-            // ç»™æŒ‰é’®æ·»åŠ äº‹ä»¶
+            // ¸ø°´Å¥Ìí¼ÓÊÂ¼ş
             button.GetComponent<Button>().onClick.AddListener
             (
                 delegate
@@ -205,9 +206,9 @@ public class DialogueSystem : MonoBehaviour
                 }
             );
 
-            if (cells[5] != "") //å¦‚æœæœ‰æ¡ä»¶åˆ™è¿›å…¥åˆ¤æ–­æ˜¯å¦å¯ç”¨æŒ‰é’®
+            if (cells[5] != "") //Èç¹ûÓĞÌõ¼şÔò½øÈëÅĞ¶ÏÊÇ·ñÆôÓÃ°´Å¥
             {
-                foreach (string condition in conditions) //å¦‚æœæœ‰ä¸€ä¸ªæ¡ä»¶ä¸æ»¡è¶³å°±ç¦ç”¨æŒ‰é’®
+                foreach (string condition in conditions) //Èç¹ûÓĞÒ»¸öÌõ¼ş²»Âú×ã¾Í½ûÓÃ°´Å¥
                 {
                     if (!EventSystem.Instance.isStaticEvent(int.Parse(condition)))
                     {
@@ -220,7 +221,7 @@ public class DialogueSystem : MonoBehaviour
     }
 
 
-    public void OnOptionClick(int id) // æ·»åŠ æŒ‰é’®äº‹ä»¶
+    public void OnOptionClick(int id) // Ìí¼Ó°´Å¥ÊÂ¼ş
     {
         dialogIndex = id;
         // Debug.Log(dialogIndex);
@@ -239,7 +240,7 @@ public class DialogueSystem : MonoBehaviour
         isChoosing = false;
     }
 
-    public void DialogEffect(int index) // è§¦å‘åŠ¨æ€äº‹ä»¶
+    public void DialogEffect(int index) // ´¥·¢¶¯Ì¬ÊÂ¼ş
     {
         if (index > 0)
         {
@@ -255,9 +256,9 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public IEnumerator DisplayDialogue(string text)//ä¸€ä¸ªå­—ä¸€ä¸ªå­—æ˜¾ç¤ºæ–‡æœ¬
+    public IEnumerator DisplayDialogue(string text)//Ò»¸ö×ÖÒ»¸ö×ÖÏÔÊ¾ÎÄ±¾
     {
-        // Debug.Log("å¼€å§‹æ‰“å­—");
+        // Debug.Log("¿ªÊ¼´ò×Ö");
         textIsFinished = false;
         for (int i = 0; i < text.Length; i++)
         {

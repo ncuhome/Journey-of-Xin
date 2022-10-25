@@ -171,6 +171,13 @@ public class EventSystem : MonoBehaviour, IEventList
             case 96: ChooseStay(); break;
             case 97: ChooseGoOut(); break;
             case 98: StartCoroutine("AfterDialogNode28"); break;
+            case 99: CannotClickTrashBin(); break;
+            case 100: AfterDialogNode27(); break;
+            case 101: ToMineralPlanetAfterDialogNode18(); break;
+            case 102: IntoMineralPlanetAfterDialogNode18(); break;
+            case 103: ChooseDig(); break;
+            case 104: ChooseHangOut(); break;
+            case 105: StartMiniGameMineralAfterDialogNode30(); break;
             default: return false;
         }
         return true;
@@ -612,6 +619,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void AfterDialogNode9()
     {
+        RoomManager.Instance.canChangeRoom = false;
         SceneItemManager.Instance.itemStates[12] = ItemState.Interactive;
     }
 
@@ -629,7 +637,7 @@ public class EventSystem : MonoBehaviour, IEventList
     public void EnterBlackMarket()
     {
         RoomManager.Instance.ChangePlanet(1);
-        if (staticEventList[31] == 1)
+        if ((staticEventList[31] == 1) || (staticEventList[34] == 1))
         {
             SceneItemManager.Instance.itemStates[14] = ItemState.Interactive;
             CeController.Instance.state = 13;
@@ -645,7 +653,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         yield return new WaitForSeconds(2.5f);
         Debug.Log("DialogSpaceShipToMarket");
-        if (staticEventList[31] == 1)
+        if ((staticEventList[31] == 1) || (staticEventList[34] == 1))
         {
             GameObject.Find("Dialog4-2-2").GetComponent<DialogueTrigger>().StartDialogue();
         }
@@ -666,7 +674,7 @@ public class EventSystem : MonoBehaviour, IEventList
         }
         else if (staticEventList[7] == 1)
         {
-            GameObject.Find("Dialog3-1-4").GetComponent<DialogueTrigger>().StartDialogue();
+            GameObject.Find("Dialog3-1-1").GetComponent<DialogueTrigger>().StartDialogue();
         }
     }
 
@@ -688,8 +696,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private IEnumerator StartBlackMarketDialog()
     {
-        yield return new WaitForSeconds(3f);
-        if (staticEventList[31] == 1)
+        yield return new WaitForSeconds(2.5f);
+        if ((staticEventList[31] == 1) || (staticEventList[34] == 1))
         {
             GameObject.Find("DialogNode26").GetComponent<DialogueTrigger>().StartDialogue();
         }
@@ -721,7 +729,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void AfterChooseGoods()
     {
-        if (staticEventList[31] != 1)
+        if ((staticEventList[31] != 1) && (staticEventList[34] != 1))
         {
             StartCoroutine("StartDialogNode14");
         }
@@ -766,9 +774,14 @@ public class EventSystem : MonoBehaviour, IEventList
                 StartCoroutine("ReturnMainControlRoomDialog");
                 return;
             }
+            else if (staticEventList[6] == 1)
+            {
+                StartCoroutine("ReturnAfterChapter4");
+                return;
+            }
             else
             {
-                if (staticEventList[31] != 1)
+                if ((staticEventList[31] != 1) && (staticEventList[34] != 1))
                 {
                     CeController.Instance.state = 8;
                 }
@@ -783,10 +796,16 @@ public class EventSystem : MonoBehaviour, IEventList
         }
     }
 
+    private IEnumerator ReturnAfterChapter4()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GameObject.Find("Dialog4-2-1-1").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
     public IEnumerator ReturnMainControlRoomDialog()
     {
         yield return new WaitForSeconds(2.5f);
-        Debug.Log("DialogSpaceShipToMarket");
+        Debug.Log("DialogSpaceShipFromMarket");
         if (staticEventList[5] == 1)
         {
             if (staticEventList[10] != 1)
@@ -837,6 +856,10 @@ public class EventSystem : MonoBehaviour, IEventList
         }
         else if (staticEventList[21] != 1)
         {
+            if (staticEventList[6] == 1)
+            {
+                CeController.Instance.state = 8;
+            }
             StartCoroutine("StartDialogChapter4");
         }
         else
@@ -862,7 +885,6 @@ public class EventSystem : MonoBehaviour, IEventList
         }
         if (staticEventList[6] == 1)
         {
-            CeController.Instance.state = 8;
             GameObject.Find("DialogNode18").GetComponent<DialogueTrigger>().StartDialogue();
         }
         if (staticEventList[7] == 1)
@@ -892,7 +914,11 @@ public class EventSystem : MonoBehaviour, IEventList
                 GameObject.Find("Dialog4-1-2").GetComponent<DialogueTrigger>().StartDialogue();
             }
         }
-        if (staticEventList[7] == 1)
+        else if (staticEventList[6] == 1)
+        {
+            GameObject.Find("Dialog4-2-1").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else if (staticEventList[7] == 1)
         {
             GameObject.Find("Dialog4-1-4").GetComponent<DialogueTrigger>().StartDialogue();
         }
@@ -929,10 +955,15 @@ public class EventSystem : MonoBehaviour, IEventList
                 GameObject.Find("DialogNode20").GetComponent<DialogueTrigger>().StartDialogue();
             }
         }
-        if (staticEventList[7] == 1)
+        else if (staticEventList[6] == 1)
+        {
+            GameObject.Find("DialogNode30").GetComponent<DialogueTrigger>().StartDialogue();
+        }
+        else if (staticEventList[7] == 1)
         {
             GameObject.Find("DialogNode19").GetComponent<DialogueTrigger>().StartDialogue();
         }
+
     }
 
     private void StartMiniGameMineral()
@@ -942,7 +973,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void MiniGameMineralWin()
     {
-        if (staticEventList[31] == 1)
+        if ((staticEventList[31] == 1) || (staticEventList[34] == 1))
         {
             StartDialogNode25();
         }
@@ -986,6 +1017,10 @@ public class EventSystem : MonoBehaviour, IEventList
             {
                 GameObject.Find("Dialog5-1-2-1").GetComponent<DialogueTrigger>().StartDialogue();
             }
+        }
+        else if (staticEventList[7] == 1)
+        {
+            GameObject.Find("Dialog4-1-1-1").GetComponent<DialogueTrigger>().StartDialogue();
         }
     }
 
@@ -1046,7 +1081,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private IEnumerator EnterGalaxyAllianceDialog()
     {
         yield return new WaitForSeconds(3f);
-        if (staticEventList[5] == 1)
+        if ((staticEventList[5] == 1) || (staticEventList[7] == 1))
         {
             if ((staticEventList[22] == 1) || (staticEventList[23] == 1) || (staticEventList[26] == 1))
             {
@@ -1089,7 +1124,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private IEnumerator StartGalaxyAllianceDialog()
     {
         yield return new WaitForSeconds(3f);
-        if (staticEventList[5] == 1)
+        if ((staticEventList[5] == 1) || (staticEventList[7] == 1))
         {
             if ((staticEventList[22] == 1) || (staticEventList[23] == 1) || (staticEventList[26] == 1))
             {
@@ -1131,8 +1166,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private IEnumerator StartDialogBackFromGalaxyAlliance()
     {
-        yield return new WaitForSeconds(2.5f);
-        if ((staticEventList[5] == 1)||(staticEventList[7] == 1))
+        yield return new WaitForSeconds(3f);
+        if ((staticEventList[5] == 1) || (staticEventList[7] == 1))
         {
             if ((staticEventList[22] == 1) || (staticEventList[23] == 1))
             {
@@ -1394,7 +1429,6 @@ public class EventSystem : MonoBehaviour, IEventList
 
     public void ShopClick()
     {
-        staticEventList[17] = 0;
         ChooseGoods();
     }
 
@@ -1408,6 +1442,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         RoomManager.Instance.NextRoom();
         CeController.Instance.state = 13;
+        staticEventList[21] = 1;
         yield return new WaitForSeconds(2.5f);
         GameObject.Find("DialogNode18Choose").GetComponent<DialogueTrigger>().StartDialogue();
     }
@@ -1424,7 +1459,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void ChooseGoOut()
     {
-        staticEventList[33] = 2;
+        staticEventList[34] = 1;
     }
 
     private IEnumerator AfterDialogNode28()
@@ -1435,6 +1470,69 @@ public class EventSystem : MonoBehaviour, IEventList
         GameObject.Find("DialogNode29").GetComponent<DialogueTrigger>().StartDialogue();
     }
 
+    private void CannotClickTrashBin()
+    {
+        SceneItemManager.Instance.itemStates[13] = ItemState.NotInteractive;
+    }
+
+    private void AfterDialogNode27()
+    {
+        RoomManager.Instance.NextRoom();
+        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, true);
+    }
+
+    private void ToMineralPlanetAfterDialogNode18()
+    {
+        TimeManager.Instance.StartTimeRecord(5, 0, 1, 7, true);
+    }
+
+    private void IntoMineralPlanetAfterDialogNode18()
+    {
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        staticEventList[21] = 1;
+        RoomManager.Instance.LastRoom();
+        StartCoroutine("StartMineralPlanetDialog");
+    }
+
+    private void GetEnergyMineral()
+    {
+        SceneItemManager.Instance.itemStates[21] = ItemState.Interactive;
+        SceneItemManager.Instance.items[21].Click();
+    }
+
+    private void ChooseDig()
+    {
+        GetEnergyMineral();
+        StartCoroutine("StartDialogNode31");
+    }
+
+    private void ChooseHangOut()
+    {
+        SceneItemManager.Instance.itemStates[20] = ItemState.Interactive;
+        SceneItemManager.Instance.itemStates[21] = ItemState.Interactive;
+        TimeManager.Instance.StartTimeRecord(30, 3, 0, 11, false);
+    }
+
+    public void StartMiniGameMineralAfterDialogNode30()
+    {
+        WinMiniGameMineral();
+    }
+
+    private void WinMiniGameMineral()
+    {
+        GetEnergyMineral();
+    }
+
+    private IEnumerator StartDialogNode31()
+    {
+        yield return new WaitForSeconds(2f);
+        GameObject.Find("DialogNode31").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    public void StartDialogNode32()
+    {
+        GameObject.Find("DialogNode32").GetComponent<DialogueTrigger>().StartDialogue();
+    }
 
     #endregion
 

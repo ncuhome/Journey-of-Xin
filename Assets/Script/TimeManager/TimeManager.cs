@@ -83,6 +83,7 @@ public class TimeManager : MonoBehaviour
             case 8: return EventSystem.Instance.ReturnToMainControlRoom;
             case 9: return EventSystem.Instance.EnterMineralPlanet;
             case 10: return EventSystem.Instance.EnterGalaxyAlliance;
+            case 11: return EventSystem.Instance.StartDialogNode32;
         }
         return null;
     }

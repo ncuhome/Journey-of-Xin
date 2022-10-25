@@ -75,11 +75,11 @@ public class CeController : MonoBehaviour
     public void CeWalkToSpaceShip()
     {
 
-        // 开始播放动�??
+        // 开始播放动�???
         InputManager.Instance.sceneState = SceneState.Animation;
         CEs[0].GetComponent<Button>().interactable = false;
 
-        // 待添加动�??
+        // 待添加动�???
         CEs[0].GetComponent<Animator>().SetTrigger("StartWalking");
         StartCoroutine("FinishWalkToSpaceShip");
     }
@@ -208,13 +208,13 @@ public class CeController : MonoBehaviour
                 break;
             case 6:
                 CEs[1].transform.SetSiblingIndex(0);
-                CEs[3].transform.SetAsLastSibling();
+                CEs[3].transform.SetSiblingIndex(0);
                 CEs[4].transform.SetSiblingIndex(CEs[4].transform.parent.childCount - 2);
                 break;
             case 7:
                 CEs[4].transform.position = centerOfCanvas;
                 CEs[4].transform.SetSiblingIndex(CeController.Instance.CEs[4].transform.parent.childCount - 2);
-                CEs[3].transform.SetAsLastSibling();
+                CEs[3].transform.SetSiblingIndex(0);
                 CEs[0].SetActive(true);
                 CEs[0].transform.position = centerOfCanvas;
                 CEs[0].transform.SetSiblingIndex(CeController.Instance.CEs[0].transform.parent.childCount - 2);
