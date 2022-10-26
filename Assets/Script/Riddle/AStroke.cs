@@ -17,19 +17,19 @@ public class AStroke : MonoBehaviour
     public GameObject progressBar;//进度条
     public GameObject textTime;//时间
     public GameObject blockOrigin;//源块动画块
-    private int  index= 24;//当前彩色移动光标位置
+    private int index = 24;//当前彩色移动光标位置
     private bool start = false;//判定是否游戏开始
     private bool stop = false;
     #region 输入处理&核心逻辑
 
 
     private bool pick = false;
-    public void MouseDown(float mx,float my)//鼠标按下判定
+    public void MouseDown(float mx, float my)//鼠标按下判定
     {
         float ix = gameObjectList[index].transform.position.x;
         float iy = gameObjectList[index].transform.position.y;
-        Debug.Log("鼠标位置：X:" +  + mx+"  Y:" + my +"彩块位置：X:" + ix + "  Y:" + iy);
-        if (mx >= ix-100 && mx <= ix+100 && my >= iy-100 && my<=iy+100)
+        Debug.Log("鼠标位置：X:" + +mx + "  Y:" + my + "彩块位置：X:" + ix + "  Y:" + iy);
+        if (mx >= ix - 100 && mx <= ix + 100 && my >= iy - 100 && my <= iy + 100)
         {
             pick = true;
             Debug.Log("抓住！");
@@ -48,11 +48,11 @@ public class AStroke : MonoBehaviour
     {
         if (pick)
         {
-            blockOrigin.transform.position = new Vector3(mx,my,-20);
+            blockOrigin.transform.position = new Vector3(mx, my, -20);
             float ix = 0;
             float iy = 0;
             #region 判定左移
-            if(index % 9 >0)
+            if (index % 9 > 0)
             {
                 ix = gameObjectList[index - 1].transform.position.x;
                 iy = gameObjectList[index - 1].transform.position.y;
@@ -76,7 +76,7 @@ public class AStroke : MonoBehaviour
             }
             #endregion
             #region 判定上移
-            if(index / 9>0)
+            if (index / 9 > 0)
             {
                 ix = gameObjectList[index - 9].transform.position.x;
                 iy = gameObjectList[index - 9].transform.position.y;
@@ -105,9 +105,9 @@ public class AStroke : MonoBehaviour
     private void Up()//向上移动源
     {
         start = true;
-        if(index/9 > 0)//不在第一行且去路为空色彩
+        if (index / 9 > 0)//不在第一行且去路为空色彩
         {
-            if(blockList[index - 9] == 0)
+            if (blockList[index - 9] == 0)
             {
                 blockList[index] = 1;//当前位置改为彩色
                 index -= 9;
@@ -123,7 +123,7 @@ public class AStroke : MonoBehaviour
         start = true;
         if (index % 9 > 0)//不在第一行且去路为空色彩
         {
-            if(blockList[index - 1] == 0)
+            if (blockList[index - 1] == 0)
             {
                 blockList[index] = 1;//当前位置改为彩色
                 index--;
@@ -139,8 +139,8 @@ public class AStroke : MonoBehaviour
         start = true;
         if (index / 9 < 4)//不在第一行且去路为空色彩
         {
-           if(blockList[index + 9] == 0)
-           {
+            if (blockList[index + 9] == 0)
+            {
                 blockList[index] = 1;//当前位置改为彩色
                 index += 9;
                 blockList[index] = 3;//移动彩色源
@@ -155,7 +155,7 @@ public class AStroke : MonoBehaviour
         start = true;
         if (index % 9 < 8)//不在第一行且去路为空色彩
         {
-            if(blockList[index + 1] == 0)
+            if (blockList[index + 1] == 0)
             {
                 blockList[index] = 1;//当前位置改为彩色
                 index++;
@@ -170,10 +170,20 @@ public class AStroke : MonoBehaviour
     {
         InputManager.Instance.sceneState = SceneState.MainScene;
         SceneManager.UnloadSceneAsync(9);
+
+        if (EventSystem.Instance.staticEventList[3] == 1)
+        {
+            EventSystem.Instance.ShowLetter();
+        }
+        else
+        {
+            EventSystem.Instance.LoseMiniGame3();
+        }
+
+
     }
     private void End()//游戏结束（失败）
     {
-        EventSystem.Instance.ActiveEvent(33);
         stop = true;
         endImage.SetActive(true);
         text0.SetActive(true);
@@ -191,30 +201,30 @@ public class AStroke : MonoBehaviour
         if (timer > 20) { return false; }//失败
         else
         {
-            if(index / 9 > 0)//不在第一层时
+            if (index / 9 > 0)//不在第一层时
             {
                 if (blockList[index - 9] == 0)
                 {
                     return true;
                 }
             }
-            if(index % 9 > 0)//不在最左侧时
+            if (index % 9 > 0)//不在最左侧时
             {
-                if (blockList[index-1] == 0)
+                if (blockList[index - 1] == 0)
                 {
                     return true;
                 }
             }
-            if(index / 9 < 4)//不在最下层
+            if (index / 9 < 4)//不在最下层
             {
-                if (blockList[index+9] == 0)
+                if (blockList[index + 9] == 0)
                 {
                     return true;
                 }
             }
-            if(index % 9 < 8)//不在最右边
+            if (index % 9 < 8)//不在最右边
             {
-                if (blockList[index+1] == 0)
+                if (blockList[index + 1] == 0)
                 {
                     return true;
                 }
@@ -224,7 +234,7 @@ public class AStroke : MonoBehaviour
     }
     private bool Success()//检测游戏是否成功
     {
-        for(int i = 0; i < blockList.Length;i++)
+        for (int i = 0; i < blockList.Length; i++)
         {
             if (blockList[i] == 0)
             {
@@ -235,11 +245,11 @@ public class AStroke : MonoBehaviour
     }
     private void UpdateSprite()//更新贴图
     {
-        for(int i=0;i< gameObjectList.Length;i++)
+        for (int i = 0; i < gameObjectList.Length; i++)
         {
             try { Animator animator = gameObjectList[i].GetComponent<Animator>(); animator.SetInteger("status", blockList[i]); }
-            catch (Exception e) { Debug.Log("错误位置编号："+i); }
-            
+            catch (Exception e) { Debug.Log("错误位置编号：" + i); }
+
         }
     }
     private void ResetData()//重置数据
@@ -278,7 +288,7 @@ public class AStroke : MonoBehaviour
     }
     void Update()
     {
-        if(!stop)
+        if (!stop)
         {
             if (start)
             {
@@ -286,8 +296,8 @@ public class AStroke : MonoBehaviour
                 //Debug.Log("Time:" + timer);
                 float progress = (20.0f - timer) / 20;
                 textTime.GetComponent<TMP_Text>().text = (int)(20.0f - timer) + "s";
-                progressBar.transform.localScale = new Vector3(progress,1,1);
-                progressBar.transform.localPosition = new Vector3(750*(progress-1),0,0);
+                progressBar.transform.localScale = new Vector3(progress, 1, 1);
+                progressBar.transform.localPosition = new Vector3(750 * (progress - 1), 0, 0);
             }
             if (Input.GetButtonDown("Up"))
             {
@@ -309,7 +319,7 @@ public class AStroke : MonoBehaviour
             {
                 Cancel();
             }
-            if(timer > 20) { End(); }
+            if (timer > 20) { End(); }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //√’Ã‚6
 public class InterstellarPassage : MonoBehaviour
 {
@@ -42,6 +43,9 @@ public class InterstellarPassage : MonoBehaviour
     public void End()//Ω· ¯
     {
 
+        EventSystem.Instance.ActiveEvent(108);
+        InputManager.Instance.sceneState = SceneState.MainScene;
+        SceneManager.UnloadSceneAsync(13);
     }
     #endregion
 

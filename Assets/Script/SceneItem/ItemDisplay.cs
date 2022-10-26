@@ -69,6 +69,7 @@ public class ItemDisplay : MonoBehaviour
     public void CancelClick()
     {
         GetComponent<Animator>().SetBool("Click", false);
+        SceneItemManager.Instance.interactive = true;
     }
 
     void Awake()

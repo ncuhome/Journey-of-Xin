@@ -179,6 +179,8 @@ public class EventSystem : MonoBehaviour, IEventList
             case 103: ChooseDig(); break;
             case 104: ChooseHangOut(); break;
             case 105: StartMiniGameMineralAfterDialogNode30(); break;
+            case 106: GetLetter(); break;
+            case 107: GetMail(); break;
             default: return false;
         }
         return true;
@@ -332,10 +334,11 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void StartMiniGame4()
     {
-        WinMiniGame4();
+        SceneManager.LoadScene(10, LoadSceneMode.Additive);
+        InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
-    private void WinMiniGame4()
+    public void WinMiniGame4()
     {
         GameObject.Find("DialogNode45").GetComponent<DialogueTrigger>().StartDialogue();
     }
@@ -418,7 +421,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void MiniGame1()
     {
-        SceneManager.LoadScene(14,LoadSceneMode.Additive);
+        SceneManager.LoadScene(14, LoadSceneMode.Additive);
         InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
@@ -446,13 +449,21 @@ public class EventSystem : MonoBehaviour, IEventList
         staticEventList[2] = 1;
         SceneItemManager.Instance.interactive = true;
     }
-    private void FinishMiniGame3()
+    public void FinishMiniGame3()
     {
         staticEventList[3] = 1;
     }
-    private void FinishMiniGame4()
+    public void FinishMiniGame4()
     {
-        staticEventList[4] = 1;
+        if (staticEventList[26] != 1)
+        {
+            staticEventList[4] = 1;
+            SceneItemManager.Instance.interactive = true;
+        }
+        else
+        {
+            staticEventList[36] = 1;
+        }
     }
 
     private void CanChooseRedBox()
@@ -986,7 +997,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void StartMiniGameMineral()
     {
-        MiniGameMineralWin();
+        SceneManager.LoadScene(11, LoadSceneMode.Additive);
+        InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
     private void MiniGameMineralWin()
@@ -1380,7 +1392,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void StartMiniGameSpaceShip()
     {
-        WinMiniGameSpaceShip();
+        SceneManager.LoadScene(13, LoadSceneMode.Additive);
+        InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
     private void WinMiniGameSpaceShip()
@@ -1534,7 +1547,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     public void StartMiniGameMineralAfterDialogNode30()
     {
-        WinMiniGameMineral();
+        SceneManager.LoadScene(11, LoadSceneMode.Additive);
+        InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
     private void WinMiniGameMineral()
@@ -1551,6 +1565,38 @@ public class EventSystem : MonoBehaviour, IEventList
     public void StartDialogNode32()
     {
         GameObject.Find("DialogNode32").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    public void ShowLetter()
+    {
+        GameObject.Find("GetLetterDialog").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    public void ShowMail()
+    {
+        GameObject.Find("GetMailDialog").GetComponent<DialogueTrigger>().StartDialogue();
+    }
+
+    public void GetLetter()
+    {
+        StoreSystem.Instance.Add(3);
+        GameObject.Find("Letter").GetComponent<ItemDisplay>().DisplayStart();
+    }
+
+    public void GetMail()
+    {
+        StoreSystem.Instance.Add(4);
+        GameObject.Find("Mail").GetComponent<ItemDisplay>().DisplayStart();
+    }
+
+    public void LoseMiniGame3()
+    {
+        GameObject.Find("Letter").GetComponent<ItemDisplay>().CancelClick();
+    }
+
+    public void LoseMiniGame4()
+    {
+        GameObject.Find("Mail").GetComponent<ItemDisplay>().CancelClick();
     }
 
     #endregion

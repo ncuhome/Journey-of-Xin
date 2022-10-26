@@ -104,7 +104,6 @@ public class WorkbenchSystem : MonoBehaviour
     {
         if (cursor < 0)
         {
-
             int id = formulaList[pageFormula][-cursor + -1];//合成物品的id
             if (ItemSystem.MakeFormula(id, StoreSystem.Instance.IdAll()))//判定是否可合成
             {
@@ -115,7 +114,11 @@ public class WorkbenchSystem : MonoBehaviour
                     int fomulaId = fomula[i];//当前遍历原料的id
                     StoreSystem.Instance.Remove(fomulaId);
                 }
-                StoreSystem.Instance.Add(id);
+                int[] aimID = ItemSystem.FormulaToItem(id);
+                for (int i = 0; i < aimID.Length; i++)
+                {
+                    StoreSystem.Instance.Add(aimID[i]);
+                }
                 UpdateFormItemStore();//更新合成台中的背包物品栏
             }
         }
@@ -189,11 +192,10 @@ public class WorkbenchSystem : MonoBehaviour
         }
         /********/
         //StoreSystem.Add(1);
-        AddFormula(7);
-        AddFormula(8);
-        AddFormula(9);
-        AddFormula(10);
-        AddFormula(11);
+        for (int i = 28; i <= 39; i++)
+        {
+            AddFormula(i);
+        }
         /********/
         UpdateFormItemStore();
         #endregion 初始化数组

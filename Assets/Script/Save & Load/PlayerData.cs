@@ -57,12 +57,6 @@ public class PlayerData : MonoBehaviour
 
     #region Save and Load
 
-    public void AutoSave()
-    {
-        saveDataFileName = "SaveData0.sav";
-        SaveByJson();
-    }
-
     public void Save(int saveIndex)
     {
         saveDataFileName = "SaveData" + saveIndex.ToString() + ".sav";

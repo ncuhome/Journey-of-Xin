@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.34117648, g: 0.3529412, b: 0.36078432, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 7d741b06b82e8eb48b02a33f3fec5e03, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: a640c0da7dd49c24890c2c56bc40a3fb, type: 3}
   dialogIndex: 34
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.16078432, g: 0.8117647, b: 0.98039216, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3735,7 +3735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: eefbe5f211bee3a4696c2dc1a3f912d2, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 10a688b71ca02dd4eaf9103ff8b8262c, type: 3}
   dialogIndex: 33
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -4645,7 +4645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.81960785, g: 0.8117647, b: 0.61960787, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5947,7 +5947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4777d8ba38c79aa46ade6b0242cbcbc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a77b3587bd2bce548990861d0eefcf62, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6304,7 +6304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: d7770fe687cee3d48916ea592d443493, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: b832fc98e413414469bf85d91c8889d1, type: 3}
   dialogIndex: 23
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -7225,7 +7225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.6862745, g: 0.654902, b: 0.76862746, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9694,7 +9694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.22745098, g: 0.28235295, b: 0.3882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11651,6 +11651,59 @@ MonoBehaviour:
   dialogIndex: 28
   autoEnterDialogue: 0
   DialogOnce: 1
+--- !u!1 &865955408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865955409}
+  - component: {fileID: 865955410}
+  m_Layer: 5
+  m_Name: GetMailDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &865955409
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865955408}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900648225}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1349, y: 64}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &865955410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865955408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogDataFile: {fileID: 4900000, guid: fc8bc6786bfa748418e569f50b26c202, type: 3}
+  dialogIndex: 118
+  autoEnterDialogue: 0
+  DialogOnce: 1
 --- !u!1001 &874194935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12048,8 +12101,8 @@ GameObject:
   - component: {fileID: 900648229}
   - component: {fileID: 900648228}
   - component: {fileID: 900648227}
-  - component: {fileID: 900648226}
   - component: {fileID: 900648231}
+  - component: {fileID: 900648232}
   m_Layer: 5
   m_Name: Mail
   m_TagString: Untagged
@@ -12068,7 +12121,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 865955409}
   m_Father: {fileID: 857869532}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12077,21 +12131,6 @@ RectTransform:
   m_AnchoredPosition: {x: 893, y: -499}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &900648226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900648224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 059bb7097fb024147ae5acb12f5d8794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventIndex: 15
-  conditionIndex: 0
-  autoEvent: 0
 --- !u!114 &900648227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12107,7 +12146,7 @@ MonoBehaviour:
   itemIndex: 11
   panelPrefab: {fileID: 0}
   moveToCenter: 0
-  showInHighestLevel: 1
+  showInHighestLevel: 0
   highLight: 1
 --- !u!114 &900648228
 MonoBehaviour:
@@ -12156,18 +12195,6 @@ MonoBehaviour:
       - m_Target: {fileID: 900648227}
         m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
         m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 900648226}
-        m_TargetAssemblyTypeName: EventTrigger, Assembly-CSharp
-        m_MethodName: StartEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12235,6 +12262,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &900648232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900648224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogDataFile: {fileID: 4900000, guid: 60e924225a1ae41448bf50e682a56098, type: 3}
+  dialogIndex: 119
+  autoEnterDialogue: 0
+  DialogOnce: 0
 --- !u!1 &916077810
 GameObject:
   m_ObjectHideFlags: 0
@@ -13042,7 +13085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4777d8ba38c79aa46ade6b0242cbcbc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfaddfc3b23fbeb48902d213aa03f1cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13411,7 +13454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4777d8ba38c79aa46ade6b0242cbcbc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 333d07aa3a90ad74db660ccbe1e617a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15783,7 +15826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4777d8ba38c79aa46ade6b0242cbcbc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9795f03d7b3f7574cab4aafd912d7289, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16548,7 +16591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 6f0b8de9e01cb9c45afc490bb0df6ceb, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: eca9a08effcb48c4d890c5564b515631, type: 3}
   dialogIndex: 24
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -19007,7 +19050,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1612187776}
   m_Father: {fileID: 1021861994}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19030,8 +19074,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIndex: 6
   panelPrefab: {fileID: 0}
-  moveToCenter: 1
-  showInHighestLevel: 1
+  moveToCenter: 0
+  showInHighestLevel: 0
   highLight: 1
 --- !u!114 &1429976438
 MonoBehaviour:
@@ -19048,7 +19092,7 @@ MonoBehaviour:
   dialogDataFile: {fileID: 4900000, guid: aeed25c7ea7862d4eaf3385d95b132ca, type: 3}
   dialogIndex: 0
   autoEnterDialogue: 0
-  DialogOnce: 1
+  DialogOnce: 0
 --- !u!95 &1429976439
 Animator:
   serializedVersion: 4
@@ -19791,7 +19835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: fd3d814b1013f5a458ee05de6bd7a19f, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: c269b958ba44d9c469a0baddd241560e, type: 3}
   dialogIndex: 22
   autoEnterDialogue: 1
   DialogOnce: 1
@@ -20701,6 +20745,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogDataFile: {fileID: 4900000, guid: 85cae7e815b4c994496e98498f78601e, type: 3}
   dialogIndex: 13
+  autoEnterDialogue: 0
+  DialogOnce: 1
+--- !u!1 &1612187775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612187776}
+  - component: {fileID: 1612187777}
+  m_Layer: 5
+  m_Name: GetLetterDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1612187776
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612187775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1429976436}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1612187777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612187775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogDataFile: {fileID: 4900000, guid: 6d707638bfe02ba4682d7f4a64577e6a, type: 3}
+  dialogIndex: 117
   autoEnterDialogue: 0
   DialogOnce: 1
 --- !u!1 &1613611046
@@ -26809,7 +26906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: e4414799f48778a4fbd51231cc126752, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 25b1c73670ae5434f9e78a2a53d28927, type: 3}
   dialogIndex: 35
   autoEnterDialogue: 0
   DialogOnce: 1

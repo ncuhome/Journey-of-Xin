@@ -10,7 +10,7 @@ public class LetterBox : MonoBehaviour
     public int[] password = null;
     public TMP_Text passwordText = null;
     public int passwordIndex = 0;
-    private string correctPassword = "12345";
+    private string correctPassword = "15411";
     private DialogueTrigger correctTrigger = null;
     private DialogueTrigger wrongTrigger = null;
     private GameObject letterBox = null;

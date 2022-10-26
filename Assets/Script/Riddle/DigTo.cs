@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DigTo : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class DigTo : MonoBehaviour
 
     public void MouseDown(float mx,float my)
     {
-      //  Debug.Log("MOUSE:("+(mx-960)+","+(my-540)+")");
         int index = GetIndex(mx-960,my-540);
         if(index > -1)
         {
@@ -22,7 +22,6 @@ public class DigTo : MonoBehaviour
             UpdateSprite();
         }
     }
-
     private int GetIndex(float x,float y)
     {
         int hx = -1;
@@ -253,8 +252,25 @@ public class DigTo : MonoBehaviour
     }
     void Update()
     {
-        
+        if(Input.GetButtonDown("Cancel"))//ÍË³ö
+        {
+            if(score > 25)//³É¹¦
+            {
+                if(EventSystem.Instance.isStaticEvent(35))
+                {
+                    EventSystem.Instance.ActiveEvent(106);
+                }
+                else
+                {
+                    EventSystem.Instance.ActiveEvent(107);
+                }
+                InputManager.Instance.sceneState = SceneState.MainScene;
+                SceneManager.UnloadSceneAsync(11);
+            }
+            else
+            {
+                RestData();
+            }
+        }
     }
-
- 
 }

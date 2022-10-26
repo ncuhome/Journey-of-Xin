@@ -1,3 +1,4 @@
+using System.Resources;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class Connection : MonoBehaviour
     public GameObject Canvas;
     public GameObject Collider;//触发器
     public GameObject BarF1, BarF2;//稳定条 时间条
-    public GameObject EndL,EndS;//结束按钮
+    public GameObject EndL, EndS;//结束按钮
     private Block[] blockList;
     private Block cursor;//当前选中的方块
     private int index;//暂留方块索引值
@@ -18,27 +19,27 @@ public class Connection : MonoBehaviour
     private bool stop = false;
     private bool timerStart = false;
     // Start is called before the first frame update
-  
+
     private void ResetData()//重置数据
     {
         //重置地图
         Canvas.SetActive(true);
-        for (int i=0;i<blockList.Length;i++)
+        for (int i = 0; i < blockList.Length; i++)
         {
             blockList[i].color = -1;
             blockList[i].status = 0;
-            blockList[i].style = 1; 
+            blockList[i].style = 1;
         }
-        blockList[15].style = 0;   blockList[15].color = 0;
-        blockList[19].style = 0;   blockList[19].color = 0;
-        blockList[18].style = 0;   blockList[18].color = 1;
-        blockList[34].style = 0;   blockList[34].color = 1;
-        blockList[24].style = 0;   blockList[24].color = 2;
-        blockList[26].style = 0;   blockList[26].color = 2;
-        blockList[33].style = 0;   blockList[33].color = 3;
-        blockList[41].style = 0;   blockList[41].color = 3;
-        blockList[36].style = 0;   blockList[36].color = 4;
-        blockList[40].style = 0;   blockList[40].color = 4;
+        blockList[15].style = 0; blockList[15].color = 0;
+        blockList[19].style = 0; blockList[19].color = 0;
+        blockList[18].style = 0; blockList[18].color = 1;
+        blockList[34].style = 0; blockList[34].color = 1;
+        blockList[24].style = 0; blockList[24].color = 2;
+        blockList[26].style = 0; blockList[26].color = 2;
+        blockList[33].style = 0; blockList[33].color = 3;
+        blockList[41].style = 0; blockList[41].color = 3;
+        blockList[36].style = 0; blockList[36].color = 4;
+        blockList[40].style = 0; blockList[40].color = 4;
         //不会清除芯片稳定性
         timer = 0;
         BarF2.GetComponent<Image>().transform.localPosition = new Vector3(0, -450 * (timer / 20), 0);
@@ -67,7 +68,7 @@ public class Connection : MonoBehaviour
     }
     private void Update()
     {
-        if(timerStart)
+        if (timerStart)
         {
             if (stability == 0)//不稳定时，开始计时
             {
@@ -77,9 +78,9 @@ public class Connection : MonoBehaviour
                 BarF2.GetComponent<Image>().transform.localScale = new Vector3(1, (1 - timer / 20f), 0);
             }
         }
-        BarF1.GetComponent<Image>().transform.localPosition = new Vector3(0,-150*(3-stability),0);
-        BarF1.GetComponent<Image>().transform.localScale = new Vector3(1,  ( stability / 3f), 0);
-        if (Input.GetButtonDown("Cancel")){ Cancel(); }
+        BarF1.GetComponent<Image>().transform.localPosition = new Vector3(0, -150 * (3 - stability), 0);
+        BarF1.GetComponent<Image>().transform.localScale = new Vector3(1, (stability / 3f), 0);
+        if (Input.GetButtonDown("Cancel")) { Cancel(); }
     }
     #endregion
 
@@ -90,12 +91,12 @@ public class Connection : MonoBehaviour
         timerStart = true;
         // Debug.Log("鼠标位置：X" + mx + "  Y:" + my);
         index = InsideBlock(mx, my);//获取暂留方块索引
-        if(index > -1 && index <49)
+        if (index > -1 && index < 49)
         {
-            Debug.Log("当前位置："+index);
+            Debug.Log("当前位置：" + index);
             if (blockList[index].color > -1)
             {
-                if(index == 15 || index == 19 || index == 18 || index == 34 || index == 24
+                if (index == 15 || index == 19 || index == 18 || index == 34 || index == 24
                     || index == 26 || index == 33 || index == 41 || index == 36 || index == 40)
                 {
 
@@ -134,32 +135,32 @@ public class Connection : MonoBehaviour
         if (index > -1)//在已经选中方块时
         {
             int will = InsideBlock(mx, my);//获取当前鼠标所在方块索引
-            Debug.Log("目标位置："+will+"   当前位置："+index );
-            if(index/7 > 0)//暂留方块不在最上
+            Debug.Log("目标位置：" + will + "   当前位置：" + index);
+            if (index / 7 > 0)//暂留方块不在最上
             {
-                if(will == index - 7)
+                if (will == index - 7)
                 {
                     Debug.Log("上");
                     Up();
                 }
             }
-            if(index/7 < 6)//暂留方块不在最下
+            if (index / 7 < 6)//暂留方块不在最下
             {
-                if(will == index + 7)
+                if (will == index + 7)
                 {
                     Down();
                 }
             }
-            if(index%7 > 0)//暂离方块不在最左
+            if (index % 7 > 0)//暂离方块不在最左
             {
-                if(will == index -1)
+                if (will == index - 1)
                 {
                     Left();
                 }
             }
-            if(index%7 < 6)//暂留方块不在最右
+            if (index % 7 < 6)//暂留方块不在最右
             {
-                if(will == index + 1)
+                if (will == index + 1)
                 {
                     Right();
                 }
@@ -276,9 +277,9 @@ public class Connection : MonoBehaviour
 
                         blockList[nowIndex].status = 0;
                         blockList[nowIndex].color = -1;
-                        return; 
+                        return;
                     }
-                    if (blockList[nowIndex-7].color == blockList[nowIndex].color && blockList[nowIndex - 7].style == 1)//颜色相同
+                    if (blockList[nowIndex - 7].color == blockList[nowIndex].color && blockList[nowIndex - 7].style == 1)//颜色相同
                     {
                         //获取下一次的方向
                         if (blockList[nowIndex - 7].status == 2)//右
@@ -312,7 +313,7 @@ public class Connection : MonoBehaviour
 
                         blockList[nowIndex].status = 0;
                         blockList[nowIndex].color = -1;
-                        return; 
+                        return;
                     }
                     if (blockList[nowIndex + 7].color == blockList[nowIndex].color && blockList[nowIndex + 7].style == 1)//颜色相同
                     {
@@ -343,12 +344,12 @@ public class Connection : MonoBehaviour
                     }
                     break;
                 case 2://向左转
-                    if (nowIndex % 7 == 0) 
+                    if (nowIndex % 7 == 0)
                     {
 
                         blockList[nowIndex].status = 0;
                         blockList[nowIndex].color = -1;
-                        return; 
+                        return;
                     }
                     if (blockList[nowIndex - 1].color == blockList[nowIndex].color && blockList[nowIndex - 1].style == 1)//颜色相同
                     {
@@ -368,7 +369,7 @@ public class Connection : MonoBehaviour
                         //清除当前颜色并移动至新位置
                         blockList[nowIndex].status = 0;
                         blockList[nowIndex].color = -1;
-                        nowIndex --;
+                        nowIndex--;
                     }
                     else//颜色不同则终止
                     {
@@ -379,12 +380,12 @@ public class Connection : MonoBehaviour
                     }
                     break;
                 case 3://向右转
-                    if (nowIndex % 7 == 6) 
+                    if (nowIndex % 7 == 6)
                     {
 
                         blockList[nowIndex].status = 0;
                         blockList[nowIndex].color = -1;
-                        return; 
+                        return;
                     }
                     if (blockList[nowIndex + 1].color == blockList[nowIndex].color && blockList[nowIndex + 1].style == 1)//颜色相同
                     {
@@ -439,7 +440,7 @@ public class Connection : MonoBehaviour
         }
         int indexC = dy * 7 + dx;//计算索引值
 
-       // Debug.Log("抓取方块:" + index + "  X:" + dx + "  Y:" + dy);
+        // Debug.Log("抓取方块:" + index + "  X:" + dx + "  Y:" + dy);
         if (indexC > -1 && indexC < 49) { return indexC; }
         return -1;
     }
@@ -452,7 +453,7 @@ public class Connection : MonoBehaviour
             switch (blockList[i].color)
             {
                 case -1:
-                    blockList[i].blockObject.transform.Find("Flash").GetComponent<Image>().color = new Color(1,1,1,1);
+                    blockList[i].blockObject.transform.Find("Flash").GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     break;
                 case 0://红
                     blockList[i].blockObject.transform.Find("Flash").GetComponent<Image>().color = new Color(230 / 255f, 25 / 255f, 15 / 255f, 255 / 255f);
@@ -482,9 +483,9 @@ public class Connection : MonoBehaviour
             blockList[i].blockObject.GetComponent<Animator>().SetInteger("status", blockList[i].status);
         }
     }
-    private void Activation(int aim,int active)//激活/关闭一对芯片(active为0是非激活)
+    private void Activation(int aim, int active)//激活/关闭一对芯片(active为0是非激活)
     {
-        switch(aim)
+        switch (aim)
         {
             case 15:
             case 19:
@@ -512,20 +513,20 @@ public class Connection : MonoBehaviour
     private bool Surrd(int indexP)//判定周围是否有同色出口
     {
         int number = 0;
-        if(indexP/7 > 0)//上
+        if (indexP / 7 > 0)//上
         {
-            if(indexP - 7 != index)
+            if (indexP - 7 != index)
             {
                 if (blockList[indexP - 7].status == 2
                     || blockList[indexP - 7].status == 3
                     || blockList[indexP - 7].status == 6)
                 {
                     if (blockList[indexP - 7].color == blockList[indexP].color) { number++; }
-                   // Debug.Log("上有接口");
+                    // Debug.Log("上有接口");
                 }
             }
         }
-        if(indexP/7 < 6)//下
+        if (indexP / 7 < 6)//下
         {
             if (indexP + 7 != index)
             {
@@ -538,7 +539,7 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-        if(indexP%7 > 0)//左
+        if (indexP % 7 > 0)//左
         {
             if (indexP - 1 != index)
             {
@@ -551,7 +552,7 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-        if(indexP%7 < 6)//右
+        if (indexP % 7 < 6)//右
         {
             if (indexP + 1 != index)
             {
@@ -564,8 +565,8 @@ public class Connection : MonoBehaviour
                 }
             }
         }
-       // Debug.Log("NUmber:" + number);
-        if(number >= 1)
+        // Debug.Log("NUmber:" + number);
+        if (number >= 1)
         {
             return true;
         }
@@ -575,13 +576,13 @@ public class Connection : MonoBehaviour
     private void Up()//向上延伸
     {
         int aimIndex = index - 7;
-        if(blockList[aimIndex].style == 1)//为连接点
+        if (blockList[aimIndex].style == 1)//为连接点
         {
-           // Debug.Log("符合条件上，且符合条件为连接点");
-           // Debug.Log("目标颜色："+ blockList[aimIndex].color);
+            // Debug.Log("符合条件上，且符合条件为连接点");
+            // Debug.Log("目标颜色："+ blockList[aimIndex].color);
             if (blockList[aimIndex].color == -1)//目标位置为无颜色
             {
-               // Debug.Log("符合条件上，且符合条件为连接点，且符合目标无颜色");
+                // Debug.Log("符合条件上，且符合条件为连接点，且符合目标无颜色");
                 #region 变更目标位置方块的信息
                 blockList[aimIndex].status = 6;
                 blockList[aimIndex].color = cursor.color;
@@ -764,7 +765,7 @@ public class Connection : MonoBehaviour
                         }
                     }
                 }
-                
+
                 #endregion
 
                 #region 更新选择的方块
@@ -901,7 +902,7 @@ public class Connection : MonoBehaviour
                 #endregion
 
                 #region 更新选择的方块
-                index --;
+                index--;
                 cursor = blockList[index];
                 #endregion
             }
@@ -1107,8 +1108,31 @@ public class Connection : MonoBehaviour
     }
     public void Close()//退出游戏
     {
+        InputManager.Instance.sceneState = SceneState.MainScene;
         Canvas.SetActive(false);
         gameObject.SetActive(false);
+
+        if (EventSystem.Instance.staticEventList[26] != 1)
+        {
+            if (EventSystem.Instance.staticEventList[4] == 1)
+            {
+                EventSystem.Instance.ShowMail();
+            }
+            else
+            {
+                EventSystem.Instance.LoseMiniGame4();
+            }
+        } else
+        {
+            if (EventSystem.Instance.staticEventList[36] == 1)
+            {
+                EventSystem.Instance.WinMiniGame4();
+            }
+            else
+            {
+                ResetData();
+            }
+        }
     }
     private void toEnd()//判定是否结束并跳转至相应结果
     {
@@ -1138,14 +1162,16 @@ public class Connection : MonoBehaviour
         {
             stability--;
         }//芯片损坏
-       // Thread.Sleep(1500);
+         // Thread.Sleep(1500);
         EndL.SetActive(true);
+
     }
     private void EndSuccess()//成功退出（需记录事件）
     {
+        EventSystem.Instance.FinishMiniGame4();
         stop = true;
         timerStart = false;
-      //  Thread.Sleep(1500);
+        //  Thread.Sleep(1500);
         EndS.SetActive(true);
     }
     #endregion

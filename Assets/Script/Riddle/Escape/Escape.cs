@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Escape : MonoBehaviour
 {
@@ -8,11 +9,15 @@ public class Escape : MonoBehaviour
     private float starCDTimer = 0;//生成星星的计时器
     public void End()//失败
     {
-
+        InputManager.Instance.sceneState = SceneState.MiniGame;
+        SceneManager.LoadScene(12, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(12);
     }
     public void EndSuccess()//成功
     {
-
+        EventSystem.Instance.ActiveEvent(109);
+        InputManager.Instance.sceneState = SceneState.MiniGame;
+        SceneManager.UnloadSceneAsync(12);
     }
 
     private void CreatStar()//生成星星
