@@ -15731,7 +15731,7 @@ MonoBehaviour:
   settingCanvas: {fileID: 1124514628}
   menuCanvas: {fileID: 380681658}
   menuOptions: {fileID: 380681657}
-  animatorLoading: {fileID: 4784525650855208525, guid: 65073d87f2d61414b820460b1d10a476, type: 3}
+  animatorLoading: {fileID: 4784525650855208525, guid: 6608192b6e1650f49a6447ce119e225f, type: 3}
 --- !u!4 &1192264957
 Transform:
   m_ObjectHideFlags: 0
