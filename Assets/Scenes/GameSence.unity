@@ -17576,7 +17576,7 @@ MonoBehaviour:
   roomIndex: 0
   leftButton: {fileID: 259350595}
   rightButton: {fileID: 1930142794}
-  roomExchangePre: {fileID: 4256285635099053203, guid: 2da61e937e84d4a41855caf04806f0ec, type: 3}
+  roomExchangePre: {fileID: 4256285635099053203, guid: c125a2232fab5a14b9b480f3eff0c32f, type: 3}
   canChangeRoom: 1
 --- !u!4 &1310876506
 Transform:

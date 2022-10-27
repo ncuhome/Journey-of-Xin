@@ -478,7 +478,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         SceneItemManager.Instance.itemStates[10] = ItemState.Interactive;
         CeController.Instance.state = 1;
-        TimeManager.Instance.StartTimeRecord(5, 0, 0, 1, true);
+        TimeManager.Instance.StartTimeRecord(3, 0, 0, 1, true);
     }
     private void CeWalkToSpaceShip()
     {
@@ -504,7 +504,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         RoomManager.Instance.LastRoom();
         RoomManager.Instance.canChangeRoom = false;
-        TimeManager.Instance.StartTimeRecord(5, 0, 0, 2, true);
+        TimeManager.Instance.StartTimeRecord(3, 0, 0, 2, true);
     }
 
     private void CELeaveMainRoom()
@@ -515,13 +515,13 @@ public class EventSystem : MonoBehaviour, IEventList
     public void IncomingLetter()
     {
         SceneItemManager.Instance.itemStates[7] = ItemState.Interactive;
-        TimeManager.Instance.StartTimeRecord(15, 0, 0, 4, true);
+        TimeManager.Instance.StartTimeRecord(5, 0, 0, 4, true);
     }
 
     private void startTimeRecord3()
     {
 
-        TimeManager.Instance.StartTimeRecord(32, 0, 0, 3, true);
+        TimeManager.Instance.StartTimeRecord(10, 0, 0, 3, true);
     }
 
     private void ChangeToSpaceShip()
@@ -544,13 +544,13 @@ public class EventSystem : MonoBehaviour, IEventList
             staticEventList[17] = 0;
             staticEventList[19] = 1;
             TimeManager.Instance.StopTimeRecord();
-            TimeManager.Instance.StartTimeRecord(5, 0, 0, 4, true);
+            TimeManager.Instance.StartTimeRecord(3, 0, 0, 4, true);
         }
     }
 
     private void GetRebornMachineCE()
     {
-        StoreSystem.Instance.Add(17);
+        StoreSystem.Instance.Add(1);
         if (staticEventList[6] == 1)
         {
             StartCoroutine("DelayStartDialogNode11");
@@ -579,7 +579,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private void CanClickTrashBin()
     {
         SceneItemManager.Instance.itemStates[13] = ItemState.Interactive;
-        TimeManager.Instance.StartTimeRecord(15, 0, 1, 5, true);
+        TimeManager.Instance.StartTimeRecord(5, 0, 1, 5, true);
     }
 
     public void StartDialogNode12()
@@ -619,7 +619,7 @@ public class EventSystem : MonoBehaviour, IEventList
         yield return new WaitForSeconds(0.5f);
         RoomManager.Instance.LastRoom();
         SceneItemManager.Instance.itemStates[5] = ItemState.Interactive;
-        TimeManager.Instance.StartTimeRecord(60, 0, 0, 6, false);
+        TimeManager.Instance.StartTimeRecord(15, 0, 0, 6, false);
     }
 
     public void StartDialogRemind1()
@@ -652,7 +652,7 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void StartTimeRecordToBlackMarket()
     {
-        TimeManager.Instance.StartTimeRecord(30, 0, 1, 7, false);
+        TimeManager.Instance.StartTimeRecord(10, 0, 1, 7, false);
     }
 
     public void EnterBlackMarket()
@@ -785,7 +785,7 @@ public class EventSystem : MonoBehaviour, IEventList
         InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.NextRoom();
         CeController.Instance.state = 7;
-        TimeManager.Instance.StartTimeRecord(15, 1, 1, 8, false);
+        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
     }
 
     public void ReturnToMainControlRoom()
@@ -1039,7 +1039,7 @@ public class EventSystem : MonoBehaviour, IEventList
         InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.NextRoom();
         CeController.Instance.state = 7;
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
+        TimeManager.Instance.StartTimeRecord(3, 1, 1, 8, false);
     }
 
     private IEnumerator StartDialogBackFromMineralPlanet()
@@ -1096,7 +1096,7 @@ public class EventSystem : MonoBehaviour, IEventList
         yield return new WaitForSeconds(2f);
         InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.NextRoom();
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 10, false);
+        TimeManager.Instance.StartTimeRecord(3, 1, 1, 10, false);
         StartCoroutine("DelayChangeState7");
     }
 
@@ -1199,7 +1199,7 @@ public class EventSystem : MonoBehaviour, IEventList
         InputManager.Instance.sceneState = SceneState.MainScene;
         RoomManager.Instance.NextRoom();
         CeController.Instance.state = 7;
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
+        TimeManager.Instance.StartTimeRecord(3, 1, 1, 8, false);
     }
 
     private IEnumerator StartDialogBackFromGalaxyAlliance()
@@ -1311,7 +1311,8 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void StartMiniGame7()
     {
-        WinMiniGame7();
+        SceneManager.LoadScene(12, LoadSceneMode.Additive);
+        InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
     private void WinMiniGame7()
@@ -1468,18 +1469,21 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void ChooseGoToMainControlRoom()
     {
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
+        TimeManager.Instance.StartTimeRecord(3, 1, 1, 8, false);
     }
 
     private void ChooseGoToBlackMarket()
     {
         staticEventList[32] = 1;
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 7, false);
+        TimeManager.Instance.StartTimeRecord(3, 1, 1, 7, false);
     }
 
     public void ShopClick()
     {
-        ChooseGoods();
+        if (staticEventList[34] == 1)
+        {
+            ChooseGoods();
+        }
     }
 
     private IEnumerator StartDialogNode27()
@@ -1528,13 +1532,13 @@ public class EventSystem : MonoBehaviour, IEventList
     private void AfterDialogNode27()
     {
         RoomManager.Instance.NextRoom();
-        TimeManager.Instance.StartTimeRecord(5, 1, 1, 8, false);
+        TimeManager.Instance.StartTimeRecord(3, 1, 1, 8, false);
     }
 
     private void ToMineralPlanetAfterDialogNode18()
     {
         staticEventList[35] = 1;
-        TimeManager.Instance.StartTimeRecord(5, 0, 1, 9, false);
+        TimeManager.Instance.StartTimeRecord(3, 0, 1, 9, false);
     }
 
     private void IntoMineralPlanetAfterDialogNode18()
@@ -1562,7 +1566,7 @@ public class EventSystem : MonoBehaviour, IEventList
     {
         SceneItemManager.Instance.itemStates[20] = ItemState.Interactive;
         SceneItemManager.Instance.itemStates[21] = ItemState.Interactive;
-        TimeManager.Instance.StartTimeRecord(30, 3, 0, 11, false);
+        TimeManager.Instance.StartTimeRecord(10, 3, 0, 11, false);
     }
 
     public void StartMiniGameMineralAfterDialogNode30()

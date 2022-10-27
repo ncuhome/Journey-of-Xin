@@ -270,6 +270,7 @@ public class DigTo : MonoBehaviour
         {
             if(score > 25)//³É¹¦
             {
+                InputManager.Instance.sceneState = SceneState.MainScene;
                 if(EventSystem.Instance.isStaticEvent(35))
                 {
                     EventSystem.Instance.ActiveEvent(110);
@@ -278,7 +279,6 @@ public class DigTo : MonoBehaviour
                 {
                     EventSystem.Instance.ActiveEvent(111);
                 }
-                InputManager.Instance.sceneState = SceneState.MainScene;
                 SceneManager.UnloadSceneAsync(11);
             }
             else
