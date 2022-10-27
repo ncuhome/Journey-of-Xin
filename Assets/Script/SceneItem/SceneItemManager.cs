@@ -24,6 +24,8 @@ public class SceneItemManager : MonoBehaviour
 
     public GameObject panel = null;
 
+    public Canvas mainCanvas = null;
+
     void Awake()
     {
         if (Instance == null)

@@ -1312,11 +1312,13 @@ public class EventSystem : MonoBehaviour, IEventList
     private void StartMiniGame7()
     {
         SceneManager.LoadScene(12, LoadSceneMode.Additive);
+        SceneItemManager.Instance.mainCanvas.enabled = false;
         InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
     private void WinMiniGame7()
     {
+        SceneItemManager.Instance.mainCanvas.enabled = true;
         GameObject.Find("DialogRemindCharge").GetComponent<DialogueTrigger>().StartDialogue();
     }
 
@@ -1413,11 +1415,13 @@ public class EventSystem : MonoBehaviour, IEventList
     private void StartMiniGameSpaceShip()
     {
         SceneManager.LoadScene(13, LoadSceneMode.Additive);
+        SceneItemManager.Instance.mainCanvas.enabled = false;
         InputManager.Instance.sceneState = SceneState.MiniGame;
     }
 
     private void WinMiniGameSpaceShip()
     {
+        SceneItemManager.Instance.mainCanvas.enabled = true;
         GameObject.Find("DialogNode24").GetComponent<DialogueTrigger>().StartDialogue();
     }
 

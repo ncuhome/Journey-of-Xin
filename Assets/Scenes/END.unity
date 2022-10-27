@@ -520,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 984963354}
   text: {fileID: 1877174033}
-  Loading: {fileID: 4784525650855208525, guid: f4dc407ee9cba0541975819ee805fe8a, type: 3}
+  Loading: {fileID: 4784525650855208525, guid: 6608192b6e1650f49a6447ce119e225f, type: 3}
 --- !u!1 &1877174031
 GameObject:
   m_ObjectHideFlags: 0

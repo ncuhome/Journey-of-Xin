@@ -3361,7 +3361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 4a9823beb70face4f95041851c9956ab, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: b2330a8497e2b1248835f1a6408312d5, type: 3}
   dialogIndex: 88
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -10048,7 +10048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: b2330a8497e2b1248835f1a6408312d5, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 4a9823beb70face4f95041851c9956ab, type: 3}
   dialogIndex: 89
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -18993,18 +18993,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactive: 1
-  intoWorkTablePanel: {fileID: 0}
-  letterBox: {fileID: 0}
-  lastLetter: {fileID: 0}
-  lastMail: {fileID: 0}
-  coffeeInMarket: {fileID: 0}
-  neutrinoDebugger: {fileID: 0}
-  blackMineral: {fileID: 0}
-  perspectiveGlass: {fileID: 0}
-  endlessEnergyMaker: {fileID: 0}
-  letterInTrashBin: {fileID: 0}
-  trashBin: {fileID: 0}
-  rebornMachineCE: {fileID: 0}
+  intoWorkTablePanel: {fileID: 59614469}
+  letterBox: {fileID: 817417926}
+  lastLetter: {fileID: 1279540241}
+  lastMail: {fileID: 800176573}
+  coffeeInMarket: {fileID: 405188568}
+  neutrinoDebugger: {fileID: 1474234733}
+  blackMineral: {fileID: 2005391312}
+  perspectiveGlass: {fileID: 1643139070}
+  endlessEnergyMaker: {fileID: 1867991598}
+  letterInTrashBin: {fileID: 2140849033}
+  trashBin: {fileID: 1207477458}
+  rebornMachineCE: {fileID: 123377962}
   items:
   - {fileID: 0}
   - {fileID: 0}
@@ -19159,6 +19159,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   panel: {fileID: 0}
+  mainCanvas: {fileID: 1825485780}
 --- !u!4 &1443325996
 Transform:
   m_ObjectHideFlags: 0
