@@ -20,6 +20,20 @@ public class AStroke : MonoBehaviour
     private int index = 24;//当前彩色移动光标位置
     private bool start = false;//判定是否游戏开始
     private bool stop = false;
+
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if (!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
+
     #region 输入处理&核心逻辑
 
 

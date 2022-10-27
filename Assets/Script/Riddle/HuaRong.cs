@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class HuaRong : MonoBehaviour
 {
+
     private int[] square;
     private bool[] squareBool = new bool[16];
     private GameObject[] blockList;//游戏对象块组
@@ -16,7 +17,19 @@ public class HuaRong : MonoBehaviour
 
     private Vector3 oldPosition;//旧坐标
     //左下角为起点，右上角为终点
-
+    
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if(!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
     private void Awake()
     {
         blockList = new GameObject[16];

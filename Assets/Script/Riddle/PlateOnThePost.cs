@@ -13,6 +13,19 @@ public class PlateOnThePost : MonoBehaviour
     private Plate[] plateList = new Plate[4];
     private Plate getPlate;//当前抓住的物体
 
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if (!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
+
     #region 核心逻辑与输入处理
     public void setPillar0()//点击柱子0
     {

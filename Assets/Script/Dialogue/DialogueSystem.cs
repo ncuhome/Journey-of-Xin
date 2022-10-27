@@ -168,8 +168,9 @@ public class DialogueSystem : MonoBehaviour
             if (cells[0] == "#") //如果是普通对话且 ID 是正在进行的对话 ID 就显示
             {
                 UpdateText(cells[2], cells[3]);
-
+                Debug.Log("当前Id"+dialogIndex);
                 dialogIndex = int.Parse(cells[4]); // 跳转下一条对话
+                Debug.Log("跳转Id"+dialogIndex);
                 break;
             }
             else if (cells[0] == "&") // 如果是选择对话则显示按钮

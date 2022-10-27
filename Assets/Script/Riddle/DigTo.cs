@@ -13,10 +13,22 @@ public class DigTo : MonoBehaviour
     private int[] lower = new int[54];
     private int score;//¼Æ·Ö
 
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if (!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
     public void MouseDown(float mx,float my)
     {
         int index = GetIndex(mx-960,my-540);
-        if(index > -1)
+        if(index > -1 && index < 54)
         {
             Break(index);
             UpdateSprite();
@@ -249,6 +261,8 @@ public class DigTo : MonoBehaviour
         lower[36] = lower[37] = lower[45] = lower[46] = 2;
         lower[4] = -1; lower[16] = -1; lower[27] = -1; lower[30] = -1; lower[44] = -1; lower[48] = -1;
         lower[39] = 4;
+
+        score = 0;
     }
     void Update()
     {
@@ -258,11 +272,11 @@ public class DigTo : MonoBehaviour
             {
                 if(EventSystem.Instance.isStaticEvent(35))
                 {
-                    EventSystem.Instance.ActiveEvent(106);
+                    EventSystem.Instance.ActiveEvent(110);
                 }
                 else
                 {
-                    EventSystem.Instance.ActiveEvent(107);
+                    EventSystem.Instance.ActiveEvent(111);
                 }
                 InputManager.Instance.sceneState = SceneState.MainScene;
                 SceneManager.UnloadSceneAsync(11);

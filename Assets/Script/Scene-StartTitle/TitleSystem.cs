@@ -13,11 +13,11 @@ public class TitleSystem : MonoBehaviour
     public Animator animator;//?    public GameObject animatorLoading;//???    private int cursor = 0;//??
     private bool nextScene = false;//??
     private int cursor = 0;//0Xin?     1?µ?    2?      3?      4??
-    private GameObject settingsCanvas = null;
-    private GameObject saveCanvas = null;
+    public GameObject settingsCanvas = null;
+    public GameObject saveCanvas = null;
     public GameObject background = null;
     public GameObject animatorLoading;
-    private Canvas startTitleCanvas = null;
+    public Canvas startTitleCanvas = null;
     void Awake()
     {   
         settingsCanvas = GameObject.Find("SettingsCanvas");

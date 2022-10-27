@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 7eb0d5a9406a24846b94baf1972e0650, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: f982108aba2dfaf408dc5e2d6c705636, type: 3}
   dialogIndex: 56
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 153097fecd66fda408205a1da64c8ea6, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 5e450f7ff3ad9604f8c8cfd3d91be250, type: 3}
   dialogIndex: 71
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 97d0118ea03d9454ca5befcc0a722058, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: fc4d432cf713d394190a05f7ae817a2c, type: 3}
   dialogIndex: 36
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 1eb98ea9f97b6ca4094eca0458c03cba, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 37ac0b0cedbee0b46bfa755e17ea582e, type: 3}
   dialogIndex: 7
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -2639,7 +2639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 832d67502be1fbd48b035172e3de59af, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 9bfef580df7b24c4aa8c5c6b18e0e995, type: 3}
   dialogIndex: 4
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -3414,7 +3414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 2e3409f6527444447b517d8a7bde6d50, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: aa93e94d9b232bf4d9ce8a599a35a640, type: 3}
   dialogIndex: 32
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -4456,7 +4456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: f6e495fa3da76e74ca7e4e8b0ad6af36, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 71479d26aa377ac4e902863cfab06882, type: 3}
   dialogIndex: 73
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -4793,7 +4793,7 @@ RectTransform:
   - {fileID: 1230191327}
   - {fileID: 1067686550}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5652,7 +5652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4816939255304465715, guid: 4b5a319edd58ae4488dbee86666b775c, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4816939255304465715, guid: 4b5a319edd58ae4488dbee86666b775c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6402,7 +6402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 3dda05ba94f3b2f4a8f8837a82e72a2b, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 67905e30e7aff6a419f85d82dfaec7ad, type: 3}
   dialogIndex: 14
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -6530,7 +6530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 70b16035656dddb4c9147059e6cb77fc, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: f0d99808f71392a4aa8c6e292d82a87a, type: 3}
   dialogIndex: 53
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -6583,7 +6583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 5d75a331a043c9f438897c0f819e8b9b, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 0a1d27200ead428488798a52f885439d, type: 3}
   dialogIndex: 2
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -7287,7 +7287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 4ab8beecacf3b064cadb5756782b2724, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 007b7887dddcf8c42a418603fb9e60bb, type: 3}
   dialogIndex: 6
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -7455,7 +7455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 025ecb6695a0b1542a861792450d93da, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 280dd7e176a147f43933451fa92b8fbf, type: 3}
   dialogIndex: 47
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -7690,7 +7690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 6970095be760f6445812e4b970e1d123, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 9aa8481deba6d16409428d034cd1799e, type: 3}
   dialogIndex: 21
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -8135,7 +8135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: c2d8f1bf4159e7044840298549a7b7a2, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 76c0bc0a72dc0e241a09e3bd3bbf1ec0, type: 3}
   dialogIndex: 116
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -8393,7 +8393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 4180bb4d93c06c74aa269c8465873e69, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: e8bf17686c6158f4aa8cf2b4a20a6b35, type: 3}
   dialogIndex: 5
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -8749,7 +8749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 3dda05ba94f3b2f4a8f8837a82e72a2b, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 3aaeacadea4283b4a93281171f502376, type: 3}
   dialogIndex: 3
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -8878,7 +8878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 0bb9d2224ad599441a461eee1fff9a47, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: a4556d63c3eaef44f9665c3fbb9e74a8, type: 3}
   dialogIndex: 59
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -9306,7 +9306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 78f33fe80076dc746b9cabcbf0e8c171, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: fdf85193594f7454189c04a1d8374d1b, type: 3}
   dialogIndex: 58
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -9627,7 +9627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 7af936e6ed08a59498ef902e64ba9416, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 51cf9b6873b34d844a711c2062226b73, type: 3}
   dialogIndex: 109
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -9924,7 +9924,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &683912403
 GameObject:
@@ -10443,7 +10443,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &720975748
 GameObject:
@@ -10481,7 +10481,7 @@ Transform:
   - {fileID: 1443325996}
   - {fileID: 1326649248}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &738828881
 PrefabInstance:
@@ -10686,7 +10686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: ceeacabf66bce2b47b9204cb61c84cb9, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 24649b11fd4ba3343af233912771141e, type: 3}
   dialogIndex: 9
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -10788,70 +10788,13 @@ RectTransform:
   - {fileID: 1778008415}
   - {fileID: 711378229}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &771333311
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6125966856849118817, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_Name
-      value: DontDestroyManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 124.70792
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 99.55062
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.4708588
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125966856849118819, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 27ac42d6cedc0d34dafe7ee2599f4136, type: 3}
 --- !u!1 &776324478
 GameObject:
   m_ObjectHideFlags: 0
@@ -11307,7 +11250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 1556ace31ceabbb44a38e6b5cc4ed927, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 509acce0a9273894e906669dece6d0dc, type: 3}
   dialogIndex: 39
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -11533,7 +11476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 5d7d8ab99b33f0a4282e3a4ae2212082, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: f540477cdba245a4a916b1276854539f, type: 3}
   dialogIndex: 112
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -11688,7 +11631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: fc8bc6786bfa748418e569f50b26c202, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: e8333b63a05dd8d47bd07af4d61005d6, type: 3}
   dialogIndex: 118
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -12547,7 +12490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 5f0d0dd95bfa6a64883dfe78a55c01b6, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 64c0801acf270aa4f817a325db39041a, type: 3}
   dialogIndex: 46
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -13619,7 +13562,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1021861993
 GameObject:
@@ -13725,7 +13668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 9b975545adbec154ba768307d7a0980e, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: a060e969b2cdff841b5c791f4cf7f618, type: 3}
   dialogIndex: 63
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -13884,7 +13827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 3dda05ba94f3b2f4a8f8837a82e72a2b, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 3aaeacadea4283b4a93281171f502376, type: 3}
   dialogIndex: 67
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -14583,7 +14526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222102714701892751, guid: a06bd2442e621ed489e1465375ae9959, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2222102714701892751, guid: a06bd2442e621ed489e1465375ae9959, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14709,7 +14652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 506119391405575771, guid: 5c966a26efa25e242b4302c504dc9b6e, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 506119391405575771, guid: 5c966a26efa25e242b4302c504dc9b6e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15896,7 +15839,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1207477458
 GameObject:
@@ -16596,7 +16539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 6691433aafe17864a87403b7af663be0, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 1be3ac875ddec2842b4afdfe4e688694, type: 3}
   dialogIndex: 84
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -16649,7 +16592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: fd893bd3f3206294db500c17e7f6aaea, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 8ec8c64c0983bd34d84ea80567ff34cf, type: 3}
   dialogIndex: 80
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -17690,7 +17633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: f20ac31662fd71a43a6cb843e64b6aac, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 81dadcb3903a95d4e9051217d42d6282, type: 3}
   dialogIndex: 64
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -17793,7 +17736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 8e9f7f237aceeec4fbdce1bd9b33436c, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 33a87e56c12fed648937ceed4f827df1, type: 3}
   dialogIndex: 42
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -17841,6 +17784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6502d5eb586e094b8c39f6ceb8938da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  END: 0
   staticEventList: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1001 &1328576158
 PrefabInstance:
@@ -18589,7 +18533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: b4ca1ebaf6770b04da8cccccaeb01a21, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: a22e029eaec662f4bb0d1de83186e53b, type: 3}
   dialogIndex: 48
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -18836,7 +18780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 241a00d94377a494e973c068481cc110, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 090f6d4615c171941b005cb70dacec33, type: 3}
   dialogIndex: 45
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -19041,7 +18985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: aeed25c7ea7862d4eaf3385d95b132ca, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: c2f3d706a60888b46b1416e44841290d, type: 3}
   dialogIndex: 0
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -19604,7 +19548,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1474234733
 GameObject:
@@ -19659,7 +19603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 162bd95e3619a2d42b0a878f4a8c57e1, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: d4dafc857ff93bc4c8ce2c6e313ce7f4, type: 3}
   dialogIndex: 15
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -20475,7 +20419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: ba6793a29f2330440a4bae0e879ad8c0, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 3d13f1b823f37c84889cdafef1b7f34c, type: 3}
   dialogIndex: 31
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -20642,7 +20586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 3f536921769fb1a4cb8e1e82b75cf83d, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: b38db4af45bcc574eabae06e07a2e14c, type: 3}
   dialogIndex: 55
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -20695,7 +20639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 85cae7e815b4c994496e98498f78601e, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 7d4fbc66a4b2e84479a7089d3ae54652, type: 3}
   dialogIndex: 13
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -20748,7 +20692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 6d707638bfe02ba4682d7f4a64577e6a, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 917af62ceb91ba14b94f77848e3e1f8a, type: 3}
   dialogIndex: 117
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -21161,7 +21105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 4272419c5202cf540baf07f67210a626, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 8709e5a8d0098ee49ad5a7d4c9811c72, type: 3}
   dialogIndex: 17
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -21424,7 +21368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 538987433138c1144a65b395cc1e7564, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 244ddf82ca62b8143be910aa6745b1e9, type: 3}
   dialogIndex: 100
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -21477,7 +21421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: a690264e1cb841c40b7149a06fd414c9, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 92744a8443ea0b143a567294c2f9fac6, type: 3}
   dialogIndex: 107
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -21823,7 +21767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 57d1f7848d33f4a41bfbbcc5b5e05ee2, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: ecb9f291640c90649bce2af8a7e11e2f, type: 3}
   dialogIndex: 54
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -22331,7 +22275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 411d8c58db36186419dc7601311beca9, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 1802819fbedd3974aa4914b7ac2c29e7, type: 3}
   dialogIndex: 76
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -22931,7 +22875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 8686e2a27e44c414da08e2de5f57b066, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 294ac6d8536b1df488c31aabc16e5a96, type: 3}
   dialogIndex: 111
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -23199,7 +23143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: b8ec901fb6a89f24a8e29855130e3694, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 95ab3c9b0a9bea443a083be901e5d14c, type: 3}
   dialogIndex: 1
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -23424,7 +23368,7 @@ RectTransform:
   - {fileID: 714178564}
   - {fileID: 1089835955}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23534,7 +23478,7 @@ RectTransform:
   - {fileID: 259350596}
   - {fileID: 1930142798}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23724,7 +23668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: fd1fbc0e9c112854e9603e0e8e55df6b, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 0f098f0582c9e9e49a231fa04ded01f7, type: 3}
   dialogIndex: 20
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -23804,55 +23748,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849826283}
   m_CullTransparentMesh: 1
---- !u!1 &1850401613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1850401614}
-  - component: {fileID: 1850401615}
-  m_Layer: 5
-  m_Name: StoreSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1850401614
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850401613}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1435, y: 930}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1850401615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850401613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f62d789586abe494d949ab9392c91032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1852443281
 GameObject:
   m_ObjectHideFlags: 0
@@ -24058,7 +23953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 9bcc54b07f6a4524ea0bcc23b6d7e6f2, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 09806241504e72948859cb5d64a272c6, type: 3}
   dialogIndex: 18
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -24861,7 +24756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1335031920317242369, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1335031920317242369, guid: 061f2f2bd77623e45b2f68b5dc5edc58, type: 3}
       propertyPath: m_AnchorMax.x
@@ -24990,7 +24885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: d976579f8fd1ac345b28ea34e257a2de, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 8c56917f048c7ad46b75d78a7bfed8b5, type: 3}
   dialogIndex: 41
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -25173,7 +25068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 49833897d0f3f154d8ad7c187d28c669, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 3aefa2d67ff00734788a676fd992a1c8, type: 3}
   dialogIndex: 108
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -25220,7 +25115,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2005391312
 GameObject:
@@ -25275,7 +25170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 99d62dbe707b38249b27220ad71e190a, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: c2e197cd5944e4e4d9f0b0105ffc336e, type: 3}
   dialogIndex: 16
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -25403,7 +25298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: a430a776d414e6643801f298bbfcbaff, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: d482b463429bb8448a7579d49ded9ede, type: 3}
   dialogIndex: 8
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -25590,7 +25485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 78c7eec95d3552f4abc7da8d3c172262, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 332aa19803c891f43abc37d5ea379539, type: 3}
   dialogIndex: 25
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -25643,7 +25538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: aad2aca0db77928488e514743a7faad5, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 09640bf0a21309c4f8fa50ffab68b8de, type: 3}
   dialogIndex: 110
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -26060,7 +25955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 2e3409f6527444447b517d8a7bde6d50, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: aa93e94d9b232bf4d9ce8a599a35a640, type: 3}
   dialogIndex: 32
   autoEnterDialogue: 0
   DialogOnce: 0
@@ -26377,7 +26272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: b898a3d72b5e4444da307d873cfed3a5, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 58428a7c3ab90db409a1a64a30915bf3, type: 3}
   dialogIndex: 12
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -26452,7 +26347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 26ed1b8fb447b2e47a5d038dda25a646, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 55ac022b331d8444888b3fee78126f75, type: 3}
   dialogIndex: 10
   autoEnterDialogue: 0
   DialogOnce: 1
@@ -27123,7 +27018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab6d5fba76828e4e907e64ee72102e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogDataFile: {fileID: 4900000, guid: 4180bb4d93c06c74aa269c8465873e69, type: 3}
+  dialogDataFile: {fileID: 4900000, guid: 2ab1e8aa21649264b83cba163c917b66, type: 3}
   dialogIndex: 11
   autoEnterDialogue: 0
   DialogOnce: 1

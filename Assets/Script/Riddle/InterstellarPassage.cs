@@ -17,7 +17,18 @@ public class InterstellarPassage : MonoBehaviour
     public Camera Camera;//摄像机
     public GameObject StoneS, StoneM, StoneL;//三种石头
 
-
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if (!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
     private void MapMove()//地图滚动
     {
         Map0.transform.localPosition -= new Vector3(speedMap, 0, 0);
@@ -71,10 +82,18 @@ public class InterstellarPassage : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    private bool closeTips = true;
     void Update()
     {
         gameTimer += Time.deltaTime;
+        if(closeTips)
+        {
+            if(gameTimer > 2) 
+            {
+                TipsDisplay();
+                closeTips = false;
+            }
+        }
         if(speedStone < 15){ speedStone = 5 + gameTimer / 5; }
         if (speedMap < 25) { speedMap = 5 + gameTimer / 2; }
         if(creatWaitTime > 0.25) { creatWaitTime -= Time.deltaTime/10; }

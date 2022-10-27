@@ -423,6 +423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c966a26efa25e242b4302c504dc9b6e, type: 3}
+--- !u!1 &44555845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 506119391405575770, guid: 5c966a26efa25e242b4302c504dc9b6e, type: 3}
+  m_PrefabInstance: {fileID: 44555844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &401996397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8b6494e9f7e4ed48aa7f2adab0be3db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bd37ee758edfaf46811e1d8324bcd76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1771,8 +1776,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 580141754}
+  settingsCanvas: {fileID: 1788062894}
+  saveCanvas: {fileID: 44555845}
+  background: {fileID: 502099449}
   animatorLoading: {fileID: 4784525650855208525, guid: 65073d87f2d61414b820460b1d10a476, type: 3}
-  background: {fileID: 0}
+  startTitleCanvas: {fileID: 580141751}
 --- !u!4 &1176019372
 Transform:
   m_ObjectHideFlags: 0
@@ -2814,7 +2822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8b6494e9f7e4ed48aa7f2adab0be3db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bd37ee758edfaf46811e1d8324bcd76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2949,6 +2957,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06bd2442e621ed489e1465375ae9959, type: 3}
+--- !u!1 &1788062894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2222102714701892744, guid: a06bd2442e621ed489e1465375ae9959, type: 3}
+  m_PrefabInstance: {fileID: 1788062893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1801250376
 GameObject:
   m_ObjectHideFlags: 0

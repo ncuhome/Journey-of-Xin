@@ -7,6 +7,20 @@ public class Escape : MonoBehaviour
 {
     public GameObject Star;
     private float starCDTimer = 0;//生成星星的计时器
+
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if (!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
+
     public void End()//失败
     {
         InputManager.Instance.sceneState = SceneState.MiniGame;

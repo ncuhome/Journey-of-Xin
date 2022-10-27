@@ -19,7 +19,18 @@ public class Connection : MonoBehaviour
     private bool stop = false;
     private bool timerStart = false;
     // Start is called before the first frame update
-
+    public GameObject tipsButton;
+    public void TipsDisplay()
+    {
+        if (!tipsButton.activeSelf)
+        {
+            tipsButton.SetActive(true);
+        }
+        else
+        {
+            tipsButton.SetActive(false);
+        }
+    }
     private void ResetData()//重置数据
     {
         //重置地图
