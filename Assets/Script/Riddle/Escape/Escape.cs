@@ -47,10 +47,23 @@ public class Escape : MonoBehaviour
     {
 
     }
-
+    private float timer = 2;
+    private bool  closeTips = true;
     // Update is called once per frame
     void Update()
     {
+        if(closeTips)
+        {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                TipsDisplay();
+                closeTips = false;
+            }
+        }
         if(starCDTimer <= 0)//ÀäÈ´Íê³É
         {
             CreatStar();

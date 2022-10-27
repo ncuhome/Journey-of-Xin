@@ -273,8 +273,11 @@ public class EventSystem : MonoBehaviour, IEventList
 
     private void MiniGame2()
     {
-        SceneManager.LoadScene(8, LoadSceneMode.Additive);
-        InputManager.Instance.sceneState = SceneState.MiniGame;
+        if (staticEventList[2] != 1)
+        {
+            SceneManager.LoadScene(8, LoadSceneMode.Additive);
+            InputManager.Instance.sceneState = SceneState.MiniGame;
+        }
     }
 
     private void DeleteRebornDevice()
@@ -1248,7 +1251,7 @@ public class EventSystem : MonoBehaviour, IEventList
     private void End1Sleep()
     {
         END = 1;
-        SceneManager.LoadScene(15,LoadSceneMode.Additive);
+        SceneManager.LoadScene(15, LoadSceneMode.Additive);
     }
 
     private void AfterDialogNode37()
