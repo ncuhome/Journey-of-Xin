@@ -2287,7 +2287,7 @@ MonoBehaviour:
   dialogDataFile: {fileID: 4900000, guid: 1eb98ea9f97b6ca4094eca0458c03cba, type: 3}
   dialogIndex: 7
   autoEnterDialogue: 0
-  DialogOnce: 1
+  DialogOnce: 0
 --- !u!1 &193886606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5866,18 +5866,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 382578360}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!95 &382578359
 Animator:
   serializedVersion: 4
@@ -5913,8 +5901,8 @@ MonoBehaviour:
   itemIndex: 14
   panelPrefab: {fileID: 0}
   moveToCenter: 0
-  showInHighestLevel: 1
-  highLight: 1
+  showInHighestLevel: 0
+  highLight: 0
 --- !u!114 &382578361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7705,7 +7693,7 @@ MonoBehaviour:
   dialogDataFile: {fileID: 4900000, guid: 6970095be760f6445812e4b970e1d123, type: 3}
   dialogIndex: 21
   autoEnterDialogue: 0
-  DialogOnce: 1
+  DialogOnce: 0
 --- !u!1 &501798459
 GameObject:
   m_ObjectHideFlags: 0
@@ -10701,7 +10689,7 @@ MonoBehaviour:
   dialogDataFile: {fileID: 4900000, guid: ceeacabf66bce2b47b9204cb61c84cb9, type: 3}
   dialogIndex: 9
   autoEnterDialogue: 0
-  DialogOnce: 1
+  DialogOnce: 0
 --- !u!1 &764632848
 GameObject:
   m_ObjectHideFlags: 0
@@ -13004,18 +12992,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 990905414}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!95 &990905413
 Animator:
   serializedVersion: 4
@@ -13051,8 +13027,8 @@ MonoBehaviour:
   itemIndex: 9
   panelPrefab: {fileID: 0}
   moveToCenter: 0
-  showInHighestLevel: 1
-  highLight: 1
+  showInHighestLevel: 0
+  highLight: 0
 --- !u!114 &990905415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13528,18 +13504,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 994976086}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!95 &994976085
 Animator:
   serializedVersion: 4
@@ -13575,8 +13539,8 @@ MonoBehaviour:
   itemIndex: 8
   panelPrefab: {fileID: 0}
   moveToCenter: 0
-  showInHighestLevel: 1
-  highLight: 1
+  showInHighestLevel: 0
+  highLight: 0
 --- !u!114 &994976087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15745,18 +15709,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1186118972}
-        m_TargetAssemblyTypeName: ItemDisplay, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!95 &1186118971
 Animator:
   serializedVersion: 4
@@ -15792,8 +15744,8 @@ MonoBehaviour:
   itemIndex: 20
   panelPrefab: {fileID: 0}
   moveToCenter: 0
-  showInHighestLevel: 1
-  highLight: 1
+  showInHighestLevel: 0
+  highLight: 0
 --- !u!114 &1186118973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20746,7 +20698,7 @@ MonoBehaviour:
   dialogDataFile: {fileID: 4900000, guid: 85cae7e815b4c994496e98498f78601e, type: 3}
   dialogIndex: 13
   autoEnterDialogue: 0
-  DialogOnce: 1
+  DialogOnce: 0
 --- !u!1 &1612187775
 GameObject:
   m_ObjectHideFlags: 0
